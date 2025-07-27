@@ -31,7 +31,7 @@ const About = () => {
           {/* Content */}
           <div>
             <h2 className="font-alata text-4xl md:text-5xl font-bold text-foreground mb-6">
-              About <span className="font-allura text-foreground text-5xl md:text-6xl">Us</span>
+              About <span className="font-allura text-primary text-5xl md:text-6xl">Us</span>
             </h2>
             
             <div className="space-y-6 font-montserrat text-foreground/80 leading-relaxed">
@@ -42,7 +42,7 @@ const About = () => {
               </p>
               
               <p>
-                We prepare dum pukht biryani on coal-based stoves, and our Ustaadi has more than two decades of experience. 
+                We prepare dum pukht biryani on coal-based stoves, and our Ustaad has more than two decades of experience. 
                 In every 1 kg biryani, we provide 1 kg rice and 1 kg chicken, ensuring the perfect balance and generous portions. 
                 Each dish tells a story of heritage, craftsmanship, and the love for good food.
               </p>

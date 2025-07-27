@@ -183,14 +183,16 @@ const Menu = () => {
             <p className="font-montserrat text-foreground/80 mb-6">
               Call us or message on WhatsApp for personalized recommendations based on your taste preferences.
             </p>
-            <Button
-              onClick={() => window.open('https://wa.me/919876543210?text=Hi! I need help choosing the perfect biryani for my family.', '_blank')}
-              variant="outline"
-              className="border-primary/50 text-foreground hover:bg-primary/10 font-montserrat font-semibold"
-              size="lg"
-            >
-              Get Recommendations
-            </Button>
+            <div className="flex justify-center">
+              <Button
+                onClick={() => window.open('https://wa.me/919167682582?text=Hi! I need help choosing the perfect biryani for my family.', '_blank')}
+                variant="outline"
+                className="border-primary/50 text-foreground hover:bg-primary/10 font-montserrat font-semibold"
+                size="lg"
+              >
+                Get Recommendations
+              </Button>
+            </div>
           </div>
         </div>
       </div>

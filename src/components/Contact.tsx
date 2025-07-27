@@ -22,13 +22,13 @@ const Contact = () => {
       icon: <MapPin className="w-6 h-6 text-primary" />,
       title: "Location",
       details: "Raunak City, Kalyan-West, Maharashtra, 421301",
-      action: () => window.open('https://maps.google.com', '_blank'),
-      buttonText: "Get Directions"
+      action: null,
+      buttonText: null
     },
     {
       icon: <Clock className="w-6 h-6 text-primary" />,
       title: "Hours",
-      details: "Daily: 11:00 AM - 11:00 PM",
+      details: "Mon-Sun: 12 PM - 10 PM (Fri: 4 PM - 10 PM)",
       action: null,
       buttonText: null
     }
@@ -110,7 +110,7 @@ const Contact = () => {
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm font-montserrat text-foreground/70">
             <div>📱 Quick WhatsApp ordering</div>
-            <div>🚚 30-45 min delivery</div>
+            <div>🚚 Fast delivery</div>
             <div>💳 Cash on delivery available</div>
           </div>
         </div>
@@ -118,7 +118,7 @@ const Contact = () => {
         {/* Footer */}
         <div className="mt-16 text-center">
           <p className="font-montserrat text-foreground/60 text-sm">
-            © 2024 Biryani Palace. Made with ❤️ for biryani lovers.
+            © 2025 Biryani Palace. Made with ❤️ for biryani lovers.
           </p>
         </div>
       </div>
