@@ -20,7 +20,7 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
     const total = getTotalPrice();
     const message = `🍛 *Biryani Palace Order*\n\n${orderDetails}\n\n*Total: ₹${total.toFixed(2)}*\n\nPlease confirm my order and provide delivery details.`;
     
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/919167682582?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
     
     clearCart();

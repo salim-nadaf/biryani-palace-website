@@ -3,6 +3,7 @@ import { ShoppingCart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
 import { CartSidebar } from './CartSidebar';
+import logo from '@/assets/logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,9 +25,11 @@ const Header = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-2">
-              <h1 className="text-2xl font-alata font-bold text-foreground">
-                Biryani <span className="text-primary font-allura text-3xl">Palace</span>
-              </h1>
+              <img 
+                src={logo} 
+                alt="Biryani Palace Logo" 
+                className="h-12 w-12 object-contain"
+              />
             </div>
 
             {/* Desktop Navigation */}

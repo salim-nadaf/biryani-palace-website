@@ -7,21 +7,21 @@ const Contact = () => {
     {
       icon: <Phone className="w-6 h-6 text-primary" />,
       title: "Phone",
-      details: "+91 98765 43210",
-      action: () => window.open('tel:+919876543210'),
+      details: "+91 91676 82582",
+      action: () => window.open('tel:+919167682582'),
       buttonText: "Call Now"
     },
     {
       icon: <MessageCircle className="w-6 h-6 text-primary" />,
       title: "WhatsApp",
-      details: "+91 98765 43210",
-      action: () => window.open('https://wa.me/919876543210?text=Hi! I would like to place an order.', '_blank'),
+      details: "+91 91676 82582",
+      action: () => window.open('https://wa.me/919167682582?text=Hi! I would like to place an order.', '_blank'),
       buttonText: "Message Us"
     },
     {
       icon: <MapPin className="w-6 h-6 text-primary" />,
       title: "Location",
-      details: "123 Food Street, Spice District, City 560001",
+      details: "Raunak City, Kalyan-West, Maharashtra, 421301",
       action: () => window.open('https://maps.google.com', '_blank'),
       buttonText: "Get Directions"
     },
@@ -89,7 +89,7 @@ const Contact = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
-              onClick={() => window.open('https://wa.me/919876543210?text=Hi! I would like to place an order from the menu.', '_blank')}
+              onClick={() => window.open('https://wa.me/919167682582?text=Hi! I would like to place an order from the menu.', '_blank')}
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold glow-gold"
             >
@@ -98,7 +98,7 @@ const Contact = () => {
             </Button>
             
             <Button
-              onClick={() => window.open('tel:+919876543210')}
+              onClick={() => window.open('tel:+919167682582')}
               variant="outline"
               size="lg"
               className="border-primary/50 text-foreground hover:bg-primary/10 font-montserrat font-semibold"

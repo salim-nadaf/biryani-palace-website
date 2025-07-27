@@ -15,7 +15,7 @@ const About = () => {
     {
       icon: <Clock className="w-8 h-8 text-primary" />,
       title: "Quick Service",
-      description: "Fresh biryani delivered hot to your doorstep within 30-45 minutes of ordering."
+      description: "Fresh biryani delivered hot to your doorstep within 3 hours of ordering."
     },
     {
       icon: <Users className="w-8 h-8 text-primary" />,
@@ -31,20 +31,20 @@ const About = () => {
           {/* Content */}
           <div>
             <h2 className="font-alata text-4xl md:text-5xl font-bold text-foreground mb-6">
-              About <span className="font-allura text-primary text-5xl md:text-6xl">Us</span>
+              About <span className="font-allura text-foreground text-5xl md:text-6xl">Us</span>
             </h2>
             
             <div className="space-y-6 font-montserrat text-foreground/80 leading-relaxed">
               <p className="text-lg">
-                Welcome to <span className="text-primary font-semibold">Biryani Palace</span>, where 
-                tradition meets taste in every grain of rice. For over two decades, we've been serving 
+                Welcome to <span className="text-foreground font-semibold">Biryani Palace</span>, where 
+                tradition meets taste in every grain of rice. For more than 4 years, we've been serving 
                 authentic biryani that brings families together around the dinner table.
               </p>
               
               <p>
-                Our master chefs use time-honored techniques and carefully selected spices to create 
-                biryani that's not just a meal, but an experience. Each dish tells a story of heritage, 
-                craftsmanship, and the love for good food.
+                We prepare dum pukht biryani on coal-based stoves, and our Ustaadi has more than two decades of experience. 
+                In every 1 kg biryani, we provide 1 kg rice and 1 kg chicken, ensuring the perfect balance and generous portions. 
+                Each dish tells a story of heritage, craftsmanship, and the love for good food.
               </p>
               
               <p>
@@ -87,10 +87,10 @@ const About = () => {
         {/* Stats Section */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { number: "1000+", label: "Happy Families" },
-            { number: "15+", label: "Years Experience" },
+            { number: "100+", label: "Happy Families" },
+            { number: "4+", label: "Years Experience" },
             { number: "50+", label: "Daily Orders" },
-            { number: "4.8", label: "Average Rating" }
+            { number: "4.3", label: "Average Rating" }
           ].map((stat, index) => (
             <div key={index} className="text-center">
               <div className="font-alata text-3xl md:text-4xl font-bold text-primary mb-2">

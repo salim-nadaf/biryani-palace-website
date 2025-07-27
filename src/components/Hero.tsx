@@ -1,6 +1,6 @@
 import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroImage from '@/assets/hero-biryani.jpg';
+import heroImage from '@/assets/hero-background.png';
 
 const Hero = () => {
   const scrollToMenu = () => {
@@ -27,21 +27,26 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
           {/* Star Rating */}
           <div className="flex justify-center items-center space-x-1 mb-6">
-            {[1, 2, 3, 4, 5].map((star) => (
+            {[1, 2, 3, 4].map((star) => (
               <Star key={star} className="w-6 h-6 fill-primary text-primary" />
             ))}
+            <Star className="w-6 h-6 text-primary" />
             <span className="ml-3 font-montserrat text-foreground/90">
-              Loved by 1000+ families
+              Loved by 100+ families
             </span>
           </div>
 
           {/* Main Heading */}
           <h1 className="font-alata text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
-            Authentic
-            <span className="block font-allura text-primary text-6xl md:text-8xl">
+            <span className="block font-alata text-foreground text-6xl md:text-8xl">
               Biryani Palace
             </span>
           </h1>
+
+          {/* Best biryani tagline */}
+          <p className="font-montserrat text-2xl md:text-3xl text-foreground mb-6 font-semibold">
+            Best biryani in Kalyan
+          </p>
 
           {/* Subtitle */}
           <p className="font-montserrat text-xl md:text-2xl text-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -84,7 +89,7 @@ const Hero = () => {
               variant="outline"
               size="lg"
               className="border-foreground/30 text-foreground hover:bg-foreground/10 font-montserrat font-semibold px-8 py-6 text-lg"
-              onClick={() => window.open('https://wa.me/919876543210', '_blank')}
+              onClick={() => window.open('https://wa.me/919167682582', '_blank')}
             >
               Order Now via WhatsApp
             </Button>
