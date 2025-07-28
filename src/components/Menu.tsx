@@ -225,9 +225,9 @@ const Menu = () => {
                       </span>
                     </div>
                     
-                    <p className="font-montserrat text-foreground/70 mb-3 text-xs leading-relaxed">
-                      {item.description}
-                    </p>
+                     <p className="font-montserrat text-muted-foreground mb-3 text-xs leading-relaxed">
+                       {item.description}
+                     </p>
                     
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center space-x-1">

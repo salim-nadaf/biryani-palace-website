@@ -6,43 +6,43 @@
 
 @layer base {
   :root {
-    /* Main Brand Colors */
-    --background: 0 0% 0%; /* Black background */
-    --foreground: 0 0% 100%; /* White text */
-    --gold: 43 79% 44%; /* #C89116 gold accent */
-    --gold-light: 43 79% 60%; /* Lighter gold for hover states */
-    --gold-dark: 43 79% 30%; /* Darker gold for active states */
+    /* Main Brand Colors - Improved contrast */
+    --background: 30 10% 15%; /* Lighter background for better readability */
+    --foreground: 0 0% 98%; /* High contrast white text */
+    --gold: 43 70% 45%; /* Slightly muted gold accent */
+    --gold-light: 43 70% 55%; /* Lighter gold for hover states */
+    --gold-dark: 43 70% 35%; /* Darker gold for active states */
 
-    /* Brand Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(0 0% 0%), hsl(43 79% 44%), hsl(0 0% 0%));
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0% / 0.9), hsl(43 79% 44% / 0.3), hsl(0 0% 0% / 0.9));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 5%), hsl(43 79% 44% / 0.1), hsl(0 0% 3%));
+    /* Brand Gradients - Brighter for better contrast */
+    --gradient-primary: linear-gradient(135deg, hsl(30 10% 15%), hsl(43 70% 45%), hsl(30 10% 15%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0% / 0.7), hsl(43 70% 45% / 0.2), hsl(0 0% 0% / 0.7));
+    --gradient-card: linear-gradient(145deg, hsl(30 8% 18%), hsl(43 70% 45% / 0.08), hsl(30 8% 16%));
 
-    /* Component Colors */
-    --card: 0 0% 5%; /* Dark card background */
-    --card-foreground: 0 0% 100%;
+    /* Component Colors - Better contrast */
+    --card: 30 8% 18%; /* Lighter card background */
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 30 8% 18%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 43 79% 44%; /* Gold primary */
-    --primary-foreground: 0 0% 0%;
+    --primary: 43 70% 45%; /* Muted gold primary */
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 0 0% 15%; /* Dark secondary */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 30 8% 22%; /* Lighter secondary */
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 75%;
+    --muted: 30 8% 20%;
+    --muted-foreground: 0 0% 85%; /* Much more readable muted text */
 
-    --accent: 43 79% 44%; /* Gold accent */
-    --accent-foreground: 0 0% 0%;
+    --accent: 43 70% 45%; /* Muted gold accent */
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 43 79% 44% / 0.2; /* Subtle gold border */
-    --input: 0 0% 15%;
-    --ring: 43 79% 44%;
+    --border: 30 15% 35%; /* More visible border */
+    --input: 30 8% 22%;
+    --ring: 43 70% 45%;
 
     --radius: 0.75rem;
 

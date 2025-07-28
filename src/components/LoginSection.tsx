@@ -66,6 +66,11 @@ const LoginSection = () => {
         area: formData.area
       });
 
+      // Send welcome message to WhatsApp
+      const welcomeMessage = `Hi ${formData.name.split(' ')[0]}! 🎉 Welcome to Biryani Palace! Your account is now active and you have access to exclusive offers. We're excited to serve you the best biryani in Kalyan!`;
+      const whatsappUrl = `https://wa.me/${formData.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(welcomeMessage)}`;
+      window.open(whatsappUrl, '_blank');
+
       toast({
         title: `Thanks for logging in, ${formData.name.split(' ')[0]}!`,
         description: "You now have access to exclusive offers and personalized experience!",
@@ -190,7 +195,7 @@ const LoginSection = () => {
                     type="tel"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="+91 9876543210"
+                    placeholder="Enter your WhatsApp number"
                     className="font-montserrat border-border focus:border-primary"
                     required
                   />

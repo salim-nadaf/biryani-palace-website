@@ -1,7 +1,7 @@
 import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import LazyImage from './LazyImage';
-import heroImage from '@/assets/hero-biryani.jpg';
+import heroImage from '@/assets/Mutton Biryani hero image.jpg';
 
 const Hero = () => {
   const scrollToMenu = () => {
