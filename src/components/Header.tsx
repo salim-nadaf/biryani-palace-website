@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { ShoppingCart, Menu, X } from 'lucide-react';
+import { ShoppingCart, Menu, X, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useCart } from '@/contexts/CartContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { CartSidebar } from './CartSidebar';
 import logo from '@/assets/logo.png';
 
@@ -9,6 +11,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { getTotalItems } = useCart();
+  const { user, logout, isLoggedIn } = useAuth();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -58,8 +61,32 @@ const Header = () => {
               </button>
             </nav>
 
-            {/* Cart & Mobile Menu */}
+            {/* User Info, Cart & Mobile Menu */}
             <div className="flex items-center space-x-4">
+              {/* User Welcome Message */}
+              {isLoggedIn && user && (
+                <div className="hidden lg:flex items-center space-x-3">
+                  <div className="text-right">
+                    <p className="font-montserrat text-sm text-foreground font-medium">
+                      Hi, {user.name.split(' ')[0]}!
+                    </p>
+                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="sm" className="p-2">
+                        <User className="w-5 h-5 text-foreground" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <DropdownMenuItem onClick={logout} className="cursor-pointer">
+                        <LogOut className="w-4 h-4 mr-2" />
+                        Logout
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              )}
+
               <Button
                 variant="outline"
                 size="icon"
@@ -90,6 +117,22 @@ const Header = () => {
           {isMenuOpen && (
             <nav className="md:hidden mt-4 pb-4 border-t border-primary/20 pt-4">
               <div className="flex flex-col space-y-3">
+                {/* Mobile User Info */}
+                {isLoggedIn && user && (
+                  <div className="pb-3 border-b border-primary/20 mb-3">
+                    <p className="font-montserrat text-foreground font-medium">
+                      Hi, {user.name.split(' ')[0]}!
+                    </p>
+                    <button
+                      onClick={logout}
+                      className="flex items-center mt-2 text-sm text-foreground/70 hover:text-primary transition-colors"
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Logout
+                    </button>
+                  </div>
+                )}
+                
                 <button
                   onClick={() => scrollToSection('home')}
                   className="text-left text-foreground hover:text-primary transition-smooth font-montserrat py-2"

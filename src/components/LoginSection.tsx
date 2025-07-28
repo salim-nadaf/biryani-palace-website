@@ -5,7 +5,8 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Gift, Sparkles } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { Gift, Sparkles, CheckCircle2 } from 'lucide-react';
 
 const LoginSection = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ const LoginSection = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { login, isLoggedIn, user } = useAuth();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -56,13 +58,15 @@ const LoginSection = () => {
     setIsLoading(true);
 
     try {
-      // Note: This would need to be connected to a Google Sheets integration
-      // For now, we'll just simulate the submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await login({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone
+      });
       
       toast({
-        title: "Welcome to Biryani Palace!",
-        description: "Your account has been created. Check your WhatsApp for exclusive offers!",
+        title: `Thanks for logging in, ${formData.name.split(' ')[0]}!`,
+        description: "You now have access to exclusive offers and personalized experience!",
       });
 
       // Reset form
@@ -74,7 +78,7 @@ const LoginSection = () => {
       });
     } catch (error) {
       toast({
-        title: "Submission Failed",
+        title: "Login Failed",
         description: "Please try again later or contact us directly.",
         variant: "destructive",
       });
@@ -82,6 +86,38 @@ const LoginSection = () => {
       setIsLoading(false);
     }
   };
+
+  // Show welcome message if user is logged in
+  if (isLoggedIn && user) {
+    return (
+      <section id="login" className="py-20 px-4 bg-gradient-subtle">
+        <div className="container mx-auto">
+          <div className="max-w-md mx-auto">
+            <Card className="bg-gradient-card border-border shadow-elegant">
+              <CardContent className="p-8 text-center">
+                <div className="flex justify-center mb-6">
+                  <div className="bg-green-500/10 p-4 rounded-full">
+                    <CheckCircle2 className="w-12 h-12 text-green-500" />
+                  </div>
+                </div>
+                <h3 className="font-alata text-2xl font-bold text-foreground mb-4">
+                  Welcome back, {user.name.split(' ')[0]}!
+                </h3>
+                <p className="font-montserrat text-foreground/80 mb-6">
+                  You're all set to enjoy exclusive offers and personalized biryani recommendations.
+                </p>
+                <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
+                  <p className="font-montserrat text-sm text-primary font-semibold">
+                    🎉 Your exclusive 10% discount is active!
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="login" className="py-20 px-4 bg-gradient-subtle">

@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { useAuth } from './AuthContext';
+import LoginPromptDialog from '@/components/LoginPromptDialog';
 
 export interface CartItem {
   id: string;
@@ -22,8 +24,15 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const { isLoggedIn } = useAuth();
 
   const addToCart = (newItem: Omit<CartItem, 'quantity'>) => {
+    if (!isLoggedIn) {
+      setShowLoginPrompt(true);
+      return;
+    }
+    
     setItems(prev => {
       const existingItem = prev.find(item => item.id === newItem.id);
       if (existingItem) {
@@ -65,6 +74,13 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setItems([]);
   };
 
+  const scrollToLogin = () => {
+    const loginSection = document.getElementById('login');
+    if (loginSection) {
+      loginSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <CartContext.Provider value={{
       items,
@@ -76,6 +92,11 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       clearCart
     }}>
       {children}
+      <LoginPromptDialog
+        isOpen={showLoginPrompt}
+        onClose={() => setShowLoginPrompt(false)}
+        onLoginClick={scrollToLogin}
+      />
     </CartContext.Provider>
   );
 };
