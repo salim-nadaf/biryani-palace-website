@@ -4,6 +4,7 @@ interface User {
   name: string;
   email: string;
   phone: string;
+  area: string;
 }
 
 interface AuthContextType {

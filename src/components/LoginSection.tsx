@@ -13,6 +13,7 @@ const LoginSection = () => {
     name: '',
     email: '',
     phone: '',
+    area: '',
     consent: false
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +38,7 @@ const LoginSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.email || !formData.phone) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.area) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -61,7 +62,8 @@ const LoginSection = () => {
       await login({
         name: formData.name,
         email: formData.email,
-        phone: formData.phone
+        phone: formData.phone,
+        area: formData.area
       });
       
       toast({
@@ -74,6 +76,7 @@ const LoginSection = () => {
         name: '',
         email: '',
         phone: '',
+        area: '',
         consent: false
       });
     } catch (error) {
@@ -186,6 +189,22 @@ const LoginSection = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="+91 9876543210"
+                    className="font-montserrat border-border focus:border-primary"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="area" className="font-montserrat font-medium text-foreground">
+                    Area *
+                  </Label>
+                  <Input
+                    id="area"
+                    name="area"
+                    type="text"
+                    value={formData.area}
+                    onChange={handleInputChange}
+                    placeholder="Enter your area/locality"
                     className="font-montserrat border-border focus:border-primary"
                     required
                   />

@@ -187,7 +187,7 @@ const Menu = () => {
             </h3>
             
             {/* Category Items Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {category.items.map((item) => (
                 <Card key={item.id} className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden">
                   <div className="relative">
@@ -220,7 +220,7 @@ const Menu = () => {
                         {item.name}
                       </h4>
                       <span className="font-alata text-xl font-bold text-primary">
-                        ₹{item.price}
+                        ₹{item.price}/kg
                       </span>
                     </div>
                     
@@ -242,9 +242,6 @@ const Menu = () => {
                             />
                           ))}
                         </div>
-                        <span className="font-montserrat text-xs text-foreground/70">
-                          ({item.reviews})
-                        </span>
                       </div>
                     </div>
                     
