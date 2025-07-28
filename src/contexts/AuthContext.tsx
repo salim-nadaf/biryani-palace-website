@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (userData: User) => {
     try {
       // Save to Google Sheets via webhook
-      const response = await fetch('https://script.google.com/macros/s/AKfycbw1ZiCoEdFN--v0C3E8nARCe9I-84493iVZHw7vQV1_TruhagidI-ZqeNsD5YFYd_ZK/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbxN3jCMFB4aIy-3UxZQ8DmT0x2NJ7lGNrVDrw6lPNVrO86BnWvgcFDemsPRlvhtwPoZ/exec', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
