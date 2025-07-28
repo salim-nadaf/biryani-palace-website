@@ -48,7 +48,7 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
               </h2>
               {user && (
                 <p className="text-sm text-muted-foreground font-montserrat">
-                  Welcome back, {user.name.split(' ')[0]}!
+                  Welcome, {user.name.split(' ')[0]}!
                 </p>
               )}
             </div>

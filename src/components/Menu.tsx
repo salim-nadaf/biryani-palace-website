@@ -203,7 +203,7 @@ const Menu = () => {
                       </div>
                     )}
                     {item.isNew && (
-                      <div className="absolute top-2 left-2 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-montserrat font-semibold">
+                      <div className="absolute top-2 left-2 bg-green-700 text-white px-2 py-1 rounded-full text-xs font-montserrat font-bold">
                         New Launch
                       </div>
                     )}

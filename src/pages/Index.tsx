@@ -4,6 +4,7 @@ import Menu from '@/components/Menu';
 import LoginSection from '@/components/LoginSection';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
+import WelcomeSection from '@/components/WelcomeSection';
 
 const Index = () => {
   return (
@@ -11,6 +12,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <WelcomeSection />
         <Menu />
         <LoginSection />
         <About />
