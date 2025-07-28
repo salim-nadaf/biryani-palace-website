@@ -37,7 +37,7 @@ const LoginSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.phone || !formData.area) {
       toast({
         title: "Missing Information",
@@ -65,7 +65,7 @@ const LoginSection = () => {
         phone: formData.phone,
         area: formData.area
       });
-      
+
       toast({
         title: `Thanks for logging in, ${formData.name.split(' ')[0]}!`,
         description: "You now have access to exclusive offers and personalized experience!",
@@ -90,9 +90,38 @@ const LoginSection = () => {
     }
   };
 
-  // Don't show login form if user is already logged in
+  // Show welcome message if user is logged in
   if (isLoggedIn && user) {
-    return null;
+    return (
+      <section id="login" className="py-20 px-4 bg-gradient-subtle">
+        <div className="container mx-auto">
+          <div className="max-w-md mx-auto">
+            <Card className="bg-gradient-card border-border shadow-elegant">
+              <CardContent className="p-8 text-center">
+                <div className="flex justify-center mb-6">
+                  <div className="bg-green-500/10 p-4 rounded-full">
+                    <CheckCircle2 className="w-12 h-12 text-green-500" />
+                  </div>
+                </div>
+                <h3 className="font-alata text-2xl font-bold text-foreground mb-4">
+                  {isReturning
+                    ? `Welcome back, ${user.name.split(' ')[0]}!`
+                    : `Welcome, ${user.name.split(' ')[0]}!`}
+                </h3>
+                <p className="font-montserrat text-foreground/80 mb-6">
+                  You're all set to enjoy exclusive offers and personalized biryani recommendations.
+                </p>
+                <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
+                  <p className="font-montserrat text-sm text-primary font-semibold">
+                    🎉 Your exclusive 10% discount is active!
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -161,7 +190,7 @@ const LoginSection = () => {
                     type="tel"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="Enter your WhatsApp number"
+                    placeholder="+91 9876543210"
                     className="font-montserrat border-border focus:border-primary"
                     required
                   />
@@ -219,7 +248,7 @@ const LoginSection = () => {
 
               <div className="text-center mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
                 <p className="font-montserrat text-xs text-foreground/70">
-                  🎯 Get instant access to flat ₹100 off your first order!
+                  🎯 Get instant access to 10% off your first order!
                 </p>
               </div>
             </CardContent>
