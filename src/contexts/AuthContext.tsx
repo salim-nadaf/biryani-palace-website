@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   console.log("✅ login() function triggered", userData);
 
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbw1ZiCoEdFN--v0C3E8nARCe9I-84493iVZHw7vQV1_TruhagidI-ZqeNsD5YFYd_ZK/exec', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbzINXRZubnvcWpUEZN2A5y3C8DdHPUb_vUs01Wi7KleWcChPdsx9FlnqPhmLkdyu-Wa/exec', {
       method: 'POST',
       mode: 'no-cors', // 🚨 IMPORTANT
       headers: {
