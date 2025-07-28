@@ -30,8 +30,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   console.log("✅ login() function triggered", userData);
 
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbxN3jCMFB4aIy-3UxZQ8DmT0x2NJ7lGNrVDrw6lPNVrO86BnWvgcFDemsPRlvhtwPoZ/exec', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbw1ZiCoEdFN--v0C3E8nARCe9I-84493iVZHw7vQV1_TruhagidI-ZqeNsD5YFYd_ZK/exec', {
       method: 'POST',
+      mode: 'no-cors', // 🚨 IMPORTANT
       headers: {
         'Content-Type': 'application/json',
       },
@@ -43,8 +44,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }),
     });
 
-    console.log("✅ Webhook POST response status:", response.status);
-
+    console.log("✅ Webhook POST sent (no-cors)");
     setUser(userData);
     localStorage.setItem('biryaniPalaceUser', JSON.stringify(userData));
   } catch (error) {
