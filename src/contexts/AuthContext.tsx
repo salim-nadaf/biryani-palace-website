@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         name: userData.name,
         email: userData.email,
         phone: userData.phone,
+        area: userData.area,
         timestamp: new Date().toISOString()
       }),
     });
