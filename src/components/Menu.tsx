@@ -81,6 +81,17 @@ const menuCategories = [
         isNew: false,
       },
       {
+        id: 'lazzatdaar-murgh-tikka-boneless',
+        name: 'Lazzatdaar Murgh Tikka Biryani - Boneless',
+        description: 'Premium boneless tandoori chicken tikka with aromatic basmati rice and royal spices per kg.',
+        price: 1099,
+        image: chickenBiryani,
+        rating: 4.9,
+        reviews: 87,
+        popular: false,
+        isNew: false,
+      },
+      {
         id: 'paneer-tikka-biryani',
         name: 'Paneer Tikka Biryani',
         description: 'Grilled paneer tikka with fragrant rice, nuts, and exotic spices per kg.',
