@@ -26,7 +26,7 @@ const Header = () => {
             {/* Logo */}
             <div className="flex items-center space-x-2">
               <h1 className="font-alata text-2xl font-bold text-foreground">
-                Biryani Palace
+                Biryani <span className="font-allura text-primary">Palace</span>
               </h1>
             </div>
 

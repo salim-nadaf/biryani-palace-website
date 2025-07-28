@@ -40,7 +40,7 @@ const Contact = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-alata text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Contact <span className="font-allura text-primary text-5xl md:text-6xl">Us</span>
+            Contact <span className="font-allura text-primary text-5xl md:text-6xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Us</span>
           </h2>
           <p className="font-montserrat text-xl text-foreground/80 max-w-2xl mx-auto">
             Ready to satisfy your biryani cravings? Get in touch with us for orders, 
@@ -80,7 +80,7 @@ const Contact = () => {
         {/* Quick Order Section */}
         <div className="bg-gradient-card border border-border rounded-2xl p-8 text-center">
           <h3 className="font-alata text-2xl font-bold text-foreground mb-4">
-            Ready to Order?
+            Ready to <span className="font-allura text-primary text-3xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Order?</span>
           </h3>
           <p className="font-montserrat text-foreground/80 mb-6 max-w-2xl mx-auto">
             Skip the wait! Order directly through WhatsApp for the fastest service. 

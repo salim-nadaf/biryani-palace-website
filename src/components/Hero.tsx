@@ -37,16 +37,9 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="font-alata text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
-            <span className="block font-alata text-foreground text-6xl md:text-8xl">
-              Biryani Palace
-            </span>
+          <h1 className="font-alata text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
+            Best Biryani in Kalyan
           </h1>
-
-          {/* Best biryani tagline */}
-          <p className="font-montserrat text-2xl md:text-3xl text-foreground mb-6 font-semibold">
-            Best biryani in Kalyan
-          </p>
 
           {/* Subtitle */}
           <p className="font-montserrat text-xl md:text-2xl text-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">

@@ -31,7 +31,7 @@ const About = () => {
           {/* Content */}
           <div>
             <h2 className="font-alata text-4xl md:text-5xl font-bold text-foreground mb-6">
-              About <span className="font-allura text-primary text-5xl md:text-6xl">Us</span>
+              About <span className="font-allura text-primary text-5xl md:text-6xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Us</span>
             </h2>
             
             <div className="space-y-6 font-montserrat text-foreground/80 leading-relaxed">
@@ -55,7 +55,7 @@ const About = () => {
             </div>
 
             <div className="mt-8 bg-gradient-card border border-border rounded-xl p-6">
-              <h3 className="font-alata text-xl font-bold text-foreground mb-3">Our Promise</h3>
+              <h3 className="font-alata text-xl font-bold text-foreground mb-3">Our <span className="font-allura text-primary text-2xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Promise</span></h3>
               <p className="font-montserrat text-foreground/80">
                 Every order is prepared fresh, never pre-cooked. We guarantee authentic taste, 
                 quality ingredients, and the perfect balance of spices that makes our biryani special.

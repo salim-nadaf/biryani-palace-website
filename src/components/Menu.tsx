@@ -8,66 +8,129 @@ import chickenBiryani from '@/assets/chicken-biryani.jpg';
 import muttonBiryani from '@/assets/mutton-biryani.jpg';
 import vegBiryani from '@/assets/veg-biryani.jpg';
 
-const menuItems = [
+const menuCategories = [
   {
-    id: 'chicken-biryani',
-    name: 'Chicken Biryani',
-    description: 'Tender chicken pieces marinated in aromatic spices, layered with fragrant basmati rice and cooked to perfection.',
-    price: 299,
-    image: chickenBiryani,
-    rating: 4.8,
-    reviews: 156,
-    popular: true,
+    id: 'bucket-biryani',
+    name: 'Bucket Biryani',
+    items: [
+      {
+        id: 'murgh-dum-biryani',
+        name: 'Murgh Dum Biryani',
+        description: 'Tender chicken pieces marinated in aromatic spices, layered with fragrant basmati rice and cooked to perfection in half kg bucket.',
+        price: 509,
+        image: chickenBiryani,
+        rating: 4.8,
+        reviews: 156,
+        popular: true,
+        isNew: false,
+      },
+      {
+        id: 'murgh-tandoor-biryani',
+        name: 'Murgh Tandoor Biryani',
+        description: 'Succulent tandoor-cooked chicken layered with premium basmati rice and traditional spices in half kg bucket.',
+        price: 509,
+        image: chickenBiryani,
+        rating: 4.9,
+        reviews: 203,
+        popular: true,
+        isNew: false,
+      },
+    ]
   },
   {
-    id: 'mutton-biryani',
-    name: 'Mutton Biryani',
-    description: 'Succulent mutton slow-cooked with traditional spices, layered with premium basmati rice and saffron.',
-    price: 399,
-    image: muttonBiryani,
-    rating: 4.9,
-    reviews: 203,
-    popular: true,
+    id: 'signature-creation',
+    name: 'Signature Creation',
+    items: [
+      {
+        id: 'makhmali-murgh-malai',
+        name: 'Makhmali Murgh Malai Biryani',
+        description: 'Creamy and rich chicken malai biryani with cashews and cream, a royal delicacy per kg.',
+        price: 999,
+        image: chickenBiryani,
+        rating: 5.0,
+        reviews: 67,
+        popular: true,
+        isNew: false,
+      },
+      {
+        id: 'murgh-banjara-biryani',
+        name: 'Murgh Banjara Biryani',
+        description: 'Traditional nomadic style chicken biryani with wild spices and rustic flavors per kg.',
+        price: 799,
+        image: chickenBiryani,
+        rating: 4.7,
+        reviews: 89,
+        popular: false,
+        isNew: true,
+      },
+    ]
   },
   {
-    id: 'veg-biryani',
-    name: 'Vegetable Biryani',
-    description: 'Fresh seasonal vegetables and paneer cooked with aromatic spices, nuts, and dried fruits in basmati rice.',
-    price: 249,
-    image: vegBiryani,
-    rating: 4.7,
-    reviews: 89,
-    popular: false,
+    id: 'tikka-biryani-mahal',
+    name: 'Tikka Biryani Mahal',
+    items: [
+      {
+        id: 'lazzatdaar-murgh-tikka',
+        name: 'Lazzatdaar Murgh Tikka Biryani',
+        description: 'Smoky tandoori chicken tikka layered with aromatic basmati rice and royal spices per kg.',
+        price: 899,
+        image: chickenBiryani,
+        rating: 4.8,
+        reviews: 124,
+        popular: true,
+        isNew: false,
+      },
+      {
+        id: 'paneer-tikka-biryani',
+        name: 'Paneer Tikka Biryani',
+        description: 'Grilled paneer tikka with fragrant rice, nuts, and exotic spices per kg.',
+        price: 1099,
+        image: vegBiryani,
+        rating: 4.6,
+        reviews: 98,
+        popular: false,
+        isNew: false,
+      },
+      {
+        id: 'veg-tikka-biryani',
+        name: 'Veg Tikka Biryani',
+        description: 'Assorted grilled vegetables with basmati rice and aromatic spices per kg.',
+        price: 849,
+        image: vegBiryani,
+        rating: 4.5,
+        reviews: 76,
+        popular: false,
+        isNew: false,
+      },
+    ]
   },
   {
-    id: 'hyderabadi-biryani',
-    name: 'Hyderabadi Special',
-    description: 'Our signature royal recipe with premium ingredients, served with boiled egg, raita, and shorba.',
-    price: 499,
-    image: chickenBiryani,
-    rating: 5.0,
-    reviews: 67,
-    popular: true,
-  },
-  {
-    id: 'family-pack',
-    name: 'Family Pack (Serves 4)',
-    description: 'Perfect for families! Choice of chicken or mutton biryani with raita, pickle, and dessert included.',
-    price: 999,
-    image: muttonBiryani,
-    rating: 4.9,
-    reviews: 124,
-    popular: true,
-  },
-  {
-    id: 'biryani-combo',
-    name: 'Biryani Combo',
-    description: 'Chicken biryani served with raita, pickle, boiled egg, and traditional sweets.',
-    price: 349,
-    image: chickenBiryani,
-    rating: 4.6,
-    reviews: 98,
-    popular: false,
+    id: 'gosht-ki-dawat',
+    name: 'Gosht ki Dawat',
+    items: [
+      {
+        id: 'mazedasar-gosht-dum',
+        name: 'Mazedasar Gosht Dum Biryani',
+        description: 'Slow-cooked mutton with traditional spices, layered with premium basmati rice per kg.',
+        price: 1499,
+        image: muttonBiryani,
+        rating: 4.9,
+        reviews: 145,
+        popular: true,
+        isNew: false,
+      },
+      {
+        id: 'gosht-hyderabadi',
+        name: 'Gosht Hyderabadi Biryani',
+        description: 'Authentic Hyderabadi style mutton biryani with saffron and royal spices per kg.',
+        price: 1499,
+        image: muttonBiryani,
+        rating: 5.0,
+        reviews: 167,
+        popular: true,
+        isNew: false,
+      },
+    ]
   },
 ];
 
@@ -75,7 +138,7 @@ const Menu = () => {
   const { addToCart } = useCart();
   const { toast } = useToast();
 
-  const handleAddToCart = (item: typeof menuItems[0]) => {
+  const handleAddToCart = (item: any) => {
     addToCart({
       id: item.id,
       name: item.name,
@@ -96,7 +159,7 @@ const Menu = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-alata text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Our <span className="font-allura text-primary text-5xl md:text-6xl">Menu</span>
+            Our <span className="font-allura text-primary text-5xl md:text-6xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Menu</span>
           </h2>
           <p className="font-montserrat text-xl text-foreground/80 max-w-2xl mx-auto">
             Discover our carefully crafted biryani varieties, each made with authentic spices 
@@ -104,75 +167,90 @@ const Menu = () => {
           </p>
         </div>
 
-        {/* Menu Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {menuItems.map((item) => (
-            <Card key={item.id} className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden">
-              <div className="relative">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-smooth"
-                />
-                {item.popular && (
-                  <div className="absolute top-3 left-3 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-montserrat font-semibold">
-                    Popular
-                  </div>
-                )}
-                <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1 flex items-center space-x-1">
-                  <Star className="w-4 h-4 fill-primary text-primary" />
-                  <span className="text-foreground text-sm font-montserrat font-medium">
-                    {item.rating}
-                  </span>
-                </div>
-              </div>
-              
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-alata text-xl font-bold text-foreground">
-                    {item.name}
-                  </h3>
-                  <span className="font-alata text-2xl font-bold text-primary">
-                    ₹{item.price}
-                  </span>
-                </div>
-                
-                <p className="font-montserrat text-foreground/70 mb-4 text-sm leading-relaxed">
-                  {item.description}
-                </p>
-                
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-2">
-                    <div className="flex items-center space-x-1">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star 
-                          key={star} 
-                          className={`w-4 h-4 ${
-                            star <= Math.floor(item.rating) 
-                              ? 'fill-primary text-primary' 
-                              : 'text-muted-foreground'
-                          }`} 
-                        />
-                      ))}
+        {/* Menu Categories */}
+        {menuCategories.map((category) => (
+          <div key={category.id} className="mb-16">
+            {/* Category Header */}
+            <h3 className="font-alata text-3xl font-bold text-foreground mb-8 text-center">
+              <span className="font-allura text-primary text-4xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>{category.name}</span>
+            </h3>
+            
+            {/* Category Items Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {category.items.map((item) => (
+                <Card key={item.id} className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden">
+                  <div className="relative">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-36 object-cover group-hover:scale-105 transition-smooth"
+                    />
+                    {item.popular && (
+                      <div className="absolute top-2 left-2 bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-montserrat font-semibold">
+                        Popular
+                      </div>
+                    )}
+                    {item.isNew && (
+                      <div className="absolute top-2 left-2 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-montserrat font-semibold">
+                        New Launch
+                      </div>
+                    )}
+                    <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1 flex items-center space-x-1">
+                      <Star className="w-3 h-3 fill-primary text-primary" />
+                      <span className="text-foreground text-xs font-montserrat font-medium">
+                        {item.rating}
+                      </span>
                     </div>
-                    <span className="font-montserrat text-sm text-foreground/70">
-                      ({item.reviews} reviews)
-                    </span>
                   </div>
-                </div>
-                
-                <Button
-                  onClick={() => handleAddToCart(item)}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold transition-smooth glow-gold"
-                  size="lg"
-                >
-                  <Plus className="mr-2 h-5 w-5" />
-                  Add to Cart
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  
+                  <CardContent className="p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="font-alata text-lg font-bold text-foreground leading-tight">
+                        {item.name}
+                      </h4>
+                      <span className="font-alata text-xl font-bold text-primary">
+                        ₹{item.price}
+                      </span>
+                    </div>
+                    
+                    <p className="font-montserrat text-foreground/70 mb-3 text-xs leading-relaxed">
+                      {item.description}
+                    </p>
+                    
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-1">
+                        <div className="flex items-center space-x-1">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <Star 
+                              key={star} 
+                              className={`w-3 h-3 ${
+                                star <= Math.floor(item.rating) 
+                                  ? 'fill-primary text-primary' 
+                                  : 'text-muted-foreground'
+                              }`} 
+                            />
+                          ))}
+                        </div>
+                        <span className="font-montserrat text-xs text-foreground/70">
+                          ({item.reviews})
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <Button
+                      onClick={() => handleAddToCart(item)}
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold transition-smooth glow-gold"
+                      size="sm"
+                    >
+                      <Plus className="mr-1 h-4 w-4" />
+                      Add to Cart
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        ))}
 
         {/* Call to Action */}
         <div className="text-center mt-16">
