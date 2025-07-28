@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
-import { LazyImage } from './LazyImage';
+import LazyImage from './LazyImage';
 
 import chickenBiryani from '@/assets/chicken-biryani.jpg';
 import muttonBiryani from '@/assets/mutton-biryani.jpg';

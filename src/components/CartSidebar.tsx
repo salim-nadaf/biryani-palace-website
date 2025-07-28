@@ -2,7 +2,7 @@ import { X, Plus, Minus, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
-import { LazyImage } from './LazyImage';
+import LazyImage from './LazyImage';
 
 interface CartSidebarProps {
   isOpen: boolean;

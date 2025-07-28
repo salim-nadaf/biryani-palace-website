@@ -1,6 +1,6 @@
 import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { LazyImage } from './LazyImage';
+import LazyImage from './LazyImage';
 import heroImage from '@/assets/hero-biryani.jpg';
 
 const Hero = () => {

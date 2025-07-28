@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface LazyImageProps {
   src: string;
@@ -7,7 +7,7 @@ interface LazyImageProps {
   placeholder?: string;
 }
 
-export const LazyImage = ({ src, alt, className, placeholder }: LazyImageProps) => {
+const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className, placeholder }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
 
@@ -38,3 +38,6 @@ export const LazyImage = ({ src, alt, className, placeholder }: LazyImageProps) 
     </div>
   );
 };
+
+export default LazyImage;
+export { LazyImage };
