@@ -18,7 +18,7 @@ const LoginSection = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const { login, isLoggedIn, user } = useAuth();
+  const { login, isLoggedIn, user, isReturning } = useAuth();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
