@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
+import { LazyImage } from './LazyImage';
 
 import chickenBiryani from '@/assets/chicken-biryani.jpg';
 import muttonBiryani from '@/assets/mutton-biryani.jpg';
@@ -191,7 +192,7 @@ const Menu = () => {
               {category.items.map((item) => (
                 <Card key={item.id} className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden">
                   <div className="relative">
-                    <img
+                    <LazyImage
                       src={item.image}
                       alt={item.name}
                       className="w-full h-36 object-cover group-hover:scale-105 transition-smooth"

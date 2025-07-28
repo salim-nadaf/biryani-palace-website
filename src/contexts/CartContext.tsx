@@ -25,10 +25,42 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [pendingItems, setPendingItems] = useState<CartItem[]>([]);
   const { isLoggedIn } = useAuth();
+
+  // Restore pending items after login
+  React.useEffect(() => {
+    if (isLoggedIn && pendingItems.length > 0) {
+      setItems(prev => {
+        const newItems = [...prev];
+        pendingItems.forEach(pendingItem => {
+          const existingItem = newItems.find(item => item.id === pendingItem.id);
+          if (existingItem) {
+            existingItem.quantity += pendingItem.quantity;
+          } else {
+            newItems.push(pendingItem);
+          }
+        });
+        return newItems;
+      });
+      setPendingItems([]);
+    }
+  }, [isLoggedIn, pendingItems]);
 
   const addToCart = (newItem: Omit<CartItem, 'quantity'>) => {
     if (!isLoggedIn) {
+      // Store pending item to be added after login
+      setPendingItems(prev => {
+        const existingItem = prev.find(item => item.id === newItem.id);
+        if (existingItem) {
+          return prev.map(item =>
+            item.id === newItem.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          );
+        }
+        return [...prev, { ...newItem, quantity: 1 }];
+      });
       setShowLoginPrompt(true);
       return;
     }

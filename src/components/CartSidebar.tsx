@@ -1,6 +1,8 @@
 import { X, Plus, Minus, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/contexts/CartContext';
+import { useAuth } from '@/contexts/AuthContext';
+import { LazyImage } from './LazyImage';
 
 interface CartSidebarProps {
   isOpen: boolean;
@@ -9,6 +11,7 @@ interface CartSidebarProps {
 
 export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
   const { items, updateQuantity, removeFromCart, getTotalPrice, clearCart } = useCart();
+  const { user } = useAuth();
 
   const handleWhatsAppOrder = () => {
     if (items.length === 0) return;
@@ -39,7 +42,16 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border">
-            <h2 className="text-xl font-alata font-bold">Your Cart</h2>
+            <div>
+              <h2 className="text-xl font-alata font-bold">
+                {user ? `${user.name.split(' ')[0]}'s Cart` : 'Your Cart'}
+              </h2>
+              {user && (
+                <p className="text-sm text-muted-foreground font-montserrat">
+                  Welcome back, {user.name.split(' ')[0]}!
+                </p>
+              )}
+            </div>
             <Button variant="ghost" size="icon" onClick={onClose}>
               <X className="h-6 w-6" />
             </Button>
@@ -57,7 +69,7 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
                 {items.map((item) => (
                   <div key={item.id} className="bg-gradient-card rounded-lg p-4 border border-border">
                     <div className="flex items-start space-x-3">
-                      <img
+                      <LazyImage
                         src={item.image}
                         alt={item.name}
                         className="w-16 h-16 rounded-lg object-cover"

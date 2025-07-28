@@ -111,7 +111,7 @@ const LoginSection = () => {
                 </p>
                 <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
                   <p className="font-montserrat text-sm text-primary font-semibold">
-                    🎉 Your exclusive 10% discount is active!
+                    🎉 Your exclusive flat ₹100 off is active!
                   </p>
                 </div>
               </CardContent>
@@ -246,7 +246,7 @@ const LoginSection = () => {
 
               <div className="text-center mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
                 <p className="font-montserrat text-xs text-foreground/70">
-                  🎯 Get instant access to 10% off your first order!
+                  🎯 Get instant access to flat ₹100 off your first order!
                 </p>
               </div>
             </CardContent>

@@ -1,5 +1,6 @@
 import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { LazyImage } from './LazyImage';
 import heroImage from '@/assets/hero-biryani.jpg';
 
 const Hero = () => {
@@ -14,7 +15,7 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img
+        <LazyImage
           src={heroImage}
           alt="Authentic Biryani"
           className="w-full h-full object-cover"

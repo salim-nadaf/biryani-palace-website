@@ -111,7 +111,7 @@ const Contact = () => {
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm font-montserrat text-foreground/70">
             <div>📱 Quick WhatsApp ordering</div>
             <div>🚚 Fast delivery</div>
-            <div>💳 Cash on delivery available</div>
+            <div>💰 Cash/UPI on delivery available</div>
           </div>
         </div>
 
