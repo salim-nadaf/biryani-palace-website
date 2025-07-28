@@ -27,34 +27,32 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (userData: User) => {
-    try {
-      // Save to Google Sheets via webhook
-      const response = await fetch('https://script.google.com/macros/s/AKfycbxN3jCMFB4aIy-3UxZQ8DmT0x2NJ7lGNrVDrw6lPNVrO86BnWvgcFDemsPRlvhtwPoZ/exec', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: userData.name,
-          email: userData.email,
-          phone: userData.phone,
-          timestamp: new Date().toISOString()
-        }),
-      });
+  console.log("✅ login() function triggered", userData);
 
-      // Note: Google Apps Script CORS may require no-cors mode
-      // await response.json(); // Uncomment when webhook is set up
+  try {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbxN3jCMFB4aIy-3UxZQ8DmT0x2NJ7lGNrVDrw6lPNVrO86BnWvgcFDemsPRlvhtwPoZ/exec', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: userData.name,
+        email: userData.email,
+        phone: userData.phone,
+        timestamp: new Date().toISOString()
+      }),
+    });
 
-      // Save user to state and localStorage
-      setUser(userData);
-      localStorage.setItem('biryaniPalaceUser', JSON.stringify(userData));
-    } catch (error) {
-      console.error('Error saving to Google Sheets:', error);
-      // Still save locally even if sheet fails
-      setUser(userData);
-      localStorage.setItem('biryaniPalaceUser', JSON.stringify(userData));
-    }
-  };
+    console.log("✅ Webhook POST response status:", response.status);
+
+    setUser(userData);
+    localStorage.setItem('biryaniPalaceUser', JSON.stringify(userData));
+  } catch (error) {
+    console.error("❌ Error sending to webhook:", error);
+    setUser(userData);
+    localStorage.setItem('biryaniPalaceUser', JSON.stringify(userData));
+  }
+};
 
   const logout = () => {
     setUser(null);
