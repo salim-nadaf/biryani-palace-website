@@ -6,9 +6,9 @@
 
 @layer base {
   :root {
-    /* Main Brand Colors - High contrast black/white theme */
-    --background: 0 0% 100%; /* White background for better readability */
-    --foreground: 0 0% 5%; /* Almost black text */
+    /* Main Brand Colors - Black theme as requested */
+    --background: 0 0% 0%; /* Black background */
+    --foreground: 0 0% 95%; /* White text */
     --gold: 43 85% 35%; /* Reduced gold for accents only */
     --gold-light: 43 85% 45%; /* Lighter gold for hover states */
     --gold-dark: 43 85% 25%; /* Darker gold for active states */
@@ -18,30 +18,30 @@
     --gradient-hero: linear-gradient(135deg, hsl(0 0% 0% / 0.7), hsl(43 85% 35% / 0.1), hsl(0 0% 0% / 0.7));
     --gradient-card: linear-gradient(145deg, hsl(0 0% 98%), hsl(43 85% 35% / 0.03), hsl(0 0% 97%));
 
-    /* Component Colors - High contrast */
-    --card: 0 0% 98%; /* Light card background */
-    --card-foreground: 0 0% 10%;
+    /* Component Colors - Black theme */
+    --card: 0 0% 8%; /* Dark card background */
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 43 85% 35%; /* Gold for highlights only */
-    --primary-foreground: 0 0% 100%;
+    --primary: 43 85% 45%; /* Gold for highlights only */
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 95%; /* Light secondary */
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 0 0% 12%; /* Dark secondary */
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 30%; /* Dark gray for readable muted text */
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 70%; /* Light gray for readable muted text */
 
-    --accent: 43 85% 35%; /* Gold accent sparingly used */
-    --accent-foreground: 0 0% 100%;
+    --accent: 43 85% 45%; /* Gold accent sparingly used */
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 85%; /* Light border */
-    --input: 0 0% 98%;
+    --border: 0 0% 20%; /* Dark border */
+    --input: 0 0% 12%;
     --ring: 43 85% 35%;
 
     --radius: 0.75rem;

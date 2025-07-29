@@ -91,7 +91,8 @@ const Header = () => {
                 variant="outline"
                 size="icon"
                 onClick={() => setIsCartOpen(true)}
-                className="relative border-primary/50 hover:border-primary hover:bg-primary/10 z-50"
+                className="relative border-primary/50 hover:border-primary hover:bg-primary/10"
+                style={{ zIndex: 9999 }}
               >
                 <ShoppingCart className="h-5 w-5" />
                 {getTotalItems() > 0 && (
