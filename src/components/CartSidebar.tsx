@@ -33,7 +33,7 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 lg:hidden">
+    <div className="fixed inset-0 z-50">
       {/* Backdrop */}
       <div className="fixed inset-0 bg-black/50" onClick={onClose} />
       
