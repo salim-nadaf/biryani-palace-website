@@ -29,7 +29,7 @@ const Header = () => {
             {/* Logo */}
             <div className="flex items-center space-x-2">
               <h1 className="font-alata text-2xl font-bold text-foreground">
-                Biryani <span className="font-allura text-primary">Palace</span>
+                Biryani <span className="font-allura text-3xl text-primary">Palace</span>
               </h1>
             </div>
 
@@ -91,7 +91,7 @@ const Header = () => {
                 variant="outline"
                 size="icon"
                 onClick={() => setIsCartOpen(true)}
-                className="relative border-primary/50 hover:border-primary hover:bg-primary/10 z-40"
+                className="relative border-primary/50 hover:border-primary hover:bg-primary/10 z-50"
               >
                 <ShoppingCart className="h-5 w-5" />
                 {getTotalItems() > 0 && (

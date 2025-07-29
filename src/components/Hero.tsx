@@ -18,9 +18,9 @@ const Hero = () => {
         <LazyImage
           src={heroImage}
           alt="Authentic Biryani"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center sm:object-top"
         />
-        <div className="absolute inset-0 bg-gradient-hero" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       {/* Content */}
@@ -38,18 +38,18 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="font-alata text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
+          <h1 className="font-alata text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
             Best Biryani in Kalyan
           </h1>
 
           {/* Subtitle */}
-          <p className="font-montserrat text-xl md:text-2xl text-foreground/90 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="font-montserrat text-xl md:text-2xl text-white/95 mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
             Experience the royal taste of traditional biryani, crafted with love and 
             served fresh for your family's special moments.
           </p>
 
           {/* Features */}
-          <div className="flex flex-wrap justify-center gap-6 mb-10 text-foreground/80 font-montserrat">
+          <div className="flex flex-wrap justify-center gap-6 mb-10 text-white/90 font-montserrat">
             <div className="flex items-center space-x-2">
               <span className="w-2 h-2 bg-primary rounded-full"></span>
               <span>Fresh Ingredients</span>
@@ -82,7 +82,7 @@ const Hero = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-foreground/30 text-foreground hover:bg-foreground/10 font-montserrat font-semibold px-8 py-6 text-lg"
+              className="border-white/40 text-white hover:bg-white/10 font-montserrat font-semibold px-8 py-6 text-lg"
               onClick={() => window.open('https://wa.me/919167682582', '_blank')}
             >
               Order Now via WhatsApp

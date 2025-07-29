@@ -95,38 +95,9 @@ const LoginSection = () => {
     }
   };
 
-  // Show welcome message if user is logged in
+  // Hide login section if user is logged in
   if (isLoggedIn && user) {
-    return (
-      <section id="login" className="py-20 px-4 bg-gradient-subtle">
-        <div className="container mx-auto">
-          <div className="max-w-md mx-auto">
-            <Card className="bg-gradient-card border-border shadow-elegant">
-              <CardContent className="p-8 text-center">
-                <div className="flex justify-center mb-6">
-                  <div className="bg-green-500/10 p-4 rounded-full">
-                    <CheckCircle2 className="w-12 h-12 text-green-500" />
-                  </div>
-                </div>
-                <h3 className="font-alata text-2xl font-bold text-foreground mb-4">
-                  {isReturning
-                    ? `Welcome back, ${user.name.split(' ')[0]}!`
-                    : `Welcome, ${user.name.split(' ')[0]}!`}
-                </h3>
-                <p className="font-montserrat text-foreground/80 mb-6">
-                  You're all set to enjoy exclusive offers and personalized biryani recommendations.
-                </p>
-                <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
-                  <p className="font-montserrat text-sm text-primary font-semibold">
-                    🎉 Your exclusive 10% discount is active!
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-    );
+    return null;
   }
 
   return (

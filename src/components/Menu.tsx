@@ -202,11 +202,11 @@ const Menu = () => {
                         Popular
                       </div>
                     )}
-                    {item.isNew && (
-                      <div className="absolute top-2 left-2 bg-green-700 text-white px-2 py-1 rounded-full text-xs font-montserrat font-bold">
-                        New Launch
-                      </div>
-                    )}
+                     {item.isNew && (
+                       <div className="absolute top-2 left-2 bg-green-800 text-white px-3 py-1 rounded-full text-xs font-montserrat font-bold shadow-lg border border-green-700">
+                         New Launch
+                       </div>
+                     )}
                     <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1 flex items-center space-x-1">
                       <Star className="w-3 h-3 fill-primary text-primary" />
                       <span className="text-foreground text-xs font-montserrat font-medium">
