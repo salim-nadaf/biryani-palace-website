@@ -13,10 +13,10 @@
     --gold-light: 43 85% 45%; /* Lighter gold for hover states */
     --gold-dark: 43 85% 25%; /* Darker gold for active states */
 
-    /* Brand Gradients - Subtle with white background */
-    --gradient-primary: linear-gradient(135deg, hsl(0 0% 100%), hsl(0 0% 98%));
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0% / 0.7), hsl(43 85% 35% / 0.1), hsl(0 0% 0% / 0.7));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 98%), hsl(43 85% 35% / 0.03), hsl(0 0% 97%));
+    /* Brand Gradients - Royal theme with brand color */
+    --gradient-primary: linear-gradient(135deg, #C89116, hsl(0 0% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0% / 0.7), #C89116 / 0.2, hsl(0 0% 0% / 0.7));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 8%), #C89116 / 0.05, hsl(0 0% 12%));
 
     /* Component Colors - Black theme */
     --card: 0 0% 8%; /* Dark card background */

@@ -18,7 +18,7 @@ const Hero = () => {
         <LazyImage
           src={heroImage}
           alt="Authentic Biryani"
-          className="w-full h-full object-cover object-center sm:object-top"
+          className="w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/60" />
       </div>
@@ -39,7 +39,7 @@ const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="font-alata text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Best Biryani in Kalyan
+            Best Biryani in <span className="font-allura text-5xl md:text-7xl bg-gradient-to-r from-[#C89116] to-yellow-400 bg-clip-text text-transparent drop-shadow-xl">Kalyan</span>
           </h1>
 
           {/* Subtitle */}
