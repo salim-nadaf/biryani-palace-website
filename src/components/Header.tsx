@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ShoppingCart, Menu, X, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/hooks/use-toast';
 import { CartSidebar } from './CartSidebar';
 import logo from '@/assets/logo.png';
 
@@ -12,6 +13,19 @@ const Header = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { getTotalItems } = useCart();
   const { user, logout, isLoggedIn } = useAuth();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    const handleLogoutToast = () => {
+      toast({
+        title: "Logged Out Successfully",
+        description: "You have been logged out of your account.",
+      });
+    };
+
+    window.addEventListener('showLogoutToast', handleLogoutToast);
+    return () => window.removeEventListener('showLogoutToast', handleLogoutToast);
+  }, [toast]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);

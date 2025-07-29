@@ -14,9 +14,10 @@
     --gold-dark: 43 85% 25%; /* Darker gold for active states */
 
     /* Brand Gradients - Royal theme with brand color */
-    --gradient-primary: linear-gradient(135deg, #C89116, hsl(0 0% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0% / 0.7), #C89116 / 0.2, hsl(0 0% 0% / 0.7));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 8%), #C89116 / 0.05, hsl(0 0% 12%));
+    --gradient-primary: linear-gradient(135deg, #C89116, hsl(43 85% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0% / 0.7), #C89116 / 0.3, hsl(0 0% 0% / 0.7));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 8%), #C89116 / 0.08, hsl(0 0% 12%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 0%), hsl(0 0% 3%));
 
     /* Component Colors - Black theme */
     --card: 0 0% 8%; /* Dark card background */
@@ -25,16 +26,16 @@
     --popover: 0 0% 8%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 43 85% 45%; /* Gold for highlights only */
+    --primary: 43 85% 50%; /* Enhanced gold for better visibility */
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 12%; /* Dark secondary */
+    --secondary: 0 0% 12%; /* Dark secondary with gold accent */
     --secondary-foreground: 0 0% 95%;
 
     --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 70%; /* Light gray for readable muted text */
+    --muted-foreground: 0 0% 75%; /* Improved contrast for readability */
 
-    --accent: 43 85% 45%; /* Gold accent sparingly used */
+    --accent: 43 85% 50%; /* Enhanced gold accent */
     --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;

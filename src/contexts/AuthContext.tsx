@@ -69,6 +69,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsReturning(null);
     localStorage.removeItem('biryaniPalaceUser');
     localStorage.removeItem('biryaniPalaceReturning');
+    
+    // Show logout message using a toast notification
+    if (typeof window !== 'undefined') {
+      const event = new CustomEvent('showLogoutToast');
+      window.dispatchEvent(event);
+    }
   };
 
   return (
