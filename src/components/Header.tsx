@@ -106,6 +106,7 @@ const Header = () => {
                 size="icon"
                 onClick={() => setIsCartOpen(true)}
                 className="relative border-primary/50 hover:border-primary hover:bg-primary/10 z-[10000]"
+                aria-label="Open shopping cart"
               >
                 <ShoppingCart className="h-5 w-5" />
                 {getTotalItems() > 0 && (

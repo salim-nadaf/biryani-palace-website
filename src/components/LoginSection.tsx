@@ -67,6 +67,12 @@ const LoginSection = () => {
       });
 
       // Login successful - user will see welcome message
+      setTimeout(() => {
+        const welcomeSection = document.querySelector('.bg-gradient-subtle');
+        if (welcomeSection) {
+          welcomeSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
 
       toast({
         title: `Thanks for logging in, ${formData.name.split(' ')[0]}!`,
