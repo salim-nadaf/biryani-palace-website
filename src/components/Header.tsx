@@ -6,6 +6,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { CartSidebar } from './CartSidebar';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '@/assets/logo.png';
 
 const Header = () => {
@@ -14,6 +15,8 @@ const Header = () => {
   const { getTotalItems } = useCart();
   const { user, logout, isLoggedIn } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleLogoutToast = () => {
@@ -28,11 +31,21 @@ const Header = () => {
   }, [toast]);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
+    setIsMenuOpen(false);
   };
 
   return (
@@ -41,26 +54,26 @@ const Header = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <h1 className="font-alata text-2xl font-bold text-foreground">
+            <Link to="/" className="flex items-center space-x-2">
+              <h1 className="font-alata text-2xl font-bold text-foreground hover:text-primary transition-smooth">
                 Biryani <span className="font-allura text-3xl text-primary">Palace</span>
               </h1>
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <button
-                onClick={() => scrollToSection('home')}
+              <Link
+                to="/"
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
               >
                 Home
-              </button>
-              <button
-                onClick={() => scrollToSection('menu')}
+              </Link>
+              <Link
+                to="/menu"
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
               >
                 Menu
-              </button>
+              </Link>
               <button
                 onClick={() => scrollToSection('about')}
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
@@ -148,18 +161,20 @@ const Header = () => {
                   </div>
                 )}
                 
-                <button
-                  onClick={() => scrollToSection('home')}
+                <Link
+                  to="/"
                   className="text-left text-foreground hover:text-primary transition-smooth font-montserrat py-2"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Home
-                </button>
-                <button
-                  onClick={() => scrollToSection('menu')}
+                </Link>
+                <Link
+                  to="/menu"
                   className="text-left text-foreground hover:text-primary transition-smooth font-montserrat py-2"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Menu
-                </button>
+                </Link>
                 <button
                   onClick={() => scrollToSection('about')}
                   className="text-left text-foreground hover:text-primary transition-smooth font-montserrat py-2"
