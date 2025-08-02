@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const Index = () => {
+  import { useLocation } from 'react-router-dom';
+  import { useEffect } from 'react';
   const location = useLocation();
 
   useEffect(() => {
