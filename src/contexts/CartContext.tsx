@@ -14,14 +14,9 @@ const navigate = useNavigate();
 const location = useLocation();
 
 const scrollToLogin = () => {
-  if (location.pathname !== '/') {
-    // If not on home, navigate and pass state
-    navigate('/', { state: { showLogin: true } });
-  } else {
-    const loginSection = document.getElementById('login');
-    if (loginSection) {
-      loginSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const loginSection = document.getElementById('login');
+  if (loginSection) {
+    loginSection.scrollIntoView({ behavior: 'smooth' });
   }
 };
 
