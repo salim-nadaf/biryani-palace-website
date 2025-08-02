@@ -59,7 +59,7 @@ const Hero = () => {
             </div>
             <div className="flex items-center space-x-2">
               <span className="w-2 h-2 bg-primary rounded-full"></span>
-              <span>Fast Delivery</span>
+              <span>Free delivery within Kalyan</span>
             </div>
           </div>
 

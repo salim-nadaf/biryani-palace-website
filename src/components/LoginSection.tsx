@@ -227,7 +227,7 @@ const LoginSection = () => {
 
               <div className="text-center mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
                 <p className="font-montserrat text-xs text-foreground/70">
-                  🎯 Get instant access to 10% off your first order!
+                  🎯 Get instant access to ₹100 off your first order!
                 </p>
               </div>
             </CardContent>

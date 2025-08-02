@@ -597,32 +597,32 @@ const MenuPage = () => {
                   </p>
                   
                   {/* Pricing */}
-                  <div className="flex justify-center gap-8 mb-4">
-                    <div>
-                      <span className="font-alata text-2xl font-bold text-primary">₹509</span>
-                      <span className="font-montserrat text-sm text-foreground/60 ml-1">/ Half Kg</span>
-                    </div>
-                    <div>
-                      <span className="font-alata text-2xl font-bold text-primary">₹929</span>
-                      <span className="font-montserrat text-sm text-foreground/60 ml-1">/ Full Kg</span>
-                    </div>
-                  </div>
+                   <div className="flex justify-center gap-8 mb-4">
+                     <div>
+                       <span className="font-alata text-2xl font-bold text-primary">Starting from ₹509</span>
+                       <span className="font-montserrat text-sm text-foreground/60 ml-1">/ Half Kg</span>
+                     </div>
+                     <div>
+                       <span className="font-alata text-2xl font-bold text-primary">₹929</span>
+                       <span className="font-montserrat text-sm text-foreground/60 ml-1">/ Full Kg</span>
+                     </div>
+                   </div>
                   
                   {/* Disclaimer */}
                   <p className="font-montserrat text-xs text-foreground/60 mb-6">
                     *Half kg options are available only on select items and may require advance confirmation.
                   </p>
                   
-                  {/* CTA Button */}
-                  <div className="flex justify-center">
-                    <Button
-                      onClick={handleBucketOrderContact}
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold glow-gold"
-                      size="lg"
-                    >
-                      Check Availability on WhatsApp
-                    </Button>
-                  </div>
+                   {/* CTA Button */}
+                   <div className="flex justify-center">
+                     <Button
+                       onClick={handleBucketOrderContact}
+                       className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold glow-gold w-full sm:w-auto"
+                       size="lg"
+                     >
+                       Check Availability on WhatsApp
+                     </Button>
+                   </div>
                 </div>
               </CardContent>
             </Card>
@@ -639,14 +639,14 @@ const MenuPage = () => {
                 <Card key={plan.id} className={`bg-gradient-card border-2 transition-smooth group overflow-hidden relative ${
                   plan.popular ? 'border-primary shadow-[0_0_30px_hsl(var(--primary)/0.3)]' : 'border-border hover:border-primary/50'
                 }`}>
-                  {plan.popular && (
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                      <div className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-montserrat font-bold flex items-center gap-1 shadow-lg">
-                        <Crown className="w-4 h-4" />
-                        Most Popular
-                      </div>
-                    </div>
-                  )}
+                   {plan.popular && (
+                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+                       <div className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-montserrat font-bold flex items-center gap-1 shadow-lg">
+                         <Crown className="w-4 h-4" />
+                         Most Popular
+                       </div>
+                     </div>
+                   )}
                   
                   <CardContent className="p-6 text-center">
                     <h4 className="font-alata text-2xl font-bold text-foreground mb-4 mt-2">
