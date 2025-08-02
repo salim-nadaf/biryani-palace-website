@@ -13,10 +13,13 @@ const Index = () => {
 
   useEffect(() => {
     if (location.state?.showLogin) {
-      const loginSection = document.getElementById('login');
-      if (loginSection) {
-        loginSection.scrollIntoView({ behavior: 'smooth' });
-      }
+      // Delay to allow DOM to fully render
+      setTimeout(() => {
+        const loginSection = document.getElementById('login');
+        if (loginSection) {
+          loginSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100); // 100ms is usually enough
     }
   }, [location]);
 
