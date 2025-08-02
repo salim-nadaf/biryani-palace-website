@@ -10,9 +10,6 @@ export interface CartItem {
   quantity: number;
   image: string;
 }
-// Inside CartContext
-const navigate = useNavigate();
-const location = useLocation();
 
 const scrollToLogin = () => {
   const loginSection = document.getElementById('login');
@@ -38,6 +35,8 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [pendingItems, setPendingItems] = useState<CartItem[]>([]);
   const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Restore pending items after login
   React.useEffect(() => {
