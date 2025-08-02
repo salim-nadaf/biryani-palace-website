@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Plus, Star, Users, Crown, Utensils, Gift, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -5,6 +6,7 @@ import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import LazyImage from '@/components/LazyImage';
 import Header from '@/components/Header';
+import { CartSidebar } from '@/components/CartSidebar';
 
 import chickenBiryani from '@/assets/chicken-biryani.jpg';
 import muttonBiryani from '@/assets/mutton-biryani.jpg';
@@ -489,6 +491,7 @@ const menuCategories = [
 const MenuPage = () => {
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleAddToCart = (item: any) => {
     addToCart({
@@ -536,7 +539,7 @@ const MenuPage = () => {
     <div className="min-h-screen">
       <Header />
       
-      <section className="py-20 px-4">
+      <section id="menu" className="py-20 px-4 mt-16">
         <div className="container mx-auto">
           {/* Page Header */}
           <div className="text-center mb-16">
@@ -611,13 +614,15 @@ const MenuPage = () => {
                   </p>
                   
                   {/* CTA Button */}
-                  <Button
-                    onClick={handleBucketOrderContact}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold glow-gold"
-                    size="lg"
-                  >
-                    Check Availability on WhatsApp
-                  </Button>
+                  <div className="flex justify-center">
+                    <Button
+                      onClick={handleBucketOrderContact}
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold glow-gold"
+                      size="lg"
+                    >
+                      Check Availability on WhatsApp
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -635,8 +640,8 @@ const MenuPage = () => {
                   plan.popular ? 'border-primary shadow-[0_0_30px_hsl(var(--primary)/0.3)]' : 'border-border hover:border-primary/50'
                 }`}>
                   {plan.popular && (
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                      <div className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-montserrat font-bold flex items-center gap-1">
+                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+                      <div className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-montserrat font-bold flex items-center gap-1 shadow-lg">
                         <Crown className="w-4 h-4" />
                         Most Popular
                       </div>
@@ -789,6 +794,8 @@ const MenuPage = () => {
           </div>
         </div>
       </section>
+      
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 };

@@ -1,15 +1,10 @@
 import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import LazyImage from './LazyImage';
 import heroImage from '@/assets/Mutton Biryani hero image.jpg';
 
 const Hero = () => {
-  const scrollToMenu = () => {
-    const menuSection = document.getElementById('menu');
-    if (menuSection) {
-      menuSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -70,14 +65,15 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              onClick={scrollToMenu}
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold px-8 py-6 text-lg glow-gold transition-smooth"
-            >
-              View Our Menu
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link to="/menu">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold px-8 py-6 text-lg glow-gold transition-smooth"
+              >
+                View Our Menu
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
             
             <Button
               variant="outline"

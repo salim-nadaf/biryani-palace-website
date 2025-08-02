@@ -48,6 +48,18 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  const handleHomeClick = () => {
+    if (location.pathname === '/') {
+      const homeSection = document.getElementById('home');
+      if (homeSection) {
+        homeSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate('/');
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm border-b border-primary/20">
@@ -62,12 +74,12 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                to="/"
+              <button
+                onClick={handleHomeClick}
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
               >
                 Home
-              </Link>
+              </button>
               <Link
                 to="/menu"
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
@@ -161,13 +173,12 @@ const Header = () => {
                   </div>
                 )}
                 
-                <Link
-                  to="/"
+                <button
+                  onClick={handleHomeClick}
                   className="text-left text-foreground hover:text-primary transition-smooth font-montserrat py-2"
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   Home
-                </Link>
+                </button>
                 <Link
                   to="/menu"
                   className="text-left text-foreground hover:text-primary transition-smooth font-montserrat py-2"
