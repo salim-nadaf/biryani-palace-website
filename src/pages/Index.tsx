@@ -5,11 +5,10 @@ import About from '@/components/About';
 import Contact from '@/components/Contact';
 import WelcomeSection from '@/components/WelcomeSection';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Index = () => {
-  import { useLocation } from 'react-router-dom';
-  import { useEffect } from 'react';
   const location = useLocation();
 
   useEffect(() => {
