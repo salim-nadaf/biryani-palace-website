@@ -1,17 +1,19 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { User, LogIn } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginPromptDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onLoginClick: () => void;
 }
 
-const LoginPromptDialog = ({ isOpen, onClose, onLoginClick }: LoginPromptDialogProps) => {
+const LoginPromptDialog = ({ isOpen, onClose }: LoginPromptDialogProps) => {
+  const navigate = useNavigate();
+
   const handleLoginClick = () => {
     onClose();
-    onLoginClick();
+    navigate('/', { state: { showLogin: true } }); // 👈 navigate with scroll intent
   };
 
   return (
@@ -30,7 +32,7 @@ const LoginPromptDialog = ({ isOpen, onClose, onLoginClick }: LoginPromptDialogP
             Please log in to add items to your cart and enjoy exclusive offers!
           </DialogDescription>
         </DialogHeader>
-        
+
         <div className="flex flex-col gap-3 mt-6">
           <Button
             onClick={handleLoginClick}
@@ -39,7 +41,7 @@ const LoginPromptDialog = ({ isOpen, onClose, onLoginClick }: LoginPromptDialogP
             <LogIn className="w-5 h-5 mr-2" />
             Login Now
           </Button>
-          
+
           <Button
             variant="outline"
             onClick={onClose}
