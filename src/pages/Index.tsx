@@ -6,6 +6,8 @@ import Contact from '@/components/Contact';
 import WelcomeSection from '@/components/WelcomeSection';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Index = () => {
   return (
@@ -34,6 +36,16 @@ const Index = () => {
         </section>
         
         <LoginSection />
+const location = useLocation();
+
+useEffect(() => {
+  if (location.state?.showLogin) {
+    const loginSection = document.getElementById('login');
+    if (loginSection) {
+      loginSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+}, [location]);
         <About />
         <Contact />
       </main>
