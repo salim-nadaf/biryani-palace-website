@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { useAuth } from './AuthContext';
 import LoginPromptDialog from '@/components/LoginPromptDialog';
+import { useNavigate } from 'react-router-dom';
 
 export interface CartItem {
   id: string;
