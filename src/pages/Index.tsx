@@ -10,6 +10,17 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const Index = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.showLogin) {
+      const loginSection = document.getElementById('login');
+      if (loginSection) {
+        loginSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -36,16 +47,6 @@ const Index = () => {
         </section>
         
         <LoginSection />
-const location = useLocation();
-
-useEffect(() => {
-  if (location.state?.showLogin) {
-    const loginSection = document.getElementById('login');
-    if (loginSection) {
-      loginSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-}, [location]);
         <About />
         <Contact />
       </main>
