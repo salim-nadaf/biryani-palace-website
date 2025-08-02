@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { useAuth } from './AuthContext';
 import LoginPromptDialog from '@/components/LoginPromptDialog';
-import { useNavigate, useLocation } from 'react-router-dom'; // ✅ Fixed
+import { useNavigate } from 'react-router-dom';
 
 export interface CartItem {
   id: string;
@@ -10,13 +10,6 @@ export interface CartItem {
   quantity: number;
   image: string;
 }
-
-const scrollToLogin = () => {
-  const loginSection = document.getElementById('login');
-  if (loginSection) {
-    loginSection.scrollIntoView({ behavior: 'smooth' });
-  }
-};
 
 interface CartContextType {
   items: CartItem[];
@@ -36,9 +29,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [pendingItems, setPendingItems] = useState<CartItem[]>([]);
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
 
-  // Restore pending items after login
   React.useEffect(() => {
     if (isLoggedIn && pendingItems.length > 0) {
       setItems(prev => {
@@ -59,7 +50,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const addToCart = (newItem: Omit<CartItem, 'quantity'>) => {
     if (!isLoggedIn) {
-      // Store pending item to be added after login
       setPendingItems(prev => {
         const existingItem = prev.find(item => item.id === newItem.id);
         if (existingItem) {
@@ -116,6 +106,10 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setItems([]);
   };
 
+  const redirectToLoginSection = () => {
+    navigate("/", { state: { showLogin: true } });
+  };
+
   return (
     <CartContext.Provider value={{
       items,
@@ -130,7 +124,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       <LoginPromptDialog
         isOpen={showLoginPrompt}
         onClose={() => setShowLoginPrompt(false)}
-        onLoginClick={scrollToLogin}
+        onLoginClick={redirectToLoginSection}
       />
     </CartContext.Provider>
   );
