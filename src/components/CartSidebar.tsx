@@ -38,7 +38,7 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
       <div className="fixed inset-0 bg-black/50" onClick={onClose} />
       
       {/* Sidebar */}
-      <div className="fixed right-0 top-0 h-full w-full max-w-md bg-card border-l border-border">
+      <div className="fixed right-0 top-0 h-full w-full sm:w-[400px] max-w-md bg-card border-l border-border transition-transform duration-300 ease-in-out transform translate-x-0">
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border">
