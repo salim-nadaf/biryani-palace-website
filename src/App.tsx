@@ -12,24 +12,23 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <CartProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
+  <BrowserRouter> {/* ✅ Router must be outside all context hooks that use react-router */}
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <CartProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/menu" element={<MenuPage />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </CartProvider>
-    </AuthProvider>
-  </QueryClientProvider>
+          </TooltipProvider>
+        </CartProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  </BrowserRouter>
 );
 
 export default App;
