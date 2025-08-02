@@ -512,7 +512,7 @@ const Menu = () => {
                 plan.popular ? 'border-primary shadow-[0_0_30px_hsl(var(--primary)/0.3)]' : 'border-border hover:border-primary/50'
               }`}>
                 {plan.popular && (
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400 px-3 py-1 rounded-full text-black font-bold text-sm z-10 shadow-md">
                     <div className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-montserrat font-bold flex items-center gap-1">
                       <Crown className="w-4 h-4" />
                       Most Popular
