@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { useAuth } from './AuthContext';
 import LoginPromptDialog from '@/components/LoginPromptDialog';
+import { useNavigate, useLocation } from 'react-router-dom'; // Add these imports
 
 export interface CartItem {
   id: string;
@@ -9,6 +10,21 @@ export interface CartItem {
   quantity: number;
   image: string;
 }
+// Inside CartContext
+const navigate = useNavigate();
+const location = useLocation();
+
+const scrollToLogin = () => {
+  if (location.pathname !== '/') {
+    // If not on home, navigate and pass state
+    navigate('/', { state: { showLogin: true } });
+  } else {
+    const loginSection = document.getElementById('login');
+    if (loginSection) {
+      loginSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+};
 
 interface CartContextType {
   items: CartItem[];
