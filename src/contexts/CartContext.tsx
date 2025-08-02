@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { useAuth } from './AuthContext';
 import LoginPromptDialog from '@/components/LoginPromptDialog';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // ✅ Fixed
 
 export interface CartItem {
   id: string;
@@ -74,7 +74,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setShowLoginPrompt(true);
       return;
     }
-    
+
     setItems(prev => {
       const existingItem = prev.find(item => item.id === newItem.id);
       if (existingItem) {
@@ -114,13 +114,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const clearCart = () => {
     setItems([]);
-  };
-
-  const scrollToLogin = () => {
-    const loginSection = document.getElementById('login');
-    if (loginSection) {
-      loginSection.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   return (
