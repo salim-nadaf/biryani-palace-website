@@ -627,7 +627,7 @@ const MenuPage = () => {
                       muted 
                       loop
                       className="w-full h-full object-cover"
-                      style={{ objectPosition: 'center 20%' }}
+                      style={{ objectPosition: 'center 35%' }}
                       poster={heroBiryani}
                     >
                       <source src={chickenBiryaniVideo} type="video/mp4" />
@@ -677,8 +677,8 @@ const MenuPage = () => {
                         className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold glow-gold w-full max-w-md text-base py-3 px-6"
                         size="lg"
                       >
-                        <span className="hidden sm:inline">Check Availability on WhatsApp</span>
-                        <span className="sm:hidden">Check on WhatsApp</span>
+                        <span className="hidden md:inline">Check Availability on WhatsApp</span>
+                        <span className="md:hidden">WhatsApp</span>
                       </Button>
                     </div>
                 </div>
