@@ -606,11 +606,11 @@ const MenuPage = () => {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                     {bucketBiryaniImages.map((image, index) => (
                       <div key={index} className="relative group overflow-hidden rounded-lg">
-                        <LazyImage
-                          src={image}
-                          alt={`Bucket Biryani ${index + 1}`}
-                          className="w-full h-32 object-cover transition-smooth group-hover:scale-110"
-                        />
+                         <LazyImage
+                           src={image}
+                           alt={`Bucket Biryani ${index + 1}`}
+                           className="w-full h-36 object-cover transition-smooth group-hover:scale-110"
+                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-smooth">
                           <div className="absolute bottom-2 left-2 text-white text-xs font-semibold">
                             Steam Fresh
@@ -626,15 +626,18 @@ const MenuPage = () => {
                       autoPlay 
                       muted 
                       loop
-                      className="w-full h-48 md:h-64 object-cover"
+                      className="w-full h-64 md:h-80 object-contain bg-black"
                       poster={heroBiryani}
                     >
                       <source src={chickenBiryaniVideo} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent">
-                      <div className="absolute bottom-2 left-2 text-white text-xs font-semibold">
-                        Fresh & Hot
+                      <div className="absolute bottom-4 left-4 text-white text-sm font-semibold">
+                        Fresh & Hot Serving
+                      </div>
+                      <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1">
+                        <span className="text-white text-xs font-montserrat font-medium">Live Preview</span>
                       </div>
                     </div>
                   </div>
@@ -647,14 +650,20 @@ const MenuPage = () => {
                   </p>
                   
                   {/* Pricing */}
-                   <div className="flex justify-center gap-8 mb-4">
-                     <div>
-                       <span className="font-alata text-2xl font-bold text-primary">Starting from ₹509</span>
-                       <span className="font-montserrat text-sm text-foreground/60 ml-1">/ Half Kg</span>
+                   <div className="text-center mb-4">
+                     <div className="font-alata text-3xl md:text-4xl font-bold text-primary mb-2">
+                       Starting from ₹509
                      </div>
-                     <div>
-                       <span className="font-alata text-2xl font-bold text-primary">₹929</span>
-                       <span className="font-montserrat text-sm text-foreground/60 ml-1">/ Full Kg</span>
+                     <br />
+                     <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
+                       <div className="text-center">
+                         <div className="font-alata text-lg font-bold text-foreground">Half Kg</div>
+                         <div className="font-montserrat text-primary font-semibold">₹509 onwards</div>
+                       </div>
+                       <div className="text-center">
+                         <div className="font-alata text-lg font-bold text-foreground">Full Kg</div>
+                         <div className="font-montserrat text-primary font-semibold">₹929 onwards</div>
+                       </div>
                      </div>
                    </div>
                   
@@ -664,13 +673,14 @@ const MenuPage = () => {
                   </p>
                   
                    {/* CTA Button */}
-                   <div className="flex justify-center">
+                   <div className="flex justify-center px-4">
                      <Button
                        onClick={handleBucketOrderContact}
-                       className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold glow-gold w-full sm:w-auto"
+                       className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold glow-gold w-full max-w-sm text-sm sm:text-base py-3"
                        size="lg"
                      >
-                       Check Availability on WhatsApp
+                       <span className="hidden sm:inline">Check Availability on WhatsApp</span>
+                       <span className="sm:hidden">Check on WhatsApp</span>
                      </Button>
                    </div>
                 </div>
@@ -690,8 +700,8 @@ const MenuPage = () => {
                   plan.popular ? 'border-primary shadow-[0_0_30px_hsl(var(--primary)/0.3)]' : 'border-border hover:border-primary/50'
                 }`}>
                    {plan.popular && (
-                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
-                       <div className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-montserrat font-bold flex items-center gap-1 shadow-lg">
+                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                       <div className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-montserrat font-bold flex items-center justify-center gap-1 shadow-lg border-2 border-primary-foreground/20">
                          <Crown className="w-4 h-4" />
                          Most Popular
                        </div>
@@ -755,16 +765,16 @@ const MenuPage = () => {
                 {category.items.map((item) => (
                   <Card key={item.id} className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden">
                     <div className="relative">
-                      <LazyImage
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-32 object-cover group-hover:scale-105 transition-smooth"
-                      />
-                      {item.tag && (
-                        <div className={`absolute top-2 left-2 px-2 py-1 rounded-full text-xs font-montserrat font-bold ${getTagColor(item.tag)}`}>
-                          {item.tag}
-                        </div>
-                      )}
+                       <LazyImage
+                         src={item.image}
+                         alt={item.name}
+                         className="w-full h-40 object-cover group-hover:scale-105 transition-smooth"
+                       />
+                       {item.tag && (
+                         <div className={`absolute top-3 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded-full text-xs font-montserrat font-bold ${getTagColor(item.tag)} shadow-lg`}>
+                           {item.tag}
+                         </div>
+                       )}
                       {item.rating > 0 && (
                         <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1 flex items-center space-x-1">
                           <Star className="w-3 h-3 fill-primary text-primary" />
