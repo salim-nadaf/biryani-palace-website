@@ -3,7 +3,7 @@ import App from './App.tsx'
 import './index.css'
 
 // Preload critical resources for better performance
-import heroImage from '@/assets/hero-biryani.jpg';
+import heroImage from '@/assets/Mutton Biryani hero image.jpg';
 
 // Preload hero image for faster LCP
 const link = document.createElement('link');

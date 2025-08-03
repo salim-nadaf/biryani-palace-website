@@ -11,7 +11,7 @@ import { CartSidebar } from '@/components/CartSidebar';
 import chickenBiryani from '@/assets/chicken-biryani.jpg';
 import muttonBiryani from '@/assets/mutton-biryani.jpg';
 import vegBiryani from '@/assets/veg-biryani.jpg';
-import heroBiryani from '@/assets/hero-biryani.jpg';
+import heroBiryani from '@/assets/Mutton Biryani hero image.jpg';
 
 // Bucket Biryani Images for carousel
 const bucketBiryaniImages = [
@@ -579,13 +579,22 @@ const MenuPage = () => {
                     ))}
                   </div>
                   
-                  {/* Video placeholder */}
-                  <div className="relative bg-black/10 rounded-lg p-4 border-2 border-dashed border-primary/30">
-                    <div className="flex items-center justify-center h-20">
-                      <Play className="w-8 h-8 text-primary mr-2" />
-                      <span className="font-montserrat text-sm text-foreground/70">
-                        5-second autoplay video: Bucket opening with steam
-                      </span>
+                  {/* Video Section */}
+                  <div className="relative bg-black rounded-lg overflow-hidden">
+                    <video 
+                      autoPlay 
+                      muted 
+                      loop
+                      className="w-full h-24 object-cover"
+                      poster={heroBiryani}
+                    >
+                      <source src="/src/assets/chicken-biryani-serving.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent">
+                      <div className="absolute bottom-2 left-2 text-white text-xs font-semibold">
+                        Fresh & Hot
+                      </div>
                     </div>
                   </div>
                 </div>
