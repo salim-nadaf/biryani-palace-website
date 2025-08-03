@@ -5,6 +5,50 @@ import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import LazyImage from './LazyImage';
 
+// Import all the new images
+import alishaanTandooriBiryani from '@/assets/alishaan-tandoori-biryani.jpg';
+import lababdaarSeekhBiryani from '@/assets/lababdaar-seekh-biryani.jpg';
+import lazzatETikkaBiryani from '@/assets/lazzat-e-tikka-biryani.png';
+import bonelessLazzatETikkaBiryani from '@/assets/boneless-lazzat-e-tikka-biryani.png';
+import makhmaliBiryani from '@/assets/makhmali-malai-biryani.jpg';
+import nayaabiItalianoBiryani from '@/assets/nayaabi-italiano-biryani.jpeg';
+import zamZamLazawaabBiryani from '@/assets/zam-zam-lazawaab-biryani.jpg';
+import banjaraEBiryani from '@/assets/banjara-e-biryani.png';
+import ustaadiMurghDum from '@/assets/ustaadi-murgh-dum.jpeg';
+import goshtEDumMazedaar from '@/assets/gosht-e-dum-mazedaar.jpeg';
+import hyderabadiMurghDum from '@/assets/hyderabadi-murgh-dum.png';
+import hyderabadiMuttonDum from '@/assets/hyderabadi-mutton-dum.png';
+import nawabiVegDumBiryani from '@/assets/nawabi-veg-dum-biryani.png';
+import sabzTikkaBiryani from '@/assets/sabz-tikka-biryani.png';
+import paneerETikkaBiryani from '@/assets/paneer-e-tikka-biryani.png';
+import nazaakatPulao from '@/assets/nazaakat-pulao.png';
+import kebabRoyaleSticks from '@/assets/kebab-royale-sticks.jpeg';
+import tandooriTaajLeg from '@/assets/tandoori-taaj-leg.jpg';
+import kebabEFirangi from '@/assets/kebab-e-firangi.jpeg';
+import shahiMurghRolls from '@/assets/shahi-murgh-rolls.jpeg';
+import murghAngaara from '@/assets/murgh-angaara.png';
+import shahiMurghKorma from '@/assets/shahi-murgh-korma.png';
+import masaledarMurgh from '@/assets/masaledar-murgh.png';
+import murghTikkaMasala from '@/assets/murgh-tikka-masala.png';
+import bonelessTikkaMasala from '@/assets/boneless-tikka-masala.png';
+import murghKolhapuriEZaiqa from '@/assets/murgh-kolhapuri-e-zaiqa.png';
+import dhanEShikoriGosht from '@/assets/dhan-e-shikori-gosht.png';
+import masaledarGoshtCurry from '@/assets/masaledar-gosht-curry.png';
+import sabziyonKaZaika from '@/assets/sabziyon-ka-zaika.png';
+import paneerETikkaMasala from '@/assets/paneer-e-tikka-masala.png';
+import kadhaiPaneerNawabi from '@/assets/kadhai-paneer-nawabi.png';
+import paneerEFirangi from '@/assets/paneer-e-firangi.png';
+
+// Bucket images
+import chickenDumBucket1kg from '@/assets/chicken-dum-bucket-1kg.png';
+import chickenDumBucket from '@/assets/chicken-dum-bucket.png';
+import chickenTandoorBucket1kg from '@/assets/chicken-tandoor-bucket-1kg.png';
+import chickenTandooriBucket from '@/assets/chicken-tandoori-bucket.png';
+
+// Video
+import chickenBiryaniVideo from '@/assets/chicken-biryani-serving.mp4';
+
+// Fallback images
 import chickenBiryani from '@/assets/chicken-biryani.jpg';
 import muttonBiryani from '@/assets/mutton-biryani.jpg';
 import vegBiryani from '@/assets/veg-biryani.jpg';
@@ -43,6 +87,42 @@ const bulkOrderPlans = [
   },
 ];
 
+// Bucket Biryani Special Items
+const bucketSpecialItems = [
+  {
+    id: 'chicken-dum-bucket-1kg',
+    name: 'Chicken Dum Bucket (1 KG)',
+    description: 'Premium chicken dum biryani served in a special bucket for sharing.',
+    price: 699,
+    image: chickenDumBucket1kg,
+    popular: true,
+  },
+  {
+    id: 'chicken-dum-bucket',
+    name: 'Chicken Dum Bucket',
+    description: 'Delicious chicken dum biryani in our signature bucket serving.',
+    price: 509,
+    image: chickenDumBucket,
+    popular: false,
+  },
+  {
+    id: 'chicken-tandoor-bucket-1kg',
+    name: 'Chicken Tandoor Bucket (1 KG)',
+    description: 'Tandoori chicken biryani with smoky flavors in a convenient bucket.',
+    price: 749,
+    image: chickenTandoorBucket1kg,
+    popular: false,
+  },
+  {
+    id: 'chicken-tandoori-bucket',
+    name: 'Chicken Tandoori Bucket',
+    description: 'Traditional tandoori chicken biryani served in our special bucket.',
+    price: 559,
+    image: chickenTandooriBucket,
+    popular: false,
+  },
+];
+
 const menuCategories = [
   {
     id: 'crowned-flavours',
@@ -53,7 +133,7 @@ const menuCategories = [
         name: 'Alishaan Tandoori Biryani',
         description: 'Royal tandoori chicken marinated in exotic spices, layered with premium basmati rice and slow-cooked to perfection.',
         price: 899,
-        image: chickenBiryani,
+        image: alishaanTandooriBiryani,
         rating: 4.9,
         reviews: 156,
         popular: true,
@@ -64,7 +144,7 @@ const menuCategories = [
         name: 'Lababdaar Seekh Biryani',
         description: 'Succulent seekh kebabs layered with aromatic basmati rice and traditional spices for a royal feast.',
         price: 999,
-        image: chickenBiryani,
+        image: lababdaarSeekhBiryani,
         rating: 4.8,
         reviews: 203,
         popular: false,
@@ -75,7 +155,7 @@ const menuCategories = [
         name: 'Lazzat-e-Tikka Biryani',
         description: 'Smoky chicken tikka pieces with fragrant basmati rice, infused with royal spices and saffron.',
         price: 899,
-        image: chickenBiryani,
+        image: lazzatETikkaBiryani,
         rating: 4.7,
         reviews: 124,
         popular: false,
@@ -86,7 +166,7 @@ const menuCategories = [
         name: 'Boneless Lazzat-e-Tikka Biryani',
         description: 'Premium boneless chicken tikka with aromatic basmati rice and signature spice blend.',
         price: 1099,
-        image: chickenBiryani,
+        image: bonelessLazzatETikkaBiryani,
         rating: 4.9,
         reviews: 87,
         popular: false,
@@ -103,7 +183,7 @@ const menuCategories = [
         name: 'Makhmali Malai Biryani',
         description: 'Creamy and rich chicken malai biryani with cashews and cream, a royal delicacy.',
         price: 999,
-        image: chickenBiryani,
+        image: makhmaliBiryani,
         rating: 5.0,
         reviews: 67,
         popular: true,
@@ -114,7 +194,7 @@ const menuCategories = [
         name: 'Nayaabi Italiano Biryani',
         description: 'A fusion masterpiece combining Italian herbs with traditional biryani flavors.',
         price: 1199,
-        image: chickenBiryani,
+        image: nayaabiItalianoBiryani,
         rating: 4.6,
         reviews: 45,
         popular: false,
@@ -125,7 +205,7 @@ const menuCategories = [
         name: 'Zam-Zam Lazawaab Biryani',
         description: 'An exquisite blend of Middle Eastern spices with traditional biryani preparation.',
         price: 1099,
-        image: chickenBiryani,
+        image: zamZamLazawaabBiryani,
         rating: 4.8,
         reviews: 78,
         popular: false,
@@ -136,7 +216,7 @@ const menuCategories = [
         name: 'Banjara-e-Biryani',
         description: 'Traditional nomadic style biryani with wild spices and rustic flavors.',
         price: 799,
-        image: chickenBiryani,
+        image: banjaraEBiryani,
         rating: 4.7,
         reviews: 89,
         popular: false,
@@ -153,7 +233,7 @@ const menuCategories = [
         name: 'Ustaadi Murgh Dum',
         description: 'Master chef\'s special chicken dum biryani, slow-cooked with traditional techniques.',
         price: 799,
-        image: chickenBiryani,
+        image: ustaadiMurghDum,
         rating: 4.8,
         reviews: 145,
         popular: true,
@@ -164,7 +244,7 @@ const menuCategories = [
         name: 'Gosht-e-Dum Mazedaar',
         description: 'Slow-cooked mutton with traditional spices, layered with premium basmati rice.',
         price: 1499,
-        image: muttonBiryani,
+        image: goshtEDumMazedaar,
         rating: 4.9,
         reviews: 167,
         popular: true,
@@ -175,7 +255,7 @@ const menuCategories = [
         name: 'Hyderabadi Murgh Dum',
         description: 'Authentic Hyderabadi style chicken biryani with saffron and royal spices.',
         price: 899,
-        image: chickenBiryani,
+        image: hyderabadiMurghDum,
         rating: 4.7,
         reviews: 134,
         popular: false,
@@ -186,7 +266,7 @@ const menuCategories = [
         name: 'Hyderabadi Mutton Dum',
         description: 'Traditional Hyderabadi mutton biryani with aromatic spices and tender meat.',
         price: 1599,
-        image: muttonBiryani,
+        image: hyderabadiMuttonDum,
         rating: 5.0,
         reviews: 98,
         popular: false,
@@ -203,7 +283,7 @@ const menuCategories = [
         name: 'Nawabi Veg Dum Biryani',
         description: 'Royal vegetable biryani with premium vegetables and aromatic spices.',
         price: 649,
-        image: vegBiryani,
+        image: nawabiVegDumBiryani,
         rating: 4.5,
         reviews: 76,
         popular: true,
@@ -214,7 +294,7 @@ const menuCategories = [
         name: 'Sabz Tikka Biryani',
         description: 'Grilled vegetable tikka with fragrant basmati rice and exotic spices.',
         price: 749,
-        image: vegBiryani,
+        image: sabzTikkaBiryani,
         rating: 4.4,
         reviews: 54,
         popular: false,
@@ -236,7 +316,7 @@ const menuCategories = [
         name: 'Paneer-e-Tikka Biryani',
         description: 'Grilled paneer tikka with fragrant rice, nuts, and aromatic spices.',
         price: 899,
-        image: vegBiryani,
+        image: paneerETikkaBiryani,
         rating: 4.6,
         reviews: 98,
         popular: false,
@@ -247,7 +327,7 @@ const menuCategories = [
         name: 'Nazaakat Pulao',
         description: 'Delicate and aromatic pulao with mixed vegetables and mild spices.',
         price: 549,
-        image: vegBiryani,
+        image: nazaakatPulao,
         rating: 4.3,
         reviews: 43,
         popular: false,
@@ -275,7 +355,7 @@ const menuCategories = [
         name: 'Kebab Royale Sticks',
         description: 'Premium seekh kebabs grilled to perfection with royal spices.',
         price: 399,
-        image: chickenBiryani,
+        image: kebabRoyaleSticks,
         rating: 4.7,
         reviews: 89,
         popular: true,
@@ -286,7 +366,7 @@ const menuCategories = [
         name: 'Tandoori Taaj Leg',
         description: 'Succulent chicken leg pieces marinated in tandoori spices.',
         price: 449,
-        image: chickenBiryani,
+        image: tandooriTaajLeg,
         rating: 4.8,
         reviews: 76,
         popular: false,
@@ -297,7 +377,7 @@ const menuCategories = [
         name: 'Kebab-e-Firangi',
         description: 'Fusion kebabs with international flavors and local spices.',
         price: 499,
-        image: chickenBiryani,
+        image: kebabEFirangi,
         rating: 4.6,
         reviews: 54,
         popular: false,
@@ -308,7 +388,7 @@ const menuCategories = [
         name: 'Shahi Murgh Rolls',
         description: 'Royal chicken rolls wrapped in soft bread with aromatic fillings.',
         price: 349,
-        image: chickenBiryani,
+        image: shahiMurghRolls,
         rating: 4.5,
         reviews: 67,
         popular: false,
@@ -325,7 +405,7 @@ const menuCategories = [
         name: 'Murgh Angaara',
         description: 'Fiery chicken curry with bold spices and rich gravy.',
         price: 499,
-        image: chickenBiryani,
+        image: murghAngaara,
         rating: 4.7,
         reviews: 78,
         popular: true,
@@ -336,7 +416,7 @@ const menuCategories = [
         name: 'Shahi Murgh Korma',
         description: 'Rich and creamy chicken korma with royal spices and nuts.',
         price: 549,
-        image: chickenBiryani,
+        image: shahiMurghKorma,
         rating: 4.8,
         reviews: 92,
         popular: false,
@@ -347,7 +427,7 @@ const menuCategories = [
         name: 'Masaledar Murgh',
         description: 'Spicy chicken curry with traditional masala blend.',
         price: 479,
-        image: chickenBiryani,
+        image: masaledarMurgh,
         rating: 4.6,
         reviews: 65,
         popular: false,
@@ -358,7 +438,7 @@ const menuCategories = [
         name: 'Murgh Tikka Masala',
         description: 'Creamy tomato-based curry with grilled chicken tikka pieces.',
         price: 529,
-        image: chickenBiryani,
+        image: murghTikkaMasala,
         rating: 4.8,
         reviews: 87,
         popular: false,
@@ -369,7 +449,7 @@ const menuCategories = [
         name: 'Boneless Tikka Masala',
         description: 'Premium boneless chicken in rich tikka masala gravy.',
         price: 599,
-        image: chickenBiryani,
+        image: bonelessTikkaMasala,
         rating: 4.9,
         reviews: 76,
         popular: false,
@@ -380,7 +460,7 @@ const menuCategories = [
         name: 'Murgh Kolhapuri-e-Zaiqa',
         description: 'Spicy Kolhapuri-style chicken curry with authentic flavors.',
         price: 519,
-        image: chickenBiryani,
+        image: murghKolhapuriEZaiqa,
         rating: 4.7,
         reviews: 58,
         popular: false,
@@ -391,7 +471,7 @@ const menuCategories = [
         name: 'Dhan-e-Shikori Gosht',
         description: 'Rich mutton curry with hunting-style spices and herbs.',
         price: 799,
-        image: muttonBiryani,
+        image: dhanEShikoriGosht,
         rating: 4.8,
         reviews: 45,
         popular: false,
@@ -402,7 +482,7 @@ const menuCategories = [
         name: 'Masaledar Gosht Curry',
         description: 'Traditional mutton curry with aromatic spices and rich gravy.',
         price: 749,
-        image: muttonBiryani,
+        image: masaledarGoshtCurry,
         rating: 4.7,
         reviews: 56,
         popular: false,
@@ -419,7 +499,7 @@ const menuCategories = [
         name: 'Sabziyon ka Zaika',
         description: 'Mixed vegetable curry with royal spices and aromatic gravy.',
         price: 349,
-        image: vegBiryani,
+        image: sabziyonKaZaika,
         rating: 4.4,
         reviews: 43,
         popular: true,
@@ -430,7 +510,7 @@ const menuCategories = [
         name: 'Paneer-e-Tikka Masala',
         description: 'Grilled paneer in rich tomato-based masala gravy.',
         price: 449,
-        image: vegBiryani,
+        image: paneerETikkaMasala,
         rating: 4.6,
         reviews: 67,
         popular: false,
@@ -441,7 +521,7 @@ const menuCategories = [
         name: 'Kadhai Paneer Nawabi',
         description: 'Royal-style kadhai paneer with bell peppers and onions.',
         price: 429,
-        image: vegBiryani,
+        image: kadhaiPaneerNawabi,
         rating: 4.5,
         reviews: 54,
         popular: false,
@@ -452,7 +532,7 @@ const menuCategories = [
         name: 'Paneer-e-Firangi',
         description: 'Fusion paneer dish with international flavors and local spices.',
         price: 479,
-        image: vegBiryani,
+        image: paneerEFirangi,
         rating: 4.4,
         reviews: 38,
         popular: false,
@@ -486,6 +566,11 @@ const Menu = () => {
     window.open(`https://wa.me/919167682582?text=${encodeURIComponent(message)}`, '_blank');
   };
 
+  const handleBucketContact = () => {
+    const message = "Hi! I'm interested in your Bucket Biryani Special. Can you check availability?";
+    window.open(`https://wa.me/919167682582?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
     <section id="menu" className="py-20 px-4">
       <div className="container mx-auto">
@@ -500,6 +585,88 @@ const Menu = () => {
           </p>
         </div>
 
+        {/* Bucket Biryani Special Section */}
+        <div className="mb-20">
+          <h3 className="font-alata text-3xl font-bold text-foreground mb-8 text-center">
+            <span className="font-allura text-primary text-4xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Bucket Biryani Special</span>
+          </h3>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Video Section */}
+            <div className="order-1 lg:order-1">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl bg-gradient-card border border-border h-full">
+                <video 
+                  controls 
+                  className="w-full h-full object-cover"
+                  poster={chickenBiryani}
+                  style={{ minHeight: '300px', maxHeight: '400px' }}
+                >
+                  <source src={chickenBiryaniVideo} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
+              </div>
+            </div>
+
+            {/* Bucket Items Grid */}
+            <div className="order-2 lg:order-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
+                {bucketSpecialItems.map((item) => (
+                  <Card key={item.id} className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden">
+                    <div className="relative">
+                      <LazyImage
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-24 object-cover group-hover:scale-105 transition-smooth"
+                      />
+                      {item.popular && (
+                        <div className="absolute top-1 left-1 bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-montserrat font-semibold">
+                          Popular
+                        </div>
+                      )}
+                    </div>
+                    
+                    <CardContent className="p-3">
+                      <div className="mb-2">
+                        <h4 className="font-alata text-sm font-bold text-foreground leading-tight mb-1">
+                          {item.name}
+                        </h4>
+                        <span className="font-alata text-base font-bold text-primary">
+                          Starting from ₹{item.price}
+                        </span>
+                      </div>
+                      
+                      <p className="font-montserrat text-muted-foreground mb-3 text-xs leading-relaxed line-clamp-2">
+                        {item.description}
+                      </p>
+                      
+                      <Button
+                        onClick={() => handleAddToCart(item)}
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold transition-smooth glow-gold text-xs"
+                        size="sm"
+                      >
+                        <Plus className="mr-1 h-3 w-3" />
+                        Add to Cart
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              
+              {/* Check Availability Button */}
+              <div className="mt-6 text-center">
+                <Button
+                  onClick={handleBucketContact}
+                  className="w-full sm:w-auto bg-primary/10 hover:bg-primary hover:text-primary-foreground text-primary border border-primary/30 font-montserrat font-semibold transition-smooth"
+                  size="lg"
+                >
+                  Check Availability on WhatsApp
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Bulk Order Plans */}
         <div className="mb-20">
           <h3 className="font-alata text-3xl font-bold text-foreground mb-8 text-center">
@@ -512,17 +679,15 @@ const Menu = () => {
                 plan.popular ? 'border-primary shadow-[0_0_30px_hsl(var(--primary)/0.3)]' : 'border-border hover:border-primary/50'
               }`}>
                 {plan.popular && (
-                 <div className="flex justify-center mt-8 mb-4">
-                    <span className="text-sm text-primary font-montserrat font-medium uppercase tracking-wide bg-primary/10 px-4 py-2 rounded-full shadow-sm">
-                    🔥 Most Popular
-                  </span>
-                </div>
-                    </div>
+                  <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+                    <span className="text-sm text-primary font-montserrat font-medium uppercase tracking-wide bg-primary/10 px-4 py-2 rounded-full shadow-sm border border-primary/20">
+                      🔥 Most Popular
+                    </span>
                   </div>
                 )}
                 
                 <CardContent className="p-6 text-center">
-                  <h4 className="font-alata text-2xl font-bold text-foreground mb-4 mt-2">
+                  <h4 className="font-alata text-2xl font-bold text-foreground mb-4 mt-8">
                     {plan.name}
                   </h4>
                   

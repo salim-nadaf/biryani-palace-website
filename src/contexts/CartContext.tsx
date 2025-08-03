@@ -124,7 +124,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       <LoginPromptDialog
         isOpen={showLoginPrompt}
         onClose={() => setShowLoginPrompt(false)}
-        onLoginClick={redirectToLoginSection}
       />
     </CartContext.Provider>
   );
