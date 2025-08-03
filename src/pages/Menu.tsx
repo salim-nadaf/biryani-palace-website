@@ -8,10 +8,11 @@ import LazyImage from '@/components/LazyImage';
 import Header from '@/components/Header';
 import { CartSidebar } from '@/components/CartSidebar';
 
-import chickenBiryani from '@/assets/chicken-biryani.jpg';
-import muttonBiryani from '@/assets/mutton-biryani.jpg';
-import vegBiryani from '@/assets/veg-biryani.jpg';
+import chickenBiryani from '@/assets/alishaan-tandoori-biryani.jpg';
+import muttonBiryani from '@/assets/Mutton Biryani hero image.jpg';
+import vegBiryani from '@/assets/nawabi-veg-dum-biryani.png';
 import heroBiryani from '@/assets/Mutton Biryani hero image.jpg';
+import chickenBiryaniVideo from '@/assets/chicken-biryani-serving.mp4';
 
 // Bucket Biryani Images for carousel
 const bucketBiryaniImages = [
@@ -588,7 +589,7 @@ const MenuPage = () => {
                       className="w-full h-24 object-cover"
                       poster={heroBiryani}
                     >
-                      <source src="/src/assets/chicken-biryani-serving.mp4" type="video/mp4" />
+                      <source src={chickenBiryaniVideo} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent">
