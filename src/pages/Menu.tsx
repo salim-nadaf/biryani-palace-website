@@ -621,23 +621,21 @@ const MenuPage = () => {
                   </div>
                   
                    {/* Video Section */}
-                  <div className="relative bg-black rounded-lg overflow-hidden aspect-[4/3] max-w-2xl mx-auto">
+                  <div className="relative bg-black rounded-lg overflow-hidden aspect-[16/9] max-w-4xl mx-auto">
                     <video 
                       autoPlay 
                       muted 
                       loop
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-center"
+                      style={{ objectPosition: 'center 30%' }}
                       poster={heroBiryani}
                     >
                       <source src={chickenBiryaniVideo} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent">
                       <div className="absolute bottom-4 left-4 text-white text-sm font-semibold">
                         Fresh & Hot Serving
-                      </div>
-                      <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1">
-                        <span className="text-white text-xs font-montserrat font-medium">Live Preview</span>
                       </div>
                     </div>
                   </div>
@@ -672,17 +670,16 @@ const MenuPage = () => {
                     *Half kg options are available only on select items and may require advance confirmation.
                   </p>
                   
-                   {/* CTA Button */}
-                   <div className="flex justify-center px-4">
-                     <Button
-                       onClick={handleBucketOrderContact}
-                       className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold glow-gold w-full max-w-sm text-sm sm:text-base py-3"
-                       size="lg"
-                     >
-                       <span className="hidden sm:inline">Check Availability on WhatsApp</span>
-                       <span className="sm:hidden">Check on WhatsApp</span>
-                     </Button>
-                   </div>
+                    {/* CTA Button */}
+                    <div className="flex justify-center px-4">
+                      <Button
+                        onClick={handleBucketOrderContact}
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold glow-gold w-full max-w-md text-base py-3 px-6"
+                        size="lg"
+                      >
+                        <span className="whitespace-nowrap">Check Availability on WhatsApp</span>
+                      </Button>
+                    </div>
                 </div>
               </CardContent>
             </Card>
@@ -700,8 +697,8 @@ const MenuPage = () => {
                   plan.popular ? 'border-primary shadow-[0_0_30px_hsl(var(--primary)/0.3)]' : 'border-border hover:border-primary/50'
                 }`}>
                    {plan.popular && (
-                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
-                       <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-montserrat font-bold flex items-center justify-center gap-1 shadow-lg whitespace-nowrap">
+                     <div className="absolute top-2 left-2 z-20">
+                       <div className="bg-muted/80 text-muted-foreground px-2 py-1 rounded text-xs font-montserrat font-bold flex items-center gap-1 shadow-lg line-through">
                          <Crown className="w-3 h-3" />
                          Most Popular
                        </div>
