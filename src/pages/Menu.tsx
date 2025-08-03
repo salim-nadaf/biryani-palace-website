@@ -627,7 +627,7 @@ const MenuPage = () => {
                       muted 
                       loop
                       className="w-full h-full object-cover"
-                      style={{ objectPosition: 'center 35%' }}
+                      style={{ objectPosition: 'center 60%' }}
                       poster={heroBiryani}
                     >
                       <source src={chickenBiryaniVideo} type="video/mp4" />
