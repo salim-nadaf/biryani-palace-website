@@ -621,12 +621,12 @@ const MenuPage = () => {
                   </div>
                   
                    {/* Video Section */}
-                  <div className="relative bg-black rounded-lg overflow-hidden">
+                  <div className="relative bg-black rounded-lg overflow-hidden aspect-[4/3] max-w-2xl mx-auto">
                     <video 
                       autoPlay 
                       muted 
                       loop
-                      className="w-full h-64 md:h-80 object-contain bg-black"
+                      className="w-full h-full object-cover"
                       poster={heroBiryani}
                     >
                       <source src={chickenBiryaniVideo} type="video/mp4" />
@@ -652,7 +652,7 @@ const MenuPage = () => {
                   {/* Pricing */}
                    <div className="text-center mb-4">
                      <div className="font-alata text-3xl md:text-4xl font-bold text-primary mb-2">
-                       Starting from ₹509
+                       Starting from
                      </div>
                      <br />
                      <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
@@ -700,9 +700,9 @@ const MenuPage = () => {
                   plan.popular ? 'border-primary shadow-[0_0_30px_hsl(var(--primary)/0.3)]' : 'border-border hover:border-primary/50'
                 }`}>
                    {plan.popular && (
-                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                       <div className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-montserrat font-bold flex items-center justify-center gap-1 shadow-lg border-2 border-primary-foreground/20">
-                         <Crown className="w-4 h-4" />
+                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+                       <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-montserrat font-bold flex items-center justify-center gap-1 shadow-lg whitespace-nowrap">
+                         <Crown className="w-3 h-3" />
                          Most Popular
                        </div>
                      </div>
@@ -771,7 +771,7 @@ const MenuPage = () => {
                          className="w-full h-40 object-cover group-hover:scale-105 transition-smooth"
                        />
                        {item.tag && (
-                         <div className={`absolute top-3 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded-full text-xs font-montserrat font-bold ${getTagColor(item.tag)} shadow-lg`}>
+                         <div className={`absolute top-2 left-2 px-2 py-1 rounded-full text-xs font-montserrat font-bold ${getTagColor(item.tag)} shadow-lg`}>
                            {item.tag}
                          </div>
                        )}
