@@ -599,7 +599,7 @@ const MenuPage = () => {
               <span className="font-allura text-primary text-4xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Bucket Biryani Specials</span>
             </h2>
             
-            <Card className="bg-gradient-card border-2 border-primary/30 overflow-hidden max-w-4xl mx-auto">
+            <Card className="bg-gradient-card border-2 border-primary/30 overflow-hidden max-w-6xl mx-auto">
               <CardContent className="p-8">
                 {/* Carousel */}
                 <div className="relative mb-8">
@@ -621,13 +621,13 @@ const MenuPage = () => {
                   </div>
                   
                    {/* Video Section */}
-                  <div className="relative bg-black rounded-lg overflow-hidden aspect-[16/9] max-w-4xl mx-auto">
+                  <div className="relative bg-black rounded-lg overflow-hidden max-w-5xl mx-auto" style={{ aspectRatio: '16/9' }}>
                     <video 
                       autoPlay 
                       muted 
                       loop
                       className="w-full h-full object-cover"
-                      style={{ objectPosition: 'center 60%' }}
+                      style={{ objectPosition: 'center 30%' }}
                       poster={heroBiryani}
                     >
                       <source src={chickenBiryaniVideo} type="video/mp4" />
