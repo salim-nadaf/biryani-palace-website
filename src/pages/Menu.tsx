@@ -621,17 +621,13 @@ const MenuPage = () => {
                   </div>
                   
                    {/* Video Section */}
-                  <div className="relative bg-black rounded-lg overflow-hidden max-w-5xl mx-auto" style={{ aspectRatio: '16/9' }}>
+                  <div className="relative bg-black rounded-lg overflow-hidden w-full max-w-7xl mx-auto h-96 md:h-[500px] lg:h-[600px]">
                     <video 
                       autoPlay 
                       muted 
                       loop
                       className="w-full h-full object-cover"
-                      style={{ 
-                        objectPosition: 'center 45%',
-                        transform: 'scale(1.2)',
-                        transformOrigin: 'center 45%'
-                      }}
+                      style={{ objectPosition: 'center bottom' }}
                       poster={heroBiryani}
                     >
                       <source src={chickenBiryaniVideo} type="video/mp4" />
