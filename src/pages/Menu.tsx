@@ -580,18 +580,50 @@ const MenuPage = () => {
     <div className="min-h-screen">
       <Header />
       
-      <section id="menu" className="py-20 px-4 mt-16">
-        <div className="container mx-auto">
-          {/* Page Header */}
-          <div className="text-center mb-16">
-            <h1 className="font-alata text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Our <span className="font-allura text-primary text-5xl md:text-6xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Royal Menu</span>
-            </h1>
-            <p className="font-montserrat text-xl text-foreground/80 max-w-2xl mx-auto">
-              Discover our carefully crafted biryani varieties, each made with authentic spices 
-              and premium ingredients that have been perfected over generations.
-            </p>
+        {/* Hero Video Section */}
+        <div className="relative mb-20 -mt-4">
+          <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
+            <video 
+              autoPlay 
+              muted 
+              loop
+              className="w-full h-[60vh] md:h-[70vh] lg:h-[80vh] object-cover"
+              style={{ objectPosition: 'center bottom' }}
+              poster={heroBiryani}
+            >
+              <source src={chickenBiryaniVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            
+            {/* Elegant Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center text-white px-6 max-w-4xl mx-auto">
+                  <h1 className="font-alata text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
+                    Our <span className="font-allura text-primary text-5xl md:text-7xl lg:text-8xl drop-shadow-lg">Royal Menu</span>
+                  </h1>
+                  <p className="font-montserrat text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+                    Experience the authentic taste of royal biryani, crafted with premium ingredients 
+                    and served fresh from our kitchen to your table
+                  </p>
+                </div>
+              </div>
+              
+              {/* Bottom Corner Badge */}
+              <div className="absolute bottom-6 right-6">
+                <div className="bg-primary/90 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <span className="text-white font-semibold text-sm flex items-center gap-2">
+                    <Crown className="w-4 h-4" />
+                    Fresh & Hot Serving
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+      <section id="menu" className="py-12 px-4">
+        <div className="container mx-auto">
 
           {/* Bucket Biryani Specials */}
           <div className="mb-20">
@@ -618,26 +650,6 @@ const MenuPage = () => {
                         </div>
                       </div>
                     ))}
-                  </div>
-                  
-                   {/* Video Section */}
-                  <div className="relative bg-black rounded-lg overflow-hidden w-full max-w-7xl mx-auto h-96 md:h-[500px] lg:h-[600px]">
-                    <video 
-                      autoPlay 
-                      muted 
-                      loop
-                      className="w-full h-full object-cover"
-                      style={{ objectPosition: 'center bottom' }}
-                      poster={heroBiryani}
-                    >
-                      <source src={chickenBiryaniVideo} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent">
-                      <div className="absolute bottom-4 left-4 text-white text-sm font-semibold">
-                        Fresh & Hot Serving
-                      </div>
-                    </div>
                   </div>
                 </div>
 
