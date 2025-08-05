@@ -587,8 +587,14 @@ const MenuPage = () => {
               autoPlay 
               muted 
               loop
-              className="w-full h-[60vh] md:h-[70vh] lg:h-[80vh] object-cover"
-              style={{ objectPosition: 'center bottom' }}
+              preload="auto"
+              playsInline
+              className="w-full h-[75vh] md:h-[80vh] lg:h-[85vh] object-cover"
+              style={{ 
+                objectPosition: 'center 65%',
+                transform: 'scale(1.1)',
+                transformOrigin: 'center 65%'
+              }}
               poster={heroBiryani}
             >
               <source src={chickenBiryaniVideo} type="video/mp4" />
