@@ -34,6 +34,7 @@ const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className, placeholder 
         onLoad={handleLoad}
         onError={handleError}
         loading="lazy"
+        decoding="async"
       />
     </div>
   );
