@@ -23,19 +23,15 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
+          // Only vendor React into its own chunk to avoid execution order issues
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) {
+            if (/node_modules\/(react|react-dom)(\/|$)/.test(id)) {
               return 'vendor';
             }
-            if (id.includes('@radix-ui')) {
-              return 'ui';
-            }
-            if (id.includes('lucide-react')) {
-              return 'icons';
-            }
-            return 'vendor-misc';
+            // Let Rollup decide optimal splitting for everything else
+            return;
           }
-          // Split menu assets into separate chunk
+          // Keep asset split for heavy images
           if (id.includes('/assets/') && id.match(/\.(jpg|jpeg|png)$/)) {
             return 'assets';
           }
