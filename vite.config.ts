@@ -32,13 +32,7 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     target: 'es2020',
     sourcemap: false,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        passes: 2
-      }
-    }
+    minify: 'esbuild',
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'lucide-react'],
