@@ -14,13 +14,12 @@ import chickenBiryani from '@/assets/alishaan-tandoori-biryani.jpg';
 import muttonBiryani from '@/assets/Mutton Biryani hero image.jpg';
 import vegBiryani from '@/assets/nawabi-veg-dum-biryani.png';
 import heroBiryani from '@/assets/Mutton Biryani hero image.jpg';
-import chickenBiryaniVideo from '@/assets/chicken-biryani-serving.mp4';
 
-// Import bucket biryani images
-import chickenDumBucket1kg from '@/assets/chicken-dum-bucket-1kg.png';
-import chickenDumBucket from '@/assets/chicken-dum-bucket.png';
-import chickenTandoorBucket1kg from '@/assets/chicken-tandoor-bucket-1kg.png';
-import chickenTandooriBucket from '@/assets/chicken-tandoori-bucket.png';
+// Import optimized bucket biryani images (WebP format)
+import chickenDumBucket1kg from '@/assets/chicken-dum-bucket-1kg-optimized.webp';
+import chickenDumBucket from '@/assets/chicken-dum-bucket-optimized.webp';
+import chickenTandoorBucket1kg from '@/assets/chicken-tandoor-bucket-1kg-optimized.webp';
+import chickenTandooriBucket from '@/assets/chicken-tandoori-bucket-optimized.webp';
 
 // Import menu item images
 import alishaan from '@/assets/alishaan-tandoori-biryani.jpg';
@@ -68,32 +67,32 @@ const bucketBiryaniImages = [
 const bulkOrderPlans = [
   {
     id: 'mehmaan-plan',
-    name: 'The Mehmaan Plan',
-    guests: '10–15 Guests',
-    quantity: '5 KG Total',
-    items: 'Biryani + Starter + Gravy',
-    freebie: 'Free Gulab Jamun (10 pcs)',
-    price: 3499,
+    name: 'The Mehmaan plan',
+    guests: '10-15 Guests',
+    quantity: '05 KG Total',
+    items: 'Biryani: 3 Choices • Gravy: 1 Choice • Starter: 1 Choice',
+    freebie: 'Dessert: Free',
+    price: 3999,
     popular: false,
   },
   {
     id: 'shaahi-dawat',
-    name: 'The Shaahi Dawat',
-    guests: '20–30 Guests',
+    name: 'The Shahi Dawat',
+    guests: '20-30 Guests',
     quantity: '10 KG Total',
-    items: '2 Biryani Flavors + 2 Gravies + Starters',
-    freebie: 'Free Gulab Jamun or Soft Drink',
-    price: 6999,
+    items: 'Biryani: 2 Choices • Gravy: 1 Choice • Starter: 1 Choice',
+    freebie: 'Dessert: Free',
+    price: 7999,
     popular: true,
   },
   {
     id: 'royal-baithak',
     name: 'The Royal Baithak',
-    guests: '40–50 Guests',
+    guests: '40-50 Guests',
     quantity: '15 KG Total',
-    items: 'Choose 3 Biryanis + 3 Gravies + Starters',
-    freebie: 'Free Dessert + Drinks + Salad',
-    price: 12999,
+    items: 'Biryani: 3 Choices • Gravy: 1 Choice • Starter: 2 Choices',
+    freebie: 'Dessert+Drinks: Free',
+    price: 11999,
     popular: false,
   },
 ];
@@ -536,6 +535,16 @@ const MenuPage = () => {
   const { toast } = useToast();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isMobile = useIsMobile();
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+
+  // Lazy load video only on desktop
+  useEffect(() => {
+    if (!isMobile) {
+      import('@/assets/chicken-biryani-serving.mp4').then((module) => {
+        setVideoSrc(module.default);
+      });
+    }
+  }, [isMobile]);
 
   const handleAddToCart = (item: any) => {
     addToCart({
@@ -584,7 +593,7 @@ const MenuPage = () => {
       <Header />
       
         {/* Hero Video Section - Desktop Only */}
-        {!isMobile && (
+        {!isMobile && videoSrc && (
           <div className="relative mb-20 -mt-4">
             <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
               <video 
@@ -601,7 +610,7 @@ const MenuPage = () => {
                 }}
                 poster={heroBiryani}
               >
-                <source src={chickenBiryaniVideo} type="video/mp4" />
+                <source src={videoSrc} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               

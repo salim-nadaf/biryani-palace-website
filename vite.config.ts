@@ -31,8 +31,8 @@ export default defineConfig(({ mode }) => ({
             // Let Rollup decide optimal splitting for everything else
             return;
           }
-          // Keep asset split for heavy images
-          if (id.includes('/assets/') && id.match(/\.(jpg|jpeg|png)$/)) {
+          // Keep asset split for heavy images including WebP
+          if (id.includes('/assets/') && id.match(/\.(jpg|jpeg|png|webp)$/)) {
             return 'assets';
           }
         },
@@ -40,7 +40,7 @@ export default defineConfig(({ mode }) => ({
           if (!assetInfo.name) return `assets/[name]-[hash][extname]`;
           const info = assetInfo.name.split('.');
           const ext = info[info.length - 1];
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(ext)) {
             return `assets/images/[name]-[hash][extname]`;
           } else if (/mp4|webm|ogg|mp3|wav|flac|aac/i.test(ext)) {
             return `assets/media/[name]-[hash][extname]`;
@@ -52,7 +52,14 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     target: 'es2020',
     sourcemap: false,
-    minify: 'esbuild',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log'],
+      },
+    },
     chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
