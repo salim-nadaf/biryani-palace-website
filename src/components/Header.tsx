@@ -73,28 +73,32 @@ const Header = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation">
               <button
                 onClick={handleHomeClick}
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
+                aria-label="Navigate to home page"
               >
                 Home
               </button>
               <Link
                 to="/menu"
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
+                aria-label="View our menu"
               >
                 Menu
               </Link>
               <button
                 onClick={() => scrollToSection('about')}
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
+                aria-label="Learn about us"
               >
                 About
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
+                aria-label="Contact us"
               >
                 Contact
               </button>
@@ -110,9 +114,9 @@ const Header = () => {
                       Hi, {user.name.split(' ')[0]}!
                     </p>
                   </div>
-                  <DropdownMenu>
+                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="sm" className="p-2">
+                      <Button variant="ghost" size="sm" className="p-2" aria-label="User menu">
                         <User className="w-5 h-5 text-foreground" />
                       </Button>
                     </DropdownMenuTrigger>
@@ -147,6 +151,8 @@ const Header = () => {
                 size="icon"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="md:hidden text-foreground hover:text-primary hover:bg-primary/10"
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMenuOpen}
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>

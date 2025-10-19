@@ -10,10 +10,13 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <LazyImage
+        <img
           src={heroImage}
-          alt="Authentic Biryani"
+          alt="Delicious authentic mutton biryani served in traditional style"
           className="w-full h-full object-cover object-center"
+          fetchPriority="high"
+          loading="eager"
+          decoding="sync"
         />
         <div className="absolute inset-0 bg-black/60" />
       </div>
@@ -22,11 +25,11 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto">
           {/* Star Rating */}
-          <div className="flex justify-center items-center space-x-1 mb-6">
+          <div className="flex justify-center items-center space-x-1 mb-6" role="img" aria-label="4.5 star rating">
             {[1, 2, 3, 4].map((star) => (
-              <Star key={star} className="w-6 h-6 fill-primary text-primary" />
+              <Star key={star} className="w-6 h-6 fill-primary text-primary" aria-hidden="true" />
             ))}
-            <Star className="w-6 h-6 text-primary" />
+            <Star className="w-6 h-6 text-primary" aria-hidden="true" />
             <span className="ml-3 font-montserrat text-foreground/90">
               Loved by 100+ families
             </span>
@@ -80,6 +83,7 @@ const Hero = () => {
               size="lg"
               className="border-white/40 text-white hover:bg-white/10 font-montserrat font-semibold px-8 py-6 text-lg"
               onClick={() => window.open('https://wa.me/919167682582', '_blank')}
+              aria-label="Order now via WhatsApp - opens in new window"
             >
               Order Now via WhatsApp
             </Button>
