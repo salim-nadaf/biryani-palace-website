@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import LazyImage from './LazyImage';
 import heroImage from '@/assets/Mutton Biryani hero image.jpg';
+import heroImageOptimized from '@/assets/hero-biryani-optimized.webp';
 
 const Hero = () => {
 
@@ -10,14 +11,17 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Delicious authentic mutton biryani served in traditional style"
-          className="w-full h-full object-cover object-center"
-          fetchPriority="high"
-          loading="eager"
-          decoding="sync"
-        />
+        <picture>
+          <source srcSet={heroImageOptimized} type="image/webp" />
+          <img
+            src={heroImage}
+            alt="Delicious authentic mutton biryani served in traditional style"
+            className="w-full h-full object-cover object-center"
+            fetchPriority="high"
+            loading="eager"
+            decoding="sync"
+          />
+        </picture>
         <div className="absolute inset-0 bg-black/60" />
       </div>
 

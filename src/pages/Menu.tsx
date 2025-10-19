@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Users, Crown, Utensils, Gift } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useCart } from '@/contexts/CartContext';
@@ -534,6 +535,7 @@ const MenuPage = () => {
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleAddToCart = (item: any) => {
     addToCart({
@@ -581,53 +583,94 @@ const MenuPage = () => {
     <div className="min-h-screen">
       <Header />
       
-        {/* Hero Video Section */}
-        <div className="relative mb-20 -mt-4">
-          <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
-            <video 
-              autoPlay 
-              muted 
-              loop
-              preload="none"
-              playsInline
-              className="w-full h-[75vh] md:h-[80vh] lg:h-[85vh] object-cover"
-              style={{ 
-                objectPosition: 'center 65%',
-                transform: 'scale(1.1)',
-                transformOrigin: 'center 65%'
-              }}
-              poster={heroBiryani}
-            >
-              <source src={chickenBiryaniVideo} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            
-            {/* Elegant Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center text-white px-6 max-w-4xl mx-auto">
-                  <h1 className="font-alata text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
-                    Our <span className="font-allura text-primary text-5xl md:text-7xl lg:text-8xl drop-shadow-lg">Royal Menu</span>
-                  </h1>
-                  <p className="font-montserrat text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed animate-fade-in">
-                    Experience the authentic taste of royal biryani, crafted with premium ingredients 
-                    and served fresh from our kitchen to your table
-                  </p>
-                </div>
-              </div>
+        {/* Hero Video Section - Desktop Only */}
+        {!isMobile && (
+          <div className="relative mb-20 -mt-4">
+            <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
+              <video 
+                autoPlay 
+                muted 
+                loop
+                preload="none"
+                playsInline
+                className="w-full h-[75vh] md:h-[80vh] lg:h-[85vh] object-cover"
+                style={{ 
+                  objectPosition: 'center 65%',
+                  transform: 'scale(1.1)',
+                  transformOrigin: 'center 65%'
+                }}
+                poster={heroBiryani}
+              >
+                <source src={chickenBiryaniVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
               
-              {/* Bottom Corner Badge */}
-              <div className="absolute bottom-6 right-6">
-                <div className="bg-primary/90 backdrop-blur-sm px-4 py-2 rounded-full">
-                  <span className="text-white font-semibold text-sm flex items-center gap-2">
-                    <Crown className="w-4 h-4" />
-                    Fresh & Hot Serving
-                  </span>
+              {/* Elegant Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center text-white px-6 max-w-4xl mx-auto">
+                    <h1 className="font-alata text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
+                      Our <span className="font-allura text-primary text-5xl md:text-7xl lg:text-8xl drop-shadow-lg">Royal Menu</span>
+                    </h1>
+                    <p className="font-montserrat text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+                      Experience the authentic taste of royal biryani, crafted with premium ingredients 
+                      and served fresh from our kitchen to your table
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Bottom Corner Badge */}
+                <div className="absolute bottom-6 right-6">
+                  <div className="bg-primary/90 backdrop-blur-sm px-4 py-2 rounded-full">
+                    <span className="text-white font-semibold text-sm flex items-center gap-2">
+                      <Crown className="w-4 h-4" />
+                      Fresh & Hot Serving
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
+        
+        {/* Mobile Hero - Static Image Only */}
+        {isMobile && (
+          <div className="relative mb-12 -mt-4">
+            <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl h-[50vh]">
+              <img 
+                src={heroBiryani}
+                alt="Royal biryani menu"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: 'center 65%' }}
+                loading="eager"
+              />
+              
+              {/* Elegant Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center text-white px-6 max-w-4xl mx-auto">
+                    <h1 className="font-alata text-3xl font-bold mb-4 animate-fade-in">
+                      Our <span className="font-allura text-primary text-4xl drop-shadow-lg">Royal Menu</span>
+                    </h1>
+                    <p className="font-montserrat text-base text-white/90 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+                      Experience the authentic taste of royal biryani
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Bottom Corner Badge */}
+                <div className="absolute bottom-4 right-4">
+                  <div className="bg-primary/90 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                    <span className="text-white font-semibold text-xs flex items-center gap-1">
+                      <Crown className="w-3 h-3" />
+                      Fresh & Hot
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
       <section id="menu" className="py-12 px-4">
         <div className="container mx-auto">
