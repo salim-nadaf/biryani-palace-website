@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Plus, Star, Users, Crown, Utensils, Gift, Play } from 'lucide-react';
+import { Users, Crown, Utensils, Gift } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
-import LazyImage from '@/components/LazyImage';
+import OptimizedImage from '@/components/OptimizedImage';
+import MenuItem from '@/components/MenuItem';
 import Header from '@/components/Header';
 import { CartSidebar } from '@/components/CartSidebar';
 
@@ -587,7 +588,7 @@ const MenuPage = () => {
               autoPlay 
               muted 
               loop
-              preload="metadata"
+              preload="none"
               playsInline
               className="w-full h-[75vh] md:h-[80vh] lg:h-[85vh] object-cover"
               style={{ 
@@ -642,9 +643,9 @@ const MenuPage = () => {
                 {/* Carousel */}
                 <div className="relative mb-8">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    {bucketBiryaniImages.map((image, index) => (
+                     {bucketBiryaniImages.map((image, index) => (
                       <div key={index} className="relative group overflow-hidden rounded-lg">
-                         <LazyImage
+                         <OptimizedImage
                            src={image}
                            alt={`Bucket Biryani ${index + 1}`}
                            className="w-full h-36 object-cover transition-smooth group-hover:scale-110"
@@ -779,69 +780,12 @@ const MenuPage = () => {
               {/* Category Items Grid - 4 items per row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {category.items.map((item) => (
-                  <Card key={item.id} className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden">
-                    <div className="relative">
-                       <LazyImage
-                         src={item.image}
-                         alt={item.name}
-                         className="w-full h-40 object-cover group-hover:scale-105 transition-smooth"
-                       />
-                       {item.tag && (
-                         <div className={`absolute top-2 left-2 px-2 py-1 rounded-full text-xs font-montserrat font-bold ${getTagColor(item.tag)} shadow-lg`}>
-                           {item.tag}
-                         </div>
-                       )}
-                      {item.rating > 0 && (
-                        <div className="absolute top-2 right-2 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1 flex items-center space-x-1">
-                          <Star className="w-3 h-3 fill-primary text-primary" />
-                          <span className="text-foreground text-xs font-montserrat font-medium">
-                            {item.rating}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <CardContent className="p-3">
-                      <div className="mb-2">
-                        <h4 className="font-alata text-base font-bold text-foreground leading-tight mb-1">
-                          {item.name}
-                        </h4>
-                        <span className="font-alata text-lg font-bold text-primary">
-                          ₹{item.price}{item.unit ? ` (${item.unit})` : '/Kg'}
-                        </span>
-                      </div>
-                      
-                      <p className="font-montserrat text-muted-foreground mb-3 text-xs leading-relaxed line-clamp-2">
-                        {item.description}
-                      </p>
-                      
-                      {item.rating > 0 && (
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center space-x-1">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                              <Star 
-                                key={star} 
-                                className={`w-3 h-3 ${
-                                  star <= Math.floor(item.rating) 
-                                    ? 'fill-primary text-primary' 
-                                    : 'text-muted-foreground'
-                                }`} 
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      
-                      <Button
-                        onClick={() => handleAddToCart(item)}
-                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold transition-smooth glow-gold"
-                        size="sm"
-                      >
-                        <Plus className="mr-1 h-3 w-3" />
-                        Add to Cart
-                      </Button>
-                    </CardContent>
-                  </Card>
+                  <MenuItem
+                    key={item.id}
+                    item={item}
+                    onAddToCart={handleAddToCart}
+                    getTagColor={getTagColor}
+                  />
                 ))}
               </div>
             </div>

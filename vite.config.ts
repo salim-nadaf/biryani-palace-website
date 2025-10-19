@@ -22,17 +22,42 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-toast'],
-          utils: ['clsx', 'tailwind-merge', 'class-variance-authority']
-        }
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'ui';
+            }
+            if (id.includes('lucide-react')) {
+              return 'icons';
+            }
+            return 'vendor-misc';
+          }
+          // Split menu assets into separate chunk
+          if (id.includes('/assets/') && id.match(/\.(jpg|jpeg|png)$/)) {
+            return 'assets';
+          }
+        },
+        assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) return `assets/[name]-[hash][extname]`;
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+            return `assets/images/[name]-[hash][extname]`;
+          } else if (/mp4|webm|ogg|mp3|wav|flac|aac/i.test(ext)) {
+            return `assets/media/[name]-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
+        },
       }
     },
     cssCodeSplit: true,
     target: 'es2020',
     sourcemap: false,
     minify: 'esbuild',
+    chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'lucide-react'],
