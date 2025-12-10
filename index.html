@@ -12,14 +12,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Inline critical font-face for faster text rendering -->
+    <!-- Inline critical font-face for faster text rendering with size-adjust to prevent CLS -->
     <style>
+      /* Critical fonts with size-adjust to prevent layout shift */
       @font-face {
         font-family: 'Montserrat';
         font-style: normal;
         font-weight: 400;
         font-display: swap;
         src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXo.woff2) format('woff2');
+        size-adjust: 100%;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+        size-adjust: 100%;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+        size-adjust: 100%;
+      }
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+        size-adjust: 100%;
       }
       @font-face {
         font-family: 'Alata';
@@ -27,12 +53,19 @@
         font-weight: 400;
         font-display: swap;
         src: url(https://fonts.gstatic.com/s/alata/v10/PbytFmztEwbIofe6xKcRQEOA.woff2) format('woff2');
+        size-adjust: 100%;
       }
+      @font-face {
+        font-family: 'Allura';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/allura/v23/9oRPNYsQpS4zjuAPjAIXPtrrGA.woff2) format('woff2');
+        size-adjust: 100%;
+      }
+      /* Prevent layout shift by reserving space for fonts */
+      body { font-family: 'Montserrat', system-ui, sans-serif; }
     </style>
-    
-    <!-- Defer non-critical fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;500;600;700&display=swap"></noscript>
     
     <!-- Performance optimizations -->
     <meta name="robots" content="index, follow">

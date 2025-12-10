@@ -60,11 +60,12 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   return (
     <div 
       ref={imgRef} 
-      className={`relative overflow-hidden ${className}`}
+      className={`relative overflow-hidden contain-layout ${className}`}
       style={{ aspectRatio: `${width}/${height}` }}
     >
+      {/* Skeleton placeholder */}
       {!isLoaded && (
-        <div className="absolute inset-0 bg-muted/30" />
+        <div className="absolute inset-0 img-skeleton" />
       )}
       {isInView && (
         webpSrc ? (
