@@ -18,8 +18,21 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Alata&family=Allura&display=swap"></noscript>
     
     <style>
-      /* System font fallback while Google Fonts load */
-      body { font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      /* System font fallback with size-adjust to prevent CLS */
+      body { 
+        font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+      /* Reserve space for hero to prevent layout shift */
+      .hero-placeholder { min-height: 50vh; }
+      @media (min-width: 768px) { .hero-placeholder { min-height: 80vh; } }
+      /* Reserve space for bucket biryani card */
+      .bucket-card-placeholder { min-height: 400px; }
+    </style>
+    
+    <!-- Inline critical CSS to prevent render blocking -->
+    <style>
+      *{box-sizing:border-box}body{margin:0;background:#000;color:#f2f2f2}
+      #root{min-height:100vh}
     </style>
     
     <!-- Performance optimizations -->
