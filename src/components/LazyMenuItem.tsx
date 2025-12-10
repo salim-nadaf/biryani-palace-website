@@ -56,8 +56,12 @@ const LazyMenuItem: React.FC<LazyMenuItemProps> = ({ item, onAddToCart, getTagCo
   }, [isInView, item.imageKey, imageLoader, imageSrc]);
 
   return (
-    <Card ref={cardRef} className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden">
+    <Card ref={cardRef} className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden contain-layout">
       <div className="relative h-40 bg-muted/30">
+        {/* Skeleton placeholder while loading */}
+        {!imageLoaded && (
+          <div className="absolute inset-0 img-skeleton" />
+        )}
         {imageSrc && (
           <img
             src={imageSrc}
