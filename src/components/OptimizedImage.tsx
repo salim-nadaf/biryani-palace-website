@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, memo } from 'react';
+import React, { useState, useEffect, useRef, memo, useCallback } from 'react';
 
 interface OptimizedImageProps {
   src: string;
@@ -31,71 +31,49 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsInView(true);
-            observer.disconnect();
-          }
-        });
+        if (entries[0]?.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
       },
-      {
-        rootMargin: '50px', // Reduced from 200px for faster initial paint
-        threshold: 0,
-      }
+      { rootMargin: '50px', threshold: 0 }
     );
 
     observer.observe(imgRef.current);
-
     return () => observer.disconnect();
   }, [priority]);
 
-  const handleLoad = () => setIsLoaded(true);
-  const handleError = () => {
+  const handleLoad = useCallback(() => setIsLoaded(true), []);
+  const handleError = useCallback(() => {
     setError(true);
     setIsLoaded(true);
-  };
+  }, []);
 
   const imgSrc = error ? (placeholder || '/placeholder.svg') : src;
 
   return (
     <div 
       ref={imgRef} 
-      className={`relative overflow-hidden contain-layout ${className}`}
-      style={{ aspectRatio: `${width}/${height}` }}
+      className={`relative overflow-hidden ${className}`}
+      style={{ 
+        aspectRatio: `${width}/${height}`,
+        contain: 'layout style paint'
+      }}
     >
-      {/* Skeleton placeholder */}
-      {!isLoaded && (
-        <div className="absolute inset-0 img-skeleton" />
-      )}
+      {!isLoaded && <div className="absolute inset-0 bg-muted" />}
       {isInView && (
-        webpSrc ? (
-          <picture>
-            <source srcSet={webpSrc} type="image/webp" />
-            <img
-              src={imgSrc}
-              alt={alt}
-              width={width}
-              height={height}
-              className={`w-full h-full object-cover transition-opacity duration-150 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-              onLoad={handleLoad}
-              onError={handleError}
-              loading={priority ? 'eager' : 'lazy'}
-              decoding="async"
-            />
-          </picture>
-        ) : (
-          <img
-            src={imgSrc}
-            alt={alt}
-            width={width}
-            height={height}
-            className={`w-full h-full object-cover transition-opacity duration-150 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-            onLoad={handleLoad}
-            onError={handleError}
-            loading={priority ? 'eager' : 'lazy'}
-            decoding="async"
-          />
-        )
+        <img
+          src={webpSrc || imgSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          className={`w-full h-full object-cover ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          style={{ transition: 'opacity 0.15s' }}
+          onLoad={handleLoad}
+          onError={handleError}
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+        />
       )}
     </div>
   );

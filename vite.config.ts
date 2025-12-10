@@ -27,11 +27,22 @@ export default defineConfig(({ mode }) => ({
             if (/node_modules\/(react|react-dom)(\/|$)/.test(id)) {
               return 'vendor';
             }
-            // Group UI libraries together
-            if (/node_modules\/(lucide-react|@radix-ui)(\/|$)/.test(id)) {
+            // Group UI libraries together - lazy load these
+            if (/node_modules\/(lucide-react)(\/|$)/.test(id)) {
+              return 'icons';
+            }
+            if (/node_modules\/(@radix-ui)(\/|$)/.test(id)) {
               return 'ui';
             }
+            // Separate recharts (heavy)
+            if (/node_modules\/(recharts|d3)(\/|$)/.test(id)) {
+              return 'charts';
+            }
             return;
+          }
+          // Separate Menu page into its own chunk
+          if (id.includes('/pages/Menu')) {
+            return 'menu';
           }
         },
         assetFileNames: (assetInfo) => {
@@ -56,15 +67,20 @@ export default defineConfig(({ mode }) => ({
         drop_console: true,
         drop_debugger: true,
         pure_funcs: ['console.log', 'console.info'],
-        passes: 2,
+        passes: 3,
       },
-      mangle: true,
+      mangle: {
+        safari10: true,
+      },
       format: {
         comments: false,
       },
     },
     chunkSizeWarningLimit: 500,
-    assetsInlineLimit: 4096,
+    assetsInlineLimit: 2048,
+    modulePreload: {
+      polyfill: false,
+    },
   },
   optimizeDeps: {
     include: ['react', 'react-dom'],

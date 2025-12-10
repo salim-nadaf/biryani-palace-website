@@ -175,27 +175,8 @@
     content-visibility: auto;
   }
 
-  /* Skeleton placeholder for lazy images - GPU composited */
+  /* Simple skeleton placeholder - no animation to reduce main thread work */
   .img-skeleton {
     background: hsl(var(--muted));
-    position: relative;
-    overflow: hidden;
-  }
-
-  .img-skeleton::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, transparent, hsl(var(--muted-foreground) / 0.15), transparent);
-    transform: translateX(-100%);
-    animation: skeleton-shimmer 1.5s infinite;
-    will-change: transform;
-  }
-
-  @keyframes skeleton-shimmer {
-    100% { transform: translateX(100%); }
   }
 }

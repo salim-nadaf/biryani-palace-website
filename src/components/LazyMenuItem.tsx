@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, memo } from 'react';
+import React, { useState, useEffect, useRef, memo, useCallback } from 'react';
 import { Plus, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -31,12 +31,10 @@ const LazyMenuItem: React.FC<LazyMenuItemProps> = ({ item, onAddToCart, getTagCo
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsInView(true);
-            observer.disconnect();
-          }
-        });
+        if (entries[0]?.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
       },
       { rootMargin: '100px', threshold: 0 }
     );
@@ -55,21 +53,29 @@ const LazyMenuItem: React.FC<LazyMenuItemProps> = ({ item, onAddToCart, getTagCo
     }
   }, [isInView, item.imageKey, imageLoader, imageSrc]);
 
+  const handleImageLoad = useCallback(() => setImageLoaded(true), []);
+  
+  const handleAddClick = useCallback(() => {
+    onAddToCart({ ...item, image: imageSrc });
+  }, [item, imageSrc, onAddToCart]);
+
   return (
-    <Card ref={cardRef} className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden contain-layout">
-      <div className="relative h-40 bg-muted/30">
-        {/* Skeleton placeholder while loading */}
-        {!imageLoaded && (
-          <div className="absolute inset-0 img-skeleton" />
-        )}
+    <Card 
+      ref={cardRef} 
+      className="bg-gradient-card border-border hover:border-primary/50 group overflow-hidden"
+      style={{ contain: 'layout style paint' }}
+    >
+      <div className="relative h-40 bg-muted/30" style={{ minHeight: '160px' }}>
+        {!imageLoaded && <div className="absolute inset-0 bg-muted" />}
         {imageSrc && (
           <img
             src={imageSrc}
             alt={item.name}
             width={400}
             height={160}
-            className={`w-full h-full object-cover group-hover:scale-105 transition-smooth ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-            onLoad={() => setImageLoaded(true)}
+            className={`w-full h-full object-cover ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            style={{ transition: 'opacity 0.15s, transform 0.3s' }}
+            onLoad={handleImageLoad}
             loading="lazy"
             decoding="async"
           />
@@ -121,8 +127,8 @@ const LazyMenuItem: React.FC<LazyMenuItemProps> = ({ item, onAddToCart, getTagCo
         )}
         
         <Button
-          onClick={() => onAddToCart({ ...item, image: imageSrc })}
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold transition-smooth glow-gold"
+          onClick={handleAddClick}
+          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold"
           size="sm"
         >
           <Plus className="mr-1 h-3 w-3" />
