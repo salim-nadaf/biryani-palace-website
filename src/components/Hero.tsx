@@ -1,29 +1,24 @@
+import { memo } from 'react';
 import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import LazyImage from './LazyImage';
-import heroImage from '@/assets/Mutton Biryani hero image.jpg';
 import heroImageOptimized from '@/assets/hero-biryani-optimized.webp';
 
-const Hero = () => {
-
+const Hero = memo(() => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <picture>
-          <source srcSet={heroImageOptimized} type="image/webp" />
-          <img
-            src={heroImage}
-            alt="Delicious authentic mutton biryani served in traditional style"
-            className="w-full h-full object-cover object-center"
-            width={1920}
-            height={1080}
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-          />
-        </picture>
+        <img
+          src={heroImageOptimized}
+          alt="Delicious authentic mutton biryani served in traditional style"
+          className="w-full h-full object-cover object-center"
+          width={1920}
+          height={1080}
+          fetchPriority="high"
+          loading="eager"
+          decoding="sync"
+        />
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
@@ -77,7 +72,7 @@ const Hero = () => {
             <Link to="/menu">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold px-8 py-6 text-lg glow-gold transition-smooth"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-montserrat font-semibold px-8 py-6 text-lg glow-gold"
               >
                 View Our Menu
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -96,9 +91,10 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
     </section>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;
