@@ -39,8 +39,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         });
       },
       {
-        rootMargin: '200px',
-        threshold: 0.01,
+        rootMargin: '50px', // Reduced from 200px for faster initial paint
+        threshold: 0,
       }
     );
 
@@ -64,7 +64,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       style={{ aspectRatio: `${width}/${height}` }}
     >
       {!isLoaded && (
-        <div className="absolute inset-0 bg-muted/50" />
+        <div className="absolute inset-0 bg-muted/30" />
       )}
       {isInView && (
         webpSrc ? (
@@ -75,7 +75,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
               alt={alt}
               width={width}
               height={height}
-              className={`w-full h-full object-cover transition-opacity duration-200 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className={`w-full h-full object-cover transition-opacity duration-150 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
               onLoad={handleLoad}
               onError={handleError}
               loading={priority ? 'eager' : 'lazy'}
@@ -88,7 +88,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
             alt={alt}
             width={width}
             height={height}
-            className={`w-full h-full object-cover transition-opacity duration-200 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`w-full h-full object-cover transition-opacity duration-150 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
             onLoad={handleLoad}
             onError={handleError}
             loading={priority ? 'eager' : 'lazy'}
