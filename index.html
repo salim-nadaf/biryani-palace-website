@@ -8,25 +8,39 @@
     <meta name="description" content="Experience authentic biryani at Biryani Palace. Fresh ingredients, traditional recipes, perfect for families. Order now!" />
     <meta name="author" content="Biryani Palace" />
     
-    <!-- Resource hints for better performance -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="dns-prefetch" href="https://wa.me">
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <!-- Critical resource hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Google Fonts with display=swap for better performance -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Alata:wght@400&family=Allura:wght@400&family=Montserrat:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alata:wght@400&family=Allura:wght@400&family=Montserrat:wght@300;400;500;600;700&display=swap"></noscript>
+    <!-- Inline critical font-face for faster text rendering -->
+    <style>
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXo.woff2) format('woff2');
+      }
+      @font-face {
+        font-family: 'Alata';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/alata/v10/PbytFmztEwbIofe6xKcRQEOA.woff2) format('woff2');
+      }
+    </style>
+    
+    <!-- Defer non-critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;500;600;700&display=swap"></noscript>
     
     <!-- Performance optimizations -->
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#d4af37">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
 
-    <meta property="og:title" content="8249e219-309a-445f-953d-7d80cbbb46fd" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:title" content="Biryani Palace - Best Biryani in Kalyan" />
+    <meta property="og:description" content="Experience authentic biryani at Biryani Palace. Fresh ingredients, traditional recipes, perfect for families." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 

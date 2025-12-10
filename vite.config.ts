@@ -23,17 +23,15 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Only vendor React into its own chunk to avoid execution order issues
           if (id.includes('node_modules')) {
             if (/node_modules\/(react|react-dom)(\/|$)/.test(id)) {
               return 'vendor';
             }
-            // Let Rollup decide optimal splitting for everything else
+            // Group UI libraries together
+            if (/node_modules\/(lucide-react|@radix-ui)(\/|$)/.test(id)) {
+              return 'ui';
+            }
             return;
-          }
-          // Keep asset split for heavy images including WebP
-          if (id.includes('/assets/') && id.match(/\.(jpg|jpeg|png|webp)$/)) {
-            return 'assets';
           }
         },
         assetFileNames: (assetInfo) => {
@@ -57,12 +55,18 @@ export default defineConfig(({ mode }) => ({
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log'],
+        pure_funcs: ['console.log', 'console.info'],
+        passes: 2,
+      },
+      mangle: true,
+      format: {
+        comments: false,
       },
     },
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500,
+    assetsInlineLimit: 4096,
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'lucide-react'],
+    include: ['react', 'react-dom'],
   },
 }));

@@ -23,11 +23,13 @@ interface MenuItemProps {
 const MenuItem: React.FC<MenuItemProps> = ({ item, onAddToCart, getTagColor }) => {
   return (
     <Card className="bg-gradient-card border-border hover:border-primary/50 transition-smooth group overflow-hidden">
-      <div className="relative">
+      <div className="relative h-40">
         <OptimizedImage
           src={item.image}
           alt={item.name}
-          className="w-full h-40 object-cover group-hover:scale-105 transition-smooth"
+          className="w-full h-full object-cover group-hover:scale-105 transition-smooth"
+          width={400}
+          height={160}
         />
         {item.tag && (
           <div className={`absolute top-2 left-2 px-2 py-1 rounded-full text-xs font-montserrat font-bold ${getTagColor(item.tag)} shadow-lg`}>
