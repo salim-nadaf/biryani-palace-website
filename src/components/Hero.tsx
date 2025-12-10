@@ -14,14 +14,14 @@ const Hero = memo(() => {
         <img
           src={heroImageSmall}
           srcSet={`${heroImageSmall} 480w, ${heroImage720} 720w, ${heroImageOptimized} 1920w`}
-          sizes="100vw"
+          sizes="(max-width: 480px) 480px, (max-width: 768px) 720px, 1920px"
           alt="Delicious authentic mutton biryani served in traditional style"
           className="w-full h-full object-cover object-center"
           width={1920}
           height={1080}
           fetchPriority="high"
           loading="eager"
-          decoding="sync"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-black/60" />
       </div>
