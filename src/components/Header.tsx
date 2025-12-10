@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo, useCallback, lazy, Suspense } from 'react';
 import { ShoppingCart, Menu, X, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
-import { CartSidebar } from './CartSidebar';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
+// Lazy load CartSidebar since it's not needed on initial render
+const CartSidebar = lazy(() => import('./CartSidebar').then(m => ({ default: m.CartSidebar })));
 
-const Header = () => {
+const Header = memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { getTotalItems } = useCart();
@@ -30,35 +31,30 @@ const Header = () => {
     return () => window.removeEventListener('showLogoutToast', handleLogoutToast);
   }, [toast]);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
-  };
+  }, [location.pathname, navigate]);
 
-  const handleHomeClick = () => {
+  const handleHomeClick = useCallback(() => {
     if (location.pathname === '/') {
-      const homeSection = document.getElementById('home');
-      if (homeSection) {
-        homeSection.scrollIntoView({ behavior: 'smooth' });
-      }
+      document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
     } else {
       navigate('/');
     }
     setIsMenuOpen(false);
-  };
+  }, [location.pathname, navigate]);
+
+  const openCart = useCallback(() => setIsCartOpen(true), []);
+  const closeCart = useCallback(() => setIsCartOpen(false), []);
+  const toggleMenu = useCallback(() => setIsMenuOpen(prev => !prev), []);
 
   return (
     <>
@@ -133,7 +129,7 @@ const Header = () => {
               <Button
                 variant="outline"
                 size="icon"
-                onClick={() => setIsCartOpen(true)}
+                onClick={openCart}
                 className="relative border-primary/50 hover:border-primary hover:bg-primary/10 z-[10000]"
                 aria-label="Open shopping cart"
               >
@@ -149,7 +145,7 @@ const Header = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={toggleMenu}
                 className="md:hidden text-foreground hover:text-primary hover:bg-primary/10"
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
@@ -210,9 +206,13 @@ const Header = () => {
         </div>
       </header>
 
-      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <Suspense fallback={null}>
+        {isCartOpen && <CartSidebar isOpen={isCartOpen} onClose={closeCart} />}
+      </Suspense>
     </>
   );
-};
+});
+
+Header.displayName = 'Header';
 
 export default Header;
