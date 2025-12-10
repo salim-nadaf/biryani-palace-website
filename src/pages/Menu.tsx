@@ -651,7 +651,10 @@ const MenuPage = () => {
                 alt="Royal biryani menu"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: 'center 65%' }}
+                width={800}
+                height={600}
                 loading="eager"
+                fetchPriority="high"
               />
               
               {/* Elegant Overlay */}
@@ -696,11 +699,13 @@ const MenuPage = () => {
                 <div className="relative mb-8">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                      {bucketBiryaniImages.map((image, index) => (
-                      <div key={index} className="relative group overflow-hidden rounded-lg">
+                      <div key={index} className="relative group overflow-hidden rounded-lg h-36">
                          <OptimizedImage
                            src={image}
                            alt={`Bucket Biryani ${index + 1}`}
-                           className="w-full h-36 object-cover transition-smooth group-hover:scale-110"
+                           className="w-full h-full object-cover transition-smooth group-hover:scale-110"
+                           width={300}
+                           height={144}
                          />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-smooth">
                           <div className="absolute bottom-2 left-2 text-white text-xs font-semibold">

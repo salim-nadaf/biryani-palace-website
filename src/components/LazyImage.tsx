@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 
 interface LazyImageProps {
   src: string;
   alt: string;
   className?: string;
   placeholder?: string;
+  width?: number;
+  height?: number;
 }
 
-const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className, placeholder }) => {
+const LazyImage: React.FC<LazyImageProps> = ({ 
+  src, 
+  alt, 
+  className, 
+  placeholder,
+  width = 800,
+  height = 600
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleLoad = () => {
-    setIsLoaded(true);
-  };
-
+  const handleLoad = () => setIsLoaded(true);
   const handleError = () => {
     setError(true);
     setIsLoaded(true);
@@ -23,24 +29,22 @@ const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className, placeholder 
   return (
     <div className={`relative overflow-hidden ${className}`}>
       {!isLoaded && !error && (
-        <div className="absolute inset-0 bg-muted animate-pulse flex items-center justify-center">
-          <div className="w-8 h-8 border-2 border-muted-foreground/20 border-t-muted-foreground/40 rounded-full animate-spin" />
-        </div>
+        <div className="absolute inset-0 bg-muted/50" />
       )}
       <img
         src={error ? placeholder || '/placeholder.svg' : src}
         alt={alt}
-        className={`${className} transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        width={width}
+        height={height}
+        className={`w-full h-full object-cover transition-opacity duration-200 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
         onLoad={handleLoad}
         onError={handleError}
         loading="lazy"
         decoding="async"
-        width="auto"
-        height="auto"
       />
     </div>
   );
 };
 
-export default LazyImage;
+export default memo(LazyImage);
 export { LazyImage };

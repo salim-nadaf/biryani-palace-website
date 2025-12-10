@@ -7,7 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { CartSidebar } from './CartSidebar';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import logo from '@/assets/logo.png';
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

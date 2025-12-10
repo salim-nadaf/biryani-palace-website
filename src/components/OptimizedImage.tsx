@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, memo } from 'react';
 
 interface OptimizedImageProps {
   src: string;
@@ -6,16 +6,28 @@ interface OptimizedImageProps {
   className?: string;
   placeholder?: string;
   webpSrc?: string;
+  width?: number;
+  height?: number;
+  priority?: boolean;
 }
 
-const OptimizedImage: React.FC<OptimizedImageProps> = ({ src, alt, className, placeholder, webpSrc }) => {
+const OptimizedImage: React.FC<OptimizedImageProps> = ({ 
+  src, 
+  alt, 
+  className, 
+  placeholder, 
+  webpSrc,
+  width = 400,
+  height = 300,
+  priority = false
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
+  const [isInView, setIsInView] = useState(priority);
   const [error, setError] = useState(false);
   const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!imgRef.current) return;
+    if (priority || !imgRef.current) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -27,7 +39,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({ src, alt, className, pl
         });
       },
       {
-        rootMargin: '50px',
+        rootMargin: '200px',
         threshold: 0.01,
       }
     );
@@ -35,7 +47,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({ src, alt, className, pl
     observer.observe(imgRef.current);
 
     return () => observer.disconnect();
-  }, []);
+  }, [priority]);
 
   const handleLoad = () => setIsLoaded(true);
   const handleError = () => {
@@ -43,33 +55,43 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({ src, alt, className, pl
     setIsLoaded(true);
   };
 
+  const imgSrc = error ? (placeholder || '/placeholder.svg') : src;
+
   return (
-    <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
+    <div 
+      ref={imgRef} 
+      className={`relative overflow-hidden ${className}`}
+      style={{ aspectRatio: `${width}/${height}` }}
+    >
       {!isLoaded && (
-        <div className="absolute inset-0 bg-muted animate-pulse" />
+        <div className="absolute inset-0 bg-muted/50" />
       )}
       {isInView && (
         webpSrc ? (
           <picture>
             <source srcSet={webpSrc} type="image/webp" />
             <img
-              src={error ? placeholder || '/placeholder.svg' : src}
+              src={imgSrc}
               alt={alt}
-              className={`${className} transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+              width={width}
+              height={height}
+              className={`w-full h-full object-cover transition-opacity duration-200 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
               onLoad={handleLoad}
               onError={handleError}
-              loading="lazy"
+              loading={priority ? 'eager' : 'lazy'}
               decoding="async"
             />
           </picture>
         ) : (
           <img
-            src={error ? placeholder || '/placeholder.svg' : src}
+            src={imgSrc}
             alt={alt}
-            className={`${className} transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            width={width}
+            height={height}
+            className={`w-full h-full object-cover transition-opacity duration-200 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
             onLoad={handleLoad}
             onError={handleError}
-            loading="lazy"
+            loading={priority ? 'eager' : 'lazy'}
             decoding="async"
           />
         )
@@ -78,4 +100,4 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({ src, alt, className, pl
   );
 };
 
-export default React.memo(OptimizedImage);
+export default memo(OptimizedImage);

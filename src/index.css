@@ -145,4 +145,23 @@
   .glow-gold {
     box-shadow: 0 0 20px hsl(var(--gold) / 0.3);
   }
+
+  /* Critical above-the-fold styles */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .transition-smooth,
+    .animate-fade-in {
+      animation: none;
+      transition: none;
+    }
+  }
 }
