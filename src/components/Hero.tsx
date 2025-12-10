@@ -11,18 +11,35 @@ const Hero = memo(() => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img
-          src={heroImageSmall}
-          srcSet={`${heroImageSmall} 480w, ${heroImage720} 720w, ${heroImageOptimized} 1920w`}
-          sizes="(max-width: 480px) 480px, (max-width: 768px) 720px, 1920px"
-          alt="Delicious authentic mutton biryani served in traditional style"
-          className="w-full h-full object-cover object-center"
-          width={1920}
-          height={1080}
-          fetchPriority="high"
-          loading="eager"
-          decoding="async"
-        />
+        <picture>
+          {/* Serve smallest image for mobile devices */}
+          <source
+            media="(max-width: 640px)"
+            srcSet={heroImageSmall}
+            type="image/webp"
+          />
+          {/* Serve medium image for tablets */}
+          <source
+            media="(max-width: 1024px)"
+            srcSet={heroImage720}
+            type="image/webp"
+          />
+          {/* Serve large image for desktop */}
+          <source
+            srcSet={heroImageOptimized}
+            type="image/webp"
+          />
+          <img
+            src={heroImageSmall}
+            alt="Delicious authentic mutton biryani served in traditional style"
+            className="w-full h-full object-cover object-center"
+            width={1920}
+            height={1080}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
