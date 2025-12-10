@@ -17,6 +17,7 @@
     <!-- Preload critical fonts directly to reduce CLS -->
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/alata/v12/PbytFmztEwbIoce9zqYzQ1OW.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/allura/v23/9oRPNYsQpS4zjuA_iwgWHNn7GQ.woff2" crossorigin>
     
     <!-- Critical inline styles for instant render with font fallbacks -->
     <style>
@@ -27,12 +28,14 @@
       /* Font fallback metrics to reduce CLS */
       @font-face{font-family:'Alata-fallback';src:local('Arial');size-adjust:105%;ascent-override:95%;descent-override:25%;line-gap-override:0%}
       @font-face{font-family:'Montserrat-fallback';src:local('Arial');size-adjust:112%;ascent-override:85%;descent-override:22%;line-gap-override:0%}
+      @font-face{font-family:'Allura-fallback';src:local('Brush Script MT');size-adjust:115%;ascent-override:90%;descent-override:30%;line-gap-override:0%}
       .font-alata{font-family:Alata,'Alata-fallback',system-ui,sans-serif}
       .font-montserrat{font-family:Montserrat,'Montserrat-fallback',system-ui,sans-serif}
+      .font-allura{font-family:Allura,'Allura-fallback',cursive}
     </style>
     
-    <!-- Load Google Fonts with display=swap -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Alata&family=Allura&display=swap">
+    <!-- Load Google Fonts with display=optional to prevent CLS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Alata&family=Allura&display=optional">
 
     <meta property="og:title" content="Biryani Palace - Best Biryani in Kalyan" />
     <meta property="og:description" content="Experience authentic biryani at Biryani Palace. Fresh ingredients, traditional recipes, perfect for families." />
