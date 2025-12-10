@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Users, Crown, Utensils, Gift } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from '@/components/ui/button';
@@ -6,14 +6,13 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import OptimizedImage from '@/components/OptimizedImage';
-import MenuItem from '@/components/MenuItem';
+import LazyMenuItem from '@/components/LazyMenuItem';
 import Header from '@/components/Header';
 import { CartSidebar } from '@/components/CartSidebar';
 
-import chickenBiryani from '@/assets/alishaan-tandoori-biryani.jpg';
-import muttonBiryani from '@/assets/Mutton Biryani hero image.jpg';
-import vegBiryani from '@/assets/nawabi-veg-dum-biryani.png';
-import heroBiryani from '@/assets/Mutton Biryani hero image.jpg';
+// Hero image - use optimized webp
+import heroBiryaniWebp from '@/assets/hero-biryani-optimized.webp';
+const heroBiryani = heroBiryaniWebp;
 
 // Import optimized bucket biryani images (WebP format)
 import chickenDumBucket1kg from '@/assets/chicken-dum-bucket-1kg-optimized.webp';
@@ -21,39 +20,41 @@ import chickenDumBucket from '@/assets/chicken-dum-bucket-optimized.webp';
 import chickenTandoorBucket1kg from '@/assets/chicken-tandoor-bucket-1kg-optimized.webp';
 import chickenTandooriBucket from '@/assets/chicken-tandoori-bucket-optimized.webp';
 
-// Import menu item images
-import alishaan from '@/assets/alishaan-tandoori-biryani.jpg';
-import banjaraBiryani from '@/assets/banjara-e-biryani.png';
-import bonelessLazzat from '@/assets/boneless-lazzat-e-tikka-biryani.png';
-import bonelessTikkaMasala from '@/assets/boneless-tikka-masala.png';
-import dhanShikori from '@/assets/dhan-e-shikori-gosht.png';
-import goshtDum from '@/assets/gosht-e-dum-mazedaar.jpeg';
-import hyderabadiMurgh from '@/assets/hyderabadi-murgh-dum.png';
-import hyderabadiMutton from '@/assets/hyderabadi-mutton-dum.png';
-import kadhaiPaneer from '@/assets/kadhai-paneer-nawabi.png';
-import kebabFirangi from '@/assets/kebab-e-firangi.jpeg';
-import kebabRoyale from '@/assets/kebab-royale-sticks.jpeg';
-import lababdaarSheekh from '@/assets/lababdaar-seekh-biryani.jpg';
-import lazzatTikka from '@/assets/lazzat-e-tikka-biryani.png';
-import makhmali from '@/assets/makhmali-malai-biryani.jpg';
-import masaledarGosht from '@/assets/masaledar-gosht-curry.png';
-import masaledarMurgh from '@/assets/masaledar-murgh.png';
-import murghAngaara from '@/assets/murgh-angaara.png';
-import murghKolhapuri from '@/assets/murgh-kolhapuri-e-zaiqa.png';
-import murghTikkaMasala from '@/assets/murgh-tikka-masala.png';
-import nawabiVeg from '@/assets/nawabi-veg-dum-biryani.png';
-import nayaabiItaliano from '@/assets/nayaabi-italiano-biryani.jpeg';
-import nazaakatPulao from '@/assets/nazaakat-pulao.png';
-import paneerFirangi from '@/assets/paneer-e-firangi.png';
-import paneerTikkaBiryani from '@/assets/paneer-e-tikka-biryani.png';
-import paneerTikkaMasala from '@/assets/paneer-e-tikka-masala.png';
-import sabzTikka from '@/assets/sabz-tikka-biryani.png';
-import sabziyonZaika from '@/assets/sabziyon-ka-zaika.png';
-import shahiMurghKorma from '@/assets/shahi-murgh-korma.png';
-import shahiMurghRolls from '@/assets/shahi-murgh-rolls.jpeg';
-import tandooriTaaj from '@/assets/tandoori-taaj-leg.jpg';
-import ustaadiMurgh from '@/assets/ustaadi-murgh-dum.jpeg';
-import zamZamLazawaab from '@/assets/zam-zam-lazawaab-biryani.jpg';
+// Lazy import menu images - paths only, will be resolved by bundler
+const menuImages = {
+  alishaan: () => import('@/assets/alishaan-tandoori-biryani.jpg'),
+  banjaraBiryani: () => import('@/assets/banjara-e-biryani.png'),
+  bonelessLazzat: () => import('@/assets/boneless-lazzat-e-tikka-biryani.png'),
+  bonelessTikkaMasala: () => import('@/assets/boneless-tikka-masala.png'),
+  dhanShikori: () => import('@/assets/dhan-e-shikori-gosht.png'),
+  goshtDum: () => import('@/assets/gosht-e-dum-mazedaar.jpeg'),
+  hyderabadiMurgh: () => import('@/assets/hyderabadi-murgh-dum.png'),
+  hyderabadiMutton: () => import('@/assets/hyderabadi-mutton-dum.png'),
+  kadhaiPaneer: () => import('@/assets/kadhai-paneer-nawabi.png'),
+  kebabFirangi: () => import('@/assets/kebab-e-firangi.jpeg'),
+  kebabRoyale: () => import('@/assets/kebab-royale-sticks.jpeg'),
+  lababdaarSheekh: () => import('@/assets/lababdaar-seekh-biryani.jpg'),
+  lazzatTikka: () => import('@/assets/lazzat-e-tikka-biryani.png'),
+  makhmali: () => import('@/assets/makhmali-malai-biryani.jpg'),
+  masaledarGosht: () => import('@/assets/masaledar-gosht-curry.png'),
+  masaledarMurgh: () => import('@/assets/masaledar-murgh.png'),
+  murghAngaara: () => import('@/assets/murgh-angaara.png'),
+  murghKolhapuri: () => import('@/assets/murgh-kolhapuri-e-zaiqa.png'),
+  murghTikkaMasala: () => import('@/assets/murgh-tikka-masala.png'),
+  nawabiVeg: () => import('@/assets/nawabi-veg-dum-biryani.png'),
+  nayaabiItaliano: () => import('@/assets/nayaabi-italiano-biryani.jpeg'),
+  nazaakatPulao: () => import('@/assets/nazaakat-pulao.png'),
+  paneerFirangi: () => import('@/assets/paneer-e-firangi.png'),
+  paneerTikkaBiryani: () => import('@/assets/paneer-e-tikka-biryani.png'),
+  paneerTikkaMasala: () => import('@/assets/paneer-e-tikka-masala.png'),
+  sabzTikka: () => import('@/assets/sabz-tikka-biryani.png'),
+  sabziyonZaika: () => import('@/assets/sabziyon-ka-zaika.png'),
+  shahiMurghKorma: () => import('@/assets/shahi-murgh-korma.png'),
+  shahiMurghRolls: () => import('@/assets/shahi-murgh-rolls.jpeg'),
+  tandooriTaaj: () => import('@/assets/tandoori-taaj-leg.jpg'),
+  ustaadiMurgh: () => import('@/assets/ustaadi-murgh-dum.jpeg'),
+  zamZamLazawaab: () => import('@/assets/zam-zam-lazawaab-biryani.jpg'),
+};
 
 // Bucket Biryani Images for carousel
 const bucketBiryaniImages = [
@@ -107,7 +108,7 @@ const menuCategories = [
         name: 'Hyderabadi Mutton Dum',
         description: 'Tender mutton layered with flavorful rice — true to Deccan tradition.',
         price: 1499,
-        image: hyderabadiMutton,
+        imageKey: 'hyderabadiMutton',
         rating: 4.3,
         reviews: 167,
         popular: true,
@@ -119,7 +120,7 @@ const menuCategories = [
         name: 'Gosht-e-Dum Mazedaar',
         description: 'Juicy mutton cooked on dum with deep, savory spices.',
         price: 1499,
-        image: goshtDum,
+        imageKey: 'goshtDum',
         rating: 4.8,
         reviews: 145,
         popular: false,
@@ -131,7 +132,7 @@ const menuCategories = [
         name: 'Hyderabadi Murgh Dum',
         description: 'The iconic Hyderabadi chicken biryani — spicy, rich, and aromatic.',
         price: 899,
-        image: hyderabadiMurgh,
+        imageKey: 'hyderabadiMurgh',
         rating: 4.2,
         reviews: 134,
         popular: true,
@@ -143,7 +144,7 @@ const menuCategories = [
         name: 'Ustaadi Murgh Dum',
         description: 'Classic chicken biryani slow-cooked in the traditional dum style.',
         price: 899,
-        image: ustaadiMurgh,
+        imageKey: 'ustaadiMurgh',
         rating: 4.9,
         reviews: 156,
         popular: false,
@@ -161,7 +162,7 @@ const menuCategories = [
         name: 'Zam-Zam Lazawaab Biryani',
         description: 'Mutton, chicken balls, liver & eggs — all in one glorious biryani.',
         price: 1299,
-        image: zamZamLazawaab,
+        imageKey: 'zamZamLazawaab',
         rating: 4.5,
         reviews: 78,
         popular: false,
@@ -173,7 +174,7 @@ const menuCategories = [
         name: 'Nayaabi Italiano Biryani',
         description: 'A rare fusion of mayo, cheese, herbs and desi dum biryani — bold and one-of-a-kind.',
         price: 1099,
-        image: nayaabiItaliano,
+        imageKey: 'nayaabiItaliano',
         rating: 4.1,
         reviews: 45,
         popular: false,
@@ -185,7 +186,7 @@ const menuCategories = [
         name: 'Makhmali Malai Biryani',
         description: 'A silky, creamy chicken biryani with subtle spices and rich texture.',
         price: 999,
-        image: makhmali,
+        imageKey: 'makhmali',
         rating: 4.9,
         reviews: 67,
         popular: false,
@@ -197,7 +198,7 @@ const menuCategories = [
         name: 'Banjara-e-Biryani',
         description: 'Rustic and rich in flavor — inspired by malai biryani, finished with a fiery kick.',
         price: 799,
-        image: banjaraBiryani,
+        imageKey: 'banjaraBiryani',
         rating: 0,
         reviews: 0,
         popular: false,
@@ -215,7 +216,7 @@ const menuCategories = [
         name: 'Boneless Lazzat-e-Tikka Biryani',
         description: 'Boneless chicken tikka tossed in smoky, aromatic rice with rich undertones of flavor.',
         price: 1099,
-        image: bonelessLazzat,
+        imageKey: 'bonelessLazzat',
         rating: 5.0,
         reviews: 87,
         popular: false,
@@ -227,7 +228,7 @@ const menuCategories = [
         name: 'Lababdaar Seekh Biryani',
         description: 'Juicy seekh kebabs infused with spices and layered into biryani.',
         price: 1099,
-        image: lababdaarSheekh,
+        imageKey: 'lababdaarSheekh',
         rating: 4.9,
         reviews: 203,
         popular: false,
@@ -239,7 +240,7 @@ const menuCategories = [
         name: 'Lazzat-e-Tikka Biryani',
         description: 'Chicken tikka tossed in smoky, aromatic rice with rich undertones of flavor.',
         price: 899,
-        image: lazzatTikka,
+        imageKey: 'lazzatTikka',
         rating: 5.0,
         reviews: 124,
         popular: false,
@@ -251,7 +252,7 @@ const menuCategories = [
         name: 'Alishaan Tandoori Biryani',
         description: 'Tandoori-marinated chicken layered with fragrant rice in a bold, royal style.',
         price: 899,
-        image: alishaan,
+        imageKey: 'alishaan',
         rating: 4.5,
         reviews: 156,
         popular: true,
@@ -269,7 +270,7 @@ const menuCategories = [
         name: 'Paneer-e-Tikka Biryani',
         description: 'Tandoori-style paneer tikka folded into flavorful biryani rice.',
         price: 1099,
-        image: paneerTikkaBiryani,
+        imageKey: 'paneerTikkaBiryani',
         rating: 4.1,
         reviews: 98,
         popular: false,
@@ -281,7 +282,7 @@ const menuCategories = [
         name: 'Sabz Tikka Biryani',
         description: 'Veg tikka smokey masala blend, layered with fragrant rice.',
         price: 849,
-        image: sabzTikka,
+        imageKey: 'sabzTikka',
         rating: 4.5,
         reviews: 54,
         popular: false,
@@ -293,7 +294,7 @@ const menuCategories = [
         name: 'Nawabi Veg Dum Biryani',
         description: 'A royal mix of seasonal vegetables in a spiced dum-style biryani.',
         price: 799,
-        image: nawabiVeg,
+        imageKey: 'nawabiVeg',
         rating: 4.2,
         reviews: 76,
         popular: false,
@@ -305,7 +306,7 @@ const menuCategories = [
         name: 'Nazaakat Pulao',
         description: 'A delicate and aromatic vegetable pulao with mild seasoning.',
         price: 699,
-        image: nazaakatPulao,
+        imageKey: 'nazaakatPulao',
         rating: 4.1,
         reviews: 43,
         popular: false,
@@ -323,7 +324,7 @@ const menuCategories = [
         name: 'Dhan-e-Shikori Gosht',
         description: 'Rustic Kokani mutton curry with coconut and coriander — bold and aromatic.',
         price: 1199,
-        image: dhanShikori,
+        imageKey: 'dhanShikori',
         rating: 0,
         reviews: 0,
         popular: false,
@@ -335,7 +336,7 @@ const menuCategories = [
         name: 'Masaledar Gosht Curry',
         description: 'Fiery and flavorful mutton curry cooked in rich masala gravy.',
         price: 899,
-        image: masaledarGosht,
+        imageKey: 'masaledarGosht',
         rating: 4.7,
         reviews: 56,
         popular: false,
@@ -347,7 +348,7 @@ const menuCategories = [
         name: 'Boneless Tikka Masala',
         description: 'Tikka masala made with soft boneless chicken pieces.',
         price: 849,
-        image: bonelessTikkaMasala,
+        imageKey: 'bonelessTikkaMasala',
         rating: 4.9,
         reviews: 76,
         popular: false,
@@ -359,7 +360,7 @@ const menuCategories = [
         name: 'Murgh Angaara',
         description: 'Smoky, spicy chicken curry with bold tandoori flavor.',
         price: 649,
-        image: murghAngaara,
+        imageKey: 'murghAngaara',
         rating: 4.7,
         reviews: 78,
         popular: false,
@@ -371,7 +372,7 @@ const menuCategories = [
         name: 'Shahi Murgh Korma',
         description: 'Rich and creamy chicken korma in traditional Mughlai style.',
         price: 649,
-        image: shahiMurghKorma,
+        imageKey: 'shahiMurghKorma',
         rating: 4.8,
         reviews: 92,
         popular: false,
@@ -383,7 +384,7 @@ const menuCategories = [
         name: 'Masaledar Murgh',
         description: 'A robust chicken curry with strong, home-style spice punch.',
         price: 649,
-        image: masaledarMurgh,
+        imageKey: 'masaledarMurgh',
         rating: 4.6,
         reviews: 65,
         popular: false,
@@ -395,7 +396,7 @@ const menuCategories = [
         name: 'Murgh Tikka Masala',
         description: 'Classic tikka curry with a luscious gravy — rich and hearty.',
         price: 649,
-        image: murghTikkaMasala,
+        imageKey: 'murghTikkaMasala',
         rating: 4.8,
         reviews: 87,
         popular: false,
@@ -407,7 +408,7 @@ const menuCategories = [
         name: 'Murgh Kolhapuri-e-Zaiqa',
         description: 'Spicy and rustic chicken curry from the heart of Kolhapur.',
         price: 649,
-        image: murghKolhapuri,
+        imageKey: 'murghKolhapuri',
         rating: 4.7,
         reviews: 58,
         popular: false,
@@ -425,7 +426,7 @@ const menuCategories = [
         name: 'Paneer-e-Tikka Masala',
         description: 'Paneer tikka in creamy, smokey based gravy.',
         price: 899,
-        image: paneerTikkaMasala,
+        imageKey: 'paneerTikkaMasala',
         rating: 4.6,
         reviews: 67,
         popular: false,
@@ -437,7 +438,7 @@ const menuCategories = [
         name: 'Kadhai Paneer Nawabi',
         description: 'Chunky paneer tossed in kadhai-style spices with a royal finish.',
         price: 899,
-        image: kadhaiPaneer,
+        imageKey: 'kadhaiPaneer',
         rating: 4.5,
         reviews: 54,
         popular: false,
@@ -449,7 +450,7 @@ const menuCategories = [
         name: 'Paneer-e-Firangi',
         description: 'Indo-fusion paneer curry with a creamy and lightly spiced twist',
         price: 749,
-        image: paneerFirangi,
+        imageKey: 'paneerFirangi',
         rating: 4.4,
         reviews: 38,
         popular: false,
@@ -461,7 +462,7 @@ const menuCategories = [
         name: 'Sabziyon ka Zaika',
         description: 'A medley of seasonal vegetables in traditional Indian masala.',
         price: 649,
-        image: sabziyonZaika,
+        imageKey: 'sabziyonZaika',
         rating: 4.4,
         reviews: 43,
         popular: false,
@@ -479,7 +480,7 @@ const menuCategories = [
         name: 'Kebab Royale Sticks',
         description: 'Tandoori-marinated chicken grilled with bell peppers and onions, a royal skewer delight.',
         price: 599,
-        image: kebabRoyale,
+        imageKey: 'kebabRoyale',
         rating: 4.7,
         reviews: 89,
         popular: false,
@@ -492,7 +493,7 @@ const menuCategories = [
         name: 'Kebab-e-Firangi',
         description: 'Creamy chicken-potato ovals coated in vermicelli and deep-fried crisp.',
         price: 549,
-        image: kebabFirangi,
+        imageKey: 'kebabFirangi',
         rating: 4.6,
         reviews: 54,
         popular: false,
@@ -505,7 +506,7 @@ const menuCategories = [
         name: 'Shahi Murgh Rolls',
         description: 'Cheese‑filled chicken kebab roll, crispy‑fried and bursting with spice.',
         price: 549,
-        image: shahiMurghRolls,
+        imageKey: 'shahiMurghRolls',
         rating: 4.5,
         reviews: 67,
         popular: false,
@@ -518,7 +519,7 @@ const menuCategories = [
         name: 'Tandoori Taaj Leg',
         description: 'Large chicken leg marinated in royal tandoori spices and roasted.',
         price: 499,
-        image: tandooriTaaj,
+        imageKey: 'tandooriTaaj',
         rating: 4.8,
         reviews: 76,
         popular: false,
@@ -536,6 +537,13 @@ const MenuPage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isMobile = useIsMobile();
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
+
+  // Image loader for lazy menu items
+  const loadImage = useCallback((key: string): Promise<{ default: string }> => {
+    const loader = menuImages[key as keyof typeof menuImages];
+    if (loader) return loader();
+    return Promise.resolve({ default: '/placeholder.svg' });
+  }, []);
 
   // Lazy load video only on desktop
   useEffect(() => {
@@ -837,11 +845,12 @@ const MenuPage = () => {
               {/* Category Items Grid - 4 items per row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {category.items.map((item) => (
-                  <MenuItem
+                  <LazyMenuItem
                     key={item.id}
                     item={item}
                     onAddToCart={handleAddToCart}
                     getTagColor={getTagColor}
+                    imageLoader={loadImage}
                   />
                 ))}
               </div>
