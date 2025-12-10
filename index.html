@@ -37,8 +37,9 @@
       .font-allura{font-family:Allura,'Allura-fallback',cursive}
     </style>
     
-    <!-- Load Google Fonts with display=optional to prevent CLS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Alata&family=Allura&display=optional">
+    <!-- Load Google Fonts asynchronously to prevent render blocking -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Alata&family=Allura&display=optional" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Alata&family=Allura&display=optional"></noscript>
 
     <meta property="og:title" content="Biryani Palace - Best Biryani in Kalyan" />
     <meta property="og:description" content="Experience authentic biryani at Biryani Palace. Fresh ingredients, traditional recipes, perfect for families." />
