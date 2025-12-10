@@ -175,15 +175,27 @@
     content-visibility: auto;
   }
 
-  /* Skeleton placeholder for lazy images */
+  /* Skeleton placeholder for lazy images - GPU composited */
   .img-skeleton {
-    background: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(var(--muted-foreground) / 0.1) 50%, hsl(var(--muted)) 75%);
-    background-size: 200% 100%;
+    background: hsl(var(--muted));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .img-skeleton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, hsl(var(--muted-foreground) / 0.15), transparent);
+    transform: translateX(-100%);
     animation: skeleton-shimmer 1.5s infinite;
+    will-change: transform;
   }
 
   @keyframes skeleton-shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    100% { transform: translateX(100%); }
   }
 }
