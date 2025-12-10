@@ -649,19 +649,20 @@ const MenuPage = () => {
           </div>
         )}
         
-        {/* Mobile Hero - Static Image Only */}
+        {/* Mobile Hero - Static Image Only with fixed height to prevent CLS */}
         {isMobile && (
-          <div className="relative mb-12 -mt-4">
+          <div className="relative mb-12 -mt-4" style={{ minHeight: '50vh' }}>
             <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl h-[50vh]">
               <img 
                 src={heroBiryani}
                 alt="Royal biryani menu"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: 'center 65%' }}
-                width={800}
-                height={600}
+                width={768}
+                height={768}
                 loading="eager"
                 fetchPriority="high"
+                decoding="sync"
               />
               
               {/* Elegant Overlay */}
@@ -694,19 +695,19 @@ const MenuPage = () => {
       <section id="menu" className="py-12 px-4">
         <div className="container mx-auto">
 
-          {/* Bucket Biryani Specials */}
-          <div className="mb-20">
+          {/* Bucket Biryani Specials - with min-height to prevent CLS */}
+          <div className="mb-20" style={{ minHeight: '400px' }}>
             <h2 className="font-alata text-3xl font-bold text-foreground mb-8 text-center">
               <span className="font-allura text-primary text-4xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Bucket Biryani Specials</span>
             </h2>
             
-            <Card className="bg-gradient-card border-2 border-primary/30 overflow-hidden max-w-6xl mx-auto">
+            <Card className="bg-gradient-card border-2 border-primary/30 overflow-hidden max-w-6xl mx-auto contain-layout">
               <CardContent className="p-8">
                 {/* Carousel */}
                 <div className="relative mb-8">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6" style={{ minHeight: '144px' }}>
                      {bucketBiryaniImages.map((image, index) => (
-                      <div key={index} className="relative group overflow-hidden rounded-lg h-36">
+                      <div key={index} className="relative group overflow-hidden rounded-lg h-36" style={{ minHeight: '144px' }}>
                          <OptimizedImage
                            src={image}
                            alt={`Bucket Biryani ${index + 1}`}
