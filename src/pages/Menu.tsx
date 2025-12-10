@@ -10,14 +10,14 @@ import LazyMenuItem from '@/components/LazyMenuItem';
 import Header from '@/components/Header';
 import { CartSidebar } from '@/components/CartSidebar';
 
-// Hero image - use small optimized webp
-import heroBiryani from '@/assets/hero-biryani-small.webp';
+// Hero image - use 720px optimized webp for mobile
+import heroBiryani from '@/assets/hero-biryani-720.webp';
 
-// Import small optimized bucket biryani images (WebP format ~50KB each)
-import chickenDumBucket1kg from '@/assets/bucket-dum-1kg-small.webp';
-import chickenDumBucket from '@/assets/bucket-dum-small.webp';
-import chickenTandoorBucket1kg from '@/assets/bucket-tandoor-1kg-small.webp';
-import chickenTandooriBucket from '@/assets/bucket-tandoori-small.webp';
+// Import 300x300 optimized bucket biryani images (WebP format ~30KB each)
+import chickenDumBucket1kg from '@/assets/bucket-dum-1kg-300.webp';
+import chickenDumBucket from '@/assets/bucket-dum-300.webp';
+import chickenTandoorBucket1kg from '@/assets/bucket-tandoor-1kg-300.webp';
+import chickenTandooriBucket from '@/assets/bucket-tandoori-300.webp';
 
 // Lazy import menu images - paths only, will be resolved by bundler
 const menuImages = {
