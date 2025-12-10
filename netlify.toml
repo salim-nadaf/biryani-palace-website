@@ -22,19 +22,42 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Cache nested assets (images, media)
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache all JS files
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache all CSS files
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Cache images aggressively
 [[headers]]
-  for = "*.webp"
+  for = "/*.webp"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "*.jpg"
+  for = "/*.jpg"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "*.png"
+  for = "/*.png"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
