@@ -3,6 +3,8 @@ import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import heroImageOptimized from '@/assets/hero-biryani-optimized.webp';
+import heroImageSmall from '@/assets/hero-biryani-small.webp';
+import heroImage720 from '@/assets/hero-biryani-720.webp';
 
 const Hero = memo(() => {
   return (
@@ -10,7 +12,9 @@ const Hero = memo(() => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
-          src={heroImageOptimized}
+          src={heroImageSmall}
+          srcSet={`${heroImageSmall} 480w, ${heroImage720} 720w, ${heroImageOptimized} 1920w`}
+          sizes="100vw"
           alt="Delicious authentic mutton biryani served in traditional style"
           className="w-full h-full object-cover object-center"
           width={1920}
