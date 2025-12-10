@@ -110,17 +110,17 @@
     min-height: 100vh;
   }
 
-  /* Typography Classes */
+  /* Typography Classes with fallbacks to reduce CLS */
   .font-alata {
-    font-family: 'Alata', sans-serif;
+    font-family: 'Alata', 'Alata-fallback', system-ui, sans-serif;
   }
   
   .font-montserrat {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'Montserrat-fallback', system-ui, sans-serif;
   }
   
   .font-allura {
-    font-family: 'Allura', cursive;
+    font-family: 'Allura', cursive, serif;
   }
 
   /* Custom gradient backgrounds */

@@ -10,26 +10,29 @@
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#d4af37">
     
-    <!-- Preload LCP hero image -->
-    <link rel="preload" as="image" href="/src/assets/hero-biryani-optimized.webp" type="image/webp" fetchpriority="high">
-    
     <!-- Preconnect to font origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Critical inline styles for instant render -->
+    <!-- Preload critical fonts directly to reduce CLS -->
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/alata/v12/PbytFmztEwbIoce9zqYzQ1OW.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2" crossorigin>
+    
+    <!-- Critical inline styles for instant render with font fallbacks -->
     <style>
       *{box-sizing:border-box;margin:0;padding:0}
       html{height:100%}
       body{min-height:100%;background:#000;color:#f2f2f2;font-family:system-ui,-apple-system,sans-serif}
       #root{min-height:100vh;display:flex;flex-direction:column}
-      .hero-placeholder{min-height:100vh;background:#000}
+      /* Font fallback metrics to reduce CLS */
+      @font-face{font-family:'Alata-fallback';src:local('Arial');size-adjust:105%;ascent-override:95%;descent-override:25%;line-gap-override:0%}
+      @font-face{font-family:'Montserrat-fallback';src:local('Arial');size-adjust:112%;ascent-override:85%;descent-override:22%;line-gap-override:0%}
+      .font-alata{font-family:Alata,'Alata-fallback',system-ui,sans-serif}
+      .font-montserrat{font-family:Montserrat,'Montserrat-fallback',system-ui,sans-serif}
     </style>
     
-    <!-- Defer Google Fonts - load after page render -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Alata&family=Allura&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Alata&family=Allura&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Alata&family=Allura&display=swap"></noscript>
+    <!-- Load Google Fonts with display=swap -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Alata&family=Allura&display=swap">
 
     <meta property="og:title" content="Biryani Palace - Best Biryani in Kalyan" />
     <meta property="og:description" content="Experience authentic biryani at Biryani Palace. Fresh ingredients, traditional recipes, perfect for families." />

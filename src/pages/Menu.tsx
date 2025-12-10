@@ -651,15 +651,15 @@ const MenuPage = () => {
         
         {/* Mobile Hero - Static Image Only with fixed height to prevent CLS */}
         {isMobile && (
-          <div className="relative mb-12 -mt-4" style={{ minHeight: '50vh' }}>
-            <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl h-[50vh]">
+          <div className="relative mb-12 -mt-4" style={{ height: '50vh', contain: 'layout style paint' }}>
+            <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl" style={{ height: '50vh' }}>
               <img 
                 src={heroBiryani}
                 alt="Royal biryani menu"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: 'center 65%' }}
-                width={768}
-                height={768}
+                width={720}
+                height={720}
                 loading="eager"
                 fetchPriority="high"
                 decoding="sync"
@@ -669,10 +669,10 @@ const MenuPage = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white px-6 max-w-4xl mx-auto">
-                    <h1 className="font-alata text-3xl font-bold mb-4 animate-fade-in">
+                    <h1 className="font-alata text-3xl font-bold mb-4" style={{ minHeight: '40px' }}>
                       Our <span className="font-allura text-primary text-4xl drop-shadow-lg">Royal Menu</span>
                     </h1>
-                    <p className="font-montserrat text-base text-white/90 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+                    <p className="font-montserrat text-base text-white/90 max-w-3xl mx-auto leading-relaxed" style={{ minHeight: '24px' }}>
                       Experience the authentic taste of royal biryani
                     </p>
                   </div>
@@ -692,28 +692,30 @@ const MenuPage = () => {
           </div>
         )}
 
-      <section id="menu" className="py-12 px-4">
+      <section id="menu" className="py-12 px-4" style={{ contain: 'layout style' }}>
         <div className="container mx-auto">
 
-          {/* Bucket Biryani Specials - with min-height to prevent CLS */}
-          <div className="mb-20" style={{ minHeight: '400px' }}>
-            <h2 className="font-alata text-3xl font-bold text-foreground mb-8 text-center">
+          {/* Bucket Biryani Specials - fixed dimensions to prevent CLS */}
+          <div className="mb-20" style={{ minHeight: '580px', contain: 'layout style paint' }}>
+            <h2 className="font-alata text-3xl font-bold text-foreground mb-8 text-center" style={{ minHeight: '48px' }}>
               <span className="font-allura text-primary text-4xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Bucket Biryani Specials</span>
             </h2>
             
-            <Card className="bg-gradient-card border-2 border-primary/30 overflow-hidden max-w-6xl mx-auto contain-layout">
+            <Card className="bg-gradient-card border-2 border-primary/30 overflow-hidden max-w-6xl mx-auto" style={{ contain: 'layout style' }}>
               <CardContent className="p-8">
-                {/* Carousel */}
-                <div className="relative mb-8">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6" style={{ minHeight: '144px' }}>
+                {/* Carousel - fixed grid with explicit heights */}
+                <div className="relative mb-8" style={{ minHeight: '144px' }}>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                      {bucketBiryaniImages.map((image, index) => (
-                      <div key={index} className="relative group overflow-hidden rounded-lg h-36" style={{ minHeight: '144px' }}>
-                         <OptimizedImage
+                      <div key={index} className="relative group overflow-hidden rounded-lg" style={{ height: '144px', aspectRatio: '2.08/1' }}>
+                         <img
                            src={image}
                            alt={`Bucket Biryani ${index + 1}`}
-                           className="w-full h-full object-cover transition-smooth group-hover:scale-110"
+                           className="w-full h-full object-cover"
                            width={300}
                            height={144}
+                           loading="lazy"
+                           decoding="async"
                          />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-smooth">
                           <div className="absolute bottom-2 left-2 text-white text-xs font-semibold">
