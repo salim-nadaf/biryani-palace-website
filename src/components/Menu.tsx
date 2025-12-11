@@ -481,7 +481,7 @@ const menuCategories = [
         id: 'masaledar-gosht-curry',
         name: 'Masaledar Gosht Curry',
         description: 'Traditional mutton curry with aromatic spices and rich gravy.',
-        price: 749,
+        price: 1199,
         image: masaledarGoshtCurry,
         rating: 4.7,
         reviews: 56,
