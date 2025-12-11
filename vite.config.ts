@@ -24,23 +24,23 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: (id) => {
           if (id.includes('node_modules')) {
-            if (/node_modules\/(react|react-dom)(\/|$)/.test(id)) {
+            if (/node_modules\/(react|react-dom|scheduler)(\/|$)/.test(id)) {
               return 'vendor';
             }
-            // Group UI libraries together - lazy load these
             if (/node_modules\/(lucide-react)(\/|$)/.test(id)) {
               return 'icons';
             }
             if (/node_modules\/(@radix-ui)(\/|$)/.test(id)) {
               return 'ui';
             }
-            // Separate recharts (heavy)
             if (/node_modules\/(recharts|d3)(\/|$)/.test(id)) {
               return 'charts';
             }
+            if (/node_modules\/(framer-motion|@tanstack)(\/|$)/.test(id)) {
+              return 'libs';
+            }
             return;
           }
-          // Separate Menu page into its own chunk
           if (id.includes('/pages/Menu')) {
             return 'menu';
           }
