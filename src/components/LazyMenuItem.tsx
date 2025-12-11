@@ -62,8 +62,7 @@ const LazyMenuItem: React.FC<LazyMenuItemProps> = ({ item, onAddToCart, getTagCo
   return (
     <Card 
       ref={cardRef} 
-      className="bg-gradient-card border-border hover:border-primary/50 group overflow-hidden"
-      style={{ contain: 'layout style paint' }}
+      className="bg-gradient-card border-border hover:border-primary/50 group overflow-hidden contain-paint"
     >
       <div className="relative h-40 bg-muted/30" style={{ minHeight: '160px' }}>
         {!imageLoaded && <div className="absolute inset-0 bg-muted" />}
