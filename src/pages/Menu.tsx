@@ -544,14 +544,12 @@ const MenuPage = () => {
     return Promise.resolve({ default: '/placeholder.svg' });
   }, []);
 
-  // Lazy load video only on desktop
+  // Lazy load video on all devices
   useEffect(() => {
-    if (!isMobile) {
-      import('@/assets/chicken-biryani-serving.mp4').then((module) => {
-        setVideoSrc(module.default);
-      });
-    }
-  }, [isMobile]);
+    import('@/assets/chicken-biryani-serving.mp4').then((module) => {
+      setVideoSrc(module.default);
+    });
+  }, []);
 
   const handleAddToCart = (item: any) => {
     addToCart({
@@ -599,20 +597,20 @@ const MenuPage = () => {
     <div className="min-h-screen">
       <Header />
       
-        {/* Hero Video Section - Desktop Only */}
-        {!isMobile && videoSrc && (
-          <div className="relative mb-20 -mt-4 contain-paint">
+        {/* Hero Video Section - All Devices */}
+        {videoSrc ? (
+          <div className="relative mb-12 md:mb-20 -mt-4">
             <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
               <video 
                 autoPlay 
                 muted 
                 loop
-                preload="none"
+                preload="metadata"
                 playsInline
-                className="w-full h-[75vh] md:h-[80vh] lg:h-[85vh] object-cover will-change-transform"
+                className="w-full h-[50vh] md:h-[80vh] lg:h-[85vh] object-cover"
                 style={{ 
                   objectPosition: 'center 65%',
-                  transform: 'scale(1.1) translateZ(0)',
+                  transform: 'scale(1.05)',
                   transformOrigin: 'center 65%'
                 }}
                 poster={heroBiryani}
@@ -625,10 +623,10 @@ const MenuPage = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white px-6 max-w-4xl mx-auto">
-                    <h1 className="font-alata text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
-                      Our <span className="font-allura text-primary text-5xl md:text-7xl lg:text-8xl drop-shadow-lg">Royal Menu</span>
+                    <h1 className="font-alata text-3xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6">
+                      Our <span className="font-allura text-primary text-4xl md:text-7xl lg:text-8xl drop-shadow-lg">Royal Menu</span>
                     </h1>
-                    <p className="font-montserrat text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+                    <p className="font-montserrat text-sm md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
                       Experience the authentic taste of royal biryani, crafted with premium ingredients 
                       and served fresh from our kitchen to your table
                     </p>
@@ -636,10 +634,10 @@ const MenuPage = () => {
                 </div>
                 
                 {/* Bottom Corner Badge */}
-                <div className="absolute bottom-6 right-6">
-                  <div className="bg-primary/90 backdrop-blur-sm px-4 py-2 rounded-full">
-                    <span className="text-white font-semibold text-sm flex items-center gap-2">
-                      <Crown className="w-4 h-4" />
+                <div className="absolute bottom-4 md:bottom-6 right-4 md:right-6">
+                  <div className="bg-primary/90 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full">
+                    <span className="text-white font-semibold text-xs md:text-sm flex items-center gap-1 md:gap-2">
+                      <Crown className="w-3 h-3 md:w-4 md:h-4" />
                       Fresh & Hot Serving
                     </span>
                   </div>
@@ -647,44 +645,26 @@ const MenuPage = () => {
               </div>
             </div>
           </div>
-        )}
-        
-        {/* Mobile Hero - Static Image Only with fixed height to prevent CLS */}
-        {isMobile && (
-          <div className="relative mb-12 -mt-4" style={{ height: '50vh', contain: 'layout style paint' }}>
-            <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl" style={{ height: '50vh' }}>
+        ) : (
+          /* Fallback Hero Image while video loads */
+          <div className="relative mb-12 md:mb-20 -mt-4">
+            <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
               <img 
                 src={heroBiryani}
                 alt="Royal biryani menu"
-                className="w-full h-full object-cover"
+                className="w-full h-[50vh] md:h-[80vh] object-cover"
                 style={{ objectPosition: 'center 65%' }}
-                width={720}
-                height={720}
+                width={1920}
+                height={1080}
                 loading="eager"
                 fetchPriority="high"
-                decoding="sync"
               />
-              
-              {/* Elegant Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white px-6 max-w-4xl mx-auto">
-                    <h1 className="font-alata text-3xl font-bold mb-4" style={{ minHeight: '40px' }}>
-                      Our <span className="font-allura text-primary text-4xl drop-shadow-lg">Royal Menu</span>
+                  <div className="text-center text-white px-6">
+                    <h1 className="font-alata text-3xl md:text-6xl font-bold mb-4">
+                      Our <span className="font-allura text-primary text-4xl md:text-7xl drop-shadow-lg">Royal Menu</span>
                     </h1>
-                    <p className="font-montserrat text-base text-white/90 max-w-3xl mx-auto leading-relaxed" style={{ minHeight: '24px' }}>
-                      Experience the authentic taste of royal biryani
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Bottom Corner Badge */}
-                <div className="absolute bottom-4 right-4">
-                  <div className="bg-primary/90 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                    <span className="text-white font-semibold text-xs flex items-center gap-1">
-                      <Crown className="w-3 h-3" />
-                      Fresh & Hot
-                    </span>
                   </div>
                 </div>
               </div>
