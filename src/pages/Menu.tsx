@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { Users, Crown, Utensils, Gift, Search, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -538,43 +538,94 @@ const MenuPage = () => {
   const isMobile = useIsMobile();
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showDropdown, setShowDropdown] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
-  // Keyword mapping for intelligent search (chicken = murgh, mutton = gosht, etc.)
+  // Keyword mapping for intelligent search - maps user terms to menu terms
   const keywordMap: Record<string, string[]> = {
-    chicken: ['murgh', 'chicken', 'malai', 'tandoori'],
-    murgh: ['murgh', 'chicken', 'malai', 'tandoori'],
-    mutton: ['gosht', 'mutton', 'lamb'],
-    gosht: ['gosht', 'mutton', 'lamb'],
-    lamb: ['gosht', 'mutton', 'lamb'],
-    paneer: ['paneer', 'veg', 'vegetarian'],
-    veg: ['paneer', 'veg', 'sabz', 'nawabi'],
-    vegetarian: ['paneer', 'veg', 'sabz', 'nawabi'],
-    tikka: ['tikka', 'lazzat'],
-    biryani: ['biryani', 'dum', 'pulao'],
-    kebab: ['kebab', 'seekh', 'rolls'],
-    curry: ['curry', 'gravy', 'masala', 'korma'],
+    chicken: ['murgh'],
+    murgh: ['murgh'],
+    mutton: ['gosht'],
+    gosht: ['gosht'],
+    lamb: ['gosht'],
+    paneer: ['paneer'],
+    veg: ['paneer', 'sabz', 'nawabi veg'],
+    vegetarian: ['paneer', 'sabz', 'nawabi veg'],
+    tikka: ['tikka'],
+    biryani: ['biryani', 'dum'],
+    kebab: ['kebab', 'seekh'],
+    curry: ['curry', 'masala', 'korma'],
+    korma: ['korma'],
+    masala: ['masala'],
   };
+
+  // Get all matching items for dropdown
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    
+    const query = searchQuery.toLowerCase().trim();
+    const queryWords = query.split(/\s+/);
+    
+    // Map each query word to its corresponding menu terms
+    const mappedTerms = queryWords.map(word => {
+      const mapped = keywordMap[word];
+      return mapped ? mapped : [word];
+    });
+    
+    const results: { item: typeof menuCategories[0]['items'][0]; category: string }[] = [];
+    
+    menuCategories.forEach(category => {
+      category.items.forEach(item => {
+        const itemText = `${item.name} ${item.description}`.toLowerCase();
+        
+        // Check if ALL query words match (either directly or via mapping)
+        const allWordsMatch = mappedTerms.every(terms => 
+          terms.some(term => itemText.includes(term))
+        );
+        
+        if (allWordsMatch) {
+          results.push({ item, category: category.name });
+        }
+      });
+    });
+    
+    return results;
+  }, [searchQuery]);
 
   // Filter menu categories based on search query
   const filteredCategories = useMemo(() => {
     if (!searchQuery.trim()) return menuCategories;
     
-    const query = searchQuery.toLowerCase().trim();
-    
-    // Expand search terms using keyword map
-    const searchTerms = query.split(/\s+/).flatMap(term => {
-      const mapped = keywordMap[term];
-      return mapped ? [term, ...mapped] : [term];
-    });
+    const matchingItemIds = new Set(searchResults.map(r => r.item.id));
     
     return menuCategories.map(category => ({
       ...category,
-      items: category.items.filter(item => {
-        const searchableText = `${item.name} ${item.description}`.toLowerCase();
-        return searchTerms.some(term => searchableText.includes(term));
-      })
+      items: category.items.filter(item => matchingItemIds.has(item.id))
     })).filter(category => category.items.length > 0);
-  }, [searchQuery]);
+  }, [searchQuery, searchResults]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSelectItem = (itemId: string) => {
+    setShowDropdown(false);
+    const element = document.getElementById(`menu-item-${itemId}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      element.classList.add('ring-2', 'ring-primary', 'ring-offset-2');
+      setTimeout(() => {
+        element.classList.remove('ring-2', 'ring-primary', 'ring-offset-2');
+      }, 2000);
+    }
+  };
 
   // Image loader for lazy menu items
   const loadImage = useCallback((key: string): Promise<{ default: string }> => {
@@ -715,30 +766,67 @@ const MenuPage = () => {
         <div className="container mx-auto">
           
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-12">
+          <div className="max-w-2xl mx-auto mb-12" ref={searchRef}>
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground z-10" />
               <Input
                 type="text"
                 placeholder="Search menu... (try chicken, mutton, paneer, tikka)"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setShowDropdown(true);
+                }}
+                onFocus={() => setShowDropdown(true)}
                 className="pl-12 pr-12 py-6 text-base font-montserrat bg-card border-border focus:border-primary/50 focus:ring-primary/20 rounded-xl placeholder:text-muted-foreground/60"
               />
               {searchQuery && (
                 <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setShowDropdown(false);
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors z-10"
                 >
                   <X className="h-5 w-5" />
                 </button>
               )}
+              
+              {/* Search Dropdown */}
+              {showDropdown && searchQuery && searchResults.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-xl shadow-lg max-h-80 overflow-y-auto z-50">
+                  {searchResults.slice(0, 10).map((result, index) => (
+                    <button
+                      key={`${result.item.id}-${index}`}
+                      onClick={() => handleSelectItem(result.item.id)}
+                      className="w-full px-4 py-3 flex items-center gap-3 hover:bg-accent/50 transition-colors text-left border-b border-border/50 last:border-b-0"
+                    >
+                      <div className="flex-1">
+                        <p className="font-montserrat font-medium text-foreground text-sm">
+                          {result.item.name}
+                        </p>
+                        <p className="font-montserrat text-xs text-muted-foreground">
+                          {result.category} • ₹{result.item.price}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
+                  {searchResults.length > 10 && (
+                    <p className="px-4 py-2 text-xs text-muted-foreground text-center font-montserrat">
+                      +{searchResults.length - 10} more items below
+                    </p>
+                  )}
+                </div>
+              )}
+              
+              {showDropdown && searchQuery && searchResults.length === 0 && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-xl shadow-lg z-50 p-4 text-center">
+                  <p className="font-montserrat text-sm text-muted-foreground">
+                    No items found for "{searchQuery}"
+                  </p>
+                </div>
+              )}
             </div>
-            {searchQuery && (
-              <p className="text-sm text-muted-foreground mt-2 text-center font-montserrat">
-                {filteredCategories.reduce((acc, cat) => acc + cat.items.length, 0)} items found
-              </p>
-            )}
           </div>
           {/* Bucket Biryani Specials */}
           <div className="mb-20">
