@@ -179,4 +179,14 @@
   .img-skeleton {
     background: hsl(var(--muted));
   }
+
+  /* GPU acceleration for smoother animations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  /* Optimize paint for fixed elements */
+  .contain-paint {
+    contain: paint;
+  }
 }
