@@ -601,7 +601,7 @@ const MenuPage = () => {
       
         {/* Hero Video Section - Desktop Only */}
         {!isMobile && videoSrc && (
-          <div className="relative mb-20 -mt-4">
+          <div className="relative mb-20 -mt-4 contain-paint">
             <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
               <video 
                 autoPlay 
@@ -609,10 +609,10 @@ const MenuPage = () => {
                 loop
                 preload="none"
                 playsInline
-                className="w-full h-[75vh] md:h-[80vh] lg:h-[85vh] object-cover"
+                className="w-full h-[75vh] md:h-[80vh] lg:h-[85vh] object-cover will-change-transform"
                 style={{ 
                   objectPosition: 'center 65%',
-                  transform: 'scale(1.1)',
+                  transform: 'scale(1.1) translateZ(0)',
                   transformOrigin: 'center 65%'
                 }}
                 poster={heroBiryani}
