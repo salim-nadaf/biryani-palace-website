@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
-import { Users, Crown, Utensils, Gift } from 'lucide-react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { Users, Crown, Utensils, Gift, Search, X } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -536,6 +537,44 @@ const MenuPage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isMobile = useIsMobile();
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Keyword mapping for intelligent search (chicken = murgh, mutton = gosht, etc.)
+  const keywordMap: Record<string, string[]> = {
+    chicken: ['murgh', 'chicken', 'malai', 'tandoori'],
+    murgh: ['murgh', 'chicken', 'malai', 'tandoori'],
+    mutton: ['gosht', 'mutton', 'lamb'],
+    gosht: ['gosht', 'mutton', 'lamb'],
+    lamb: ['gosht', 'mutton', 'lamb'],
+    paneer: ['paneer', 'veg', 'vegetarian'],
+    veg: ['paneer', 'veg', 'sabz', 'nawabi'],
+    vegetarian: ['paneer', 'veg', 'sabz', 'nawabi'],
+    tikka: ['tikka', 'lazzat'],
+    biryani: ['biryani', 'dum', 'pulao'],
+    kebab: ['kebab', 'seekh', 'rolls'],
+    curry: ['curry', 'gravy', 'masala', 'korma'],
+  };
+
+  // Filter menu categories based on search query
+  const filteredCategories = useMemo(() => {
+    if (!searchQuery.trim()) return menuCategories;
+    
+    const query = searchQuery.toLowerCase().trim();
+    
+    // Expand search terms using keyword map
+    const searchTerms = query.split(/\s+/).flatMap(term => {
+      const mapped = keywordMap[term];
+      return mapped ? [term, ...mapped] : [term];
+    });
+    
+    return menuCategories.map(category => ({
+      ...category,
+      items: category.items.filter(item => {
+        const searchableText = `${item.name} ${item.description}`.toLowerCase();
+        return searchTerms.some(term => searchableText.includes(term));
+      })
+    })).filter(category => category.items.length > 0);
+  }, [searchQuery]);
 
   // Image loader for lazy menu items
   const loadImage = useCallback((key: string): Promise<{ default: string }> => {
@@ -674,7 +713,33 @@ const MenuPage = () => {
 
       <section id="menu" className="py-12 px-4" style={{ contain: 'layout style' }}>
         <div className="container mx-auto">
-
+          
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search menu... (try chicken, mutton, paneer, tikka)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-12 pr-12 py-6 text-base font-montserrat bg-card border-border focus:border-primary/50 focus:ring-primary/20 rounded-xl placeholder:text-muted-foreground/60"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
+            </div>
+            {searchQuery && (
+              <p className="text-sm text-muted-foreground mt-2 text-center font-montserrat">
+                {filteredCategories.reduce((acc, cat) => acc + cat.items.length, 0)} items found
+              </p>
+            )}
+          </div>
           {/* Bucket Biryani Specials */}
           <div className="mb-20">
             <h2 className="font-alata text-3xl font-bold text-foreground mb-8 text-center">
@@ -814,27 +879,34 @@ const MenuPage = () => {
           </div>
 
           {/* Menu Categories */}
-          {menuCategories.map((category) => (
-            <div key={category.id} className="mb-16">
-              {/* Category Header */}
-              <h3 className="font-alata text-3xl font-bold text-foreground mb-8 text-center">
-                <span className="font-allura text-primary text-4xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>{category.name}</span>
-              </h3>
-              
-              {/* Category Items Grid - 4 items per row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {category.items.map((item) => (
-                  <LazyMenuItem
-                    key={item.id}
-                    item={item}
-                    onAddToCart={handleAddToCart}
-                    getTagColor={getTagColor}
-                    imageLoader={loadImage}
-                  />
-                ))}
+          {filteredCategories.length > 0 ? (
+            filteredCategories.map((category) => (
+              <div key={category.id} className="mb-16">
+                {/* Category Header */}
+                <h3 className="font-alata text-3xl font-bold text-foreground mb-8 text-center">
+                  <span className="font-allura text-primary text-4xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>{category.name}</span>
+                </h3>
+                
+                {/* Category Items Grid - 4 items per row */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {category.items.map((item) => (
+                    <LazyMenuItem
+                      key={item.id}
+                      item={item}
+                      onAddToCart={handleAddToCart}
+                      getTagColor={getTagColor}
+                      imageLoader={loadImage}
+                    />
+                  ))}
+                </div>
               </div>
+            ))
+          ) : searchQuery ? (
+            <div className="text-center py-16">
+              <p className="font-montserrat text-lg text-muted-foreground mb-2">No items found for "{searchQuery}"</p>
+              <p className="font-montserrat text-sm text-muted-foreground/70">Try searching for chicken, mutton, paneer, biryani, or tikka</p>
             </div>
-          ))}
+          ) : null}
 
           {/* Call to Action */}
           <div className="text-center mt-16">
