@@ -695,61 +695,58 @@ const MenuPage = () => {
       <section id="menu" className="py-12 px-4" style={{ contain: 'layout style' }}>
         <div className="container mx-auto">
 
-          {/* Bucket Biryani Specials - fixed dimensions to prevent CLS */}
-          <div className="mb-20" style={{ minHeight: '580px', contain: 'layout style paint' }}>
-            <h2 className="font-alata text-3xl font-bold text-foreground mb-8 text-center" style={{ minHeight: '48px' }}>
+          {/* Bucket Biryani Specials */}
+          <div className="mb-20">
+            <h2 className="font-alata text-3xl font-bold text-foreground mb-8 text-center">
               <span className="font-allura text-primary text-4xl" style={{textShadow: '2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000'}}>Bucket Biryani Specials</span>
             </h2>
             
-            <Card className="bg-gradient-card border-2 border-primary/30 overflow-hidden max-w-6xl mx-auto" style={{ contain: 'layout style' }}>
-              <CardContent className="p-8">
-                {/* Carousel - fixed grid with explicit heights */}
-                <div className="relative mb-8" style={{ minHeight: '144px' }}>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                     {bucketBiryaniImages.map((image, index) => (
-                      <div key={index} className="relative group overflow-hidden rounded-lg" style={{ height: '144px', aspectRatio: '2.08/1' }}>
-                         <img
-                           src={image}
-                           alt={`Bucket Biryani ${index + 1}`}
-                           className="w-full h-full object-cover"
-                           width={300}
-                           height={144}
-                           loading="lazy"
-                           decoding="async"
-                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-smooth">
-                          <div className="absolute bottom-2 left-2 text-white text-xs font-semibold">
-                            Steam Fresh
-                          </div>
+            <Card className="bg-gradient-card border-2 border-primary/30 overflow-hidden max-w-6xl mx-auto">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                {/* Bucket Images Grid - Responsive */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6">
+                  {bucketBiryaniImages.map((image, index) => (
+                    <div key={index} className="relative group overflow-hidden rounded-lg aspect-square">
+                      <img
+                        src={image}
+                        alt={`Bucket Biryani ${index + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        width={300}
+                        height={300}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-2 left-2 text-white text-xs font-semibold">
+                          Steam Fresh
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Description */}
                 <div className="text-center mb-6">
-                  <p className="font-montserrat text-lg text-foreground/80 mb-4">
+                  <p className="font-montserrat text-sm sm:text-base md:text-lg text-foreground/80 mb-4">
                     "Introducing our royal Bucket Biryani — served hot and fresh in party-size buckets. Perfect for family feasts, celebrations, or a cozy weekend indulgence."
                   </p>
                   
                   {/* Pricing */}
-                   <div className="text-center mb-4">
-                     <div className="font-alata text-3xl md:text-4xl font-bold text-primary mb-2">
-                       Starting from
-                     </div>
-                     <br />
-                     <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
-                       <div className="text-center">
-                         <div className="font-alata text-lg font-bold text-foreground">Half Kg</div>
-                         <div className="font-montserrat text-primary font-semibold">₹509 onwards</div>
-                       </div>
-                       <div className="text-center">
-                         <div className="font-alata text-lg font-bold text-foreground">Full Kg</div>
-                         <div className="font-montserrat text-primary font-semibold">₹929 onwards</div>
-                       </div>
-                     </div>
-                   </div>
+                  <div className="text-center mb-4">
+                    <div className="font-alata text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-4">
+                      Starting from
+                    </div>
+                    <div className="flex flex-row justify-center gap-6 sm:gap-8">
+                      <div className="text-center">
+                        <div className="font-alata text-base sm:text-lg font-bold text-foreground">Half Kg</div>
+                        <div className="font-montserrat text-primary font-semibold text-sm sm:text-base">₹509 onwards</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="font-alata text-base sm:text-lg font-bold text-foreground">Full Kg</div>
+                        <div className="font-montserrat text-primary font-semibold text-sm sm:text-base">₹929 onwards</div>
+                      </div>
+                    </div>
+                  </div>
                   
                   {/* Disclaimer */}
                   <p className="font-montserrat text-xs text-foreground/60 mb-6">
