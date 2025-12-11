@@ -2,44 +2,23 @@ import { memo } from 'react';
 import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import heroImageOptimized from '@/assets/hero-biryani-optimized.webp';
-import heroImageSmall from '@/assets/hero-biryani-small.webp';
-import heroImage720 from '@/assets/hero-biryani-720.webp';
+import heroImage from '@/assets/Mutton Biryani hero image.jpg';
 
 const Hero = memo(() => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <picture>
-          {/* Serve smallest image for mobile devices */}
-          <source
-            media="(max-width: 640px)"
-            srcSet={heroImageSmall}
-            type="image/webp"
-          />
-          {/* Serve medium image for tablets */}
-          <source
-            media="(max-width: 1024px)"
-            srcSet={heroImage720}
-            type="image/webp"
-          />
-          {/* Serve large image for desktop */}
-          <source
-            srcSet={heroImageOptimized}
-            type="image/webp"
-          />
-          <img
-            src={heroImageSmall}
-            alt="Delicious authentic mutton biryani served in traditional style"
-            className="w-full h-full object-cover object-center"
-            width={1920}
-            height={1080}
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-          />
-        </picture>
+        <img
+          src={heroImage}
+          alt="Delicious authentic mutton biryani served in traditional style"
+          className="w-full h-full object-cover object-center"
+          width={1920}
+          height={1080}
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+        />
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
