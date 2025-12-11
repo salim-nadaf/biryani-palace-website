@@ -334,7 +334,7 @@ const menuCategories = [
         id: 'masaledar-gosht-curry',
         name: 'Masaledar Gosht Curry',
         description: 'Fiery and flavorful mutton curry cooked in rich masala gravy.',
-        price: 899,
+        price: 1199,
         imageKey: 'masaledarGosht',
         rating: 4.7,
         reviews: 56,
