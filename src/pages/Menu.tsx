@@ -13,11 +13,11 @@ import { CartSidebar } from '@/components/CartSidebar';
 // Hero image
 import heroBiryani from '@/assets/Mutton Biryani hero image.jpg';
 
-// Import 300x300 optimized bucket biryani images (WebP format ~30KB each)
-import chickenDumBucket1kg from '@/assets/bucket-dum-1kg-300.webp';
-import chickenDumBucket from '@/assets/bucket-dum-300.webp';
-import chickenTandoorBucket1kg from '@/assets/bucket-tandoor-1kg-300.webp';
-import chickenTandooriBucket from '@/assets/bucket-tandoori-300.webp';
+// Import original bucket biryani images
+import chickenDumBucket1kg from '@/assets/chicken-dum-bucket-1kg.png';
+import chickenDumBucket from '@/assets/chicken-dum-bucket.png';
+import chickenTandoorBucket1kg from '@/assets/chicken-tandoor-bucket-1kg.png';
+import chickenTandooriBucket from '@/assets/chicken-tandoori-bucket.png';
 
 // Lazy import menu images - paths only, will be resolved by bundler
 const menuImages = {
