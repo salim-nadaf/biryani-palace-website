@@ -10,8 +10,8 @@ import LazyMenuItem from '@/components/LazyMenuItem';
 import Header from '@/components/Header';
 import { CartSidebar } from '@/components/CartSidebar';
 
-// Hero image - use 720px optimized webp for mobile
-import heroBiryani from '@/assets/hero-biryani-720.webp';
+// Hero image
+import heroBiryani from '@/assets/Mutton Biryani hero image.jpg';
 
 // Import 300x300 optimized bucket biryani images (WebP format ~30KB each)
 import chickenDumBucket1kg from '@/assets/bucket-dum-1kg-300.webp';
