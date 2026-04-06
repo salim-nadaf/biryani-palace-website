@@ -872,11 +872,11 @@ const MenuPage = () => {
                     <div className="flex flex-row justify-center gap-6 sm:gap-8">
                       <div className="text-center">
                         <div className="font-alata text-base sm:text-lg font-bold text-foreground">Half Kg</div>
-                        <div className="font-montserrat text-primary font-semibold text-sm sm:text-base">₹509 onwards</div>
+                        <div className="font-montserrat text-primary font-semibold text-sm sm:text-base">₹599 onwards</div>
                       </div>
                       <div className="text-center">
                         <div className="font-alata text-base sm:text-lg font-bold text-foreground">Full Kg</div>
-                        <div className="font-montserrat text-primary font-semibold text-sm sm:text-base">₹929 onwards</div>
+                        <div className="font-montserrat text-primary font-semibold text-sm sm:text-base">₹1,153 onwards</div>
                       </div>
                     </div>
                   </div>
