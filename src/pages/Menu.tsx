@@ -765,8 +765,18 @@ const MenuPage = () => {
       <section id="menu" className="py-12 px-4" style={{ contain: 'layout style' }}>
         <div className="container mx-auto">
           
-          {/* Search Bar */}
+          {/* Search Bar & Download */}
           <div className="max-w-2xl mx-auto mb-12" ref={searchRef}>
+            <div className="flex justify-end mb-3">
+              <a
+                href="/Biryani_Palace_Menu.pdf"
+                download="Biryani_Palace_Menu.pdf"
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-montserrat font-medium text-primary border border-primary/30 rounded-lg hover:bg-primary/10 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                Download Menu PDF
+              </a>
+            </div>
             <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground z-10" />
               <Input
