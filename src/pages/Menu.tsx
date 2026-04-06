@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { Users, Crown, Utensils, Gift, Search, X } from 'lucide-react';
+import { Users, Crown, Utensils, Gift, Search, X, Download } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from '@/components/ui/button';
