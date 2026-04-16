@@ -65,18 +65,16 @@ const bucketBiryaniImages = [
 ];
 
 // Bulk Order Plans
-const bulkOrderPlans = [
-  {
-    id: 'mehmaan-plan',
-    name: 'The Mehmaan plan',
-    guests: '10-15 Guests',
-    quantity: '05 KG Total',
-    items: 'Biryani: 3 Choices • Gravy: 1 Choice • Starter: 1 Choice',
-    freebie: 'Dessert: Free',
-    price: 4499,
+const bulkOrderPlans = [{
+    id: 'royal-baithak',
+    name: 'The Royal Baithak',
+    guests: '40-50 Guests',
+    quantity: '15 KG Total',
+    items: 'Biryani: 3 Choices • Gravy: 1 Choice • Starter: 2 Choices',
+    freebie: 'Dessert+Drinks: Free',
+    price: 13999,
     popular: false,
-  },
-  {
+  },{
     id: 'shaahi-dawat',
     name: 'The Shahi Dawat',
     guests: '20-30 Guests',
@@ -87,13 +85,13 @@ const bulkOrderPlans = [
     popular: true,
   },
   {
-    id: 'royal-baithak',
-    name: 'The Royal Baithak',
-    guests: '40-50 Guests',
-    quantity: '15 KG Total',
-    items: 'Biryani: 3 Choices • Gravy: 1 Choice • Starter: 2 Choices',
-    freebie: 'Dessert+Drinks: Free',
-    price: 13999,
+    id: 'mehmaan-plan',
+    name: 'The Mehmaan plan',
+    guests: '10-15 Guests',
+    quantity: '05 KG Total',
+    items: 'Biryani: 3 Choices • Gravy: 1 Choice • Starter: 1 Choice',
+    freebie: 'Dessert: Free',
+    price: 4499,
     popular: false,
   },
 ];
@@ -114,8 +112,7 @@ const menuCategories = [
         popular: true,
         isNew: false,
         tag: 'Popular',
-      },
-      {
+      },{
         id: 'gosht-e-dum-mazedaar',
         name: 'Gosht-e-Dum Mazedaar',
         description: 'Juicy mutton cooked on dum with deep, savory spices.',
@@ -126,8 +123,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: 'Must try',
-      },
-      {
+      },{
         id: 'hyderabadi-murgh-dum',
         name: 'Hyderabadi Murgh Dum',
         description: 'The iconic Hyderabadi chicken biryani — spicy, rich, and aromatic.',
@@ -138,8 +134,7 @@ const menuCategories = [
         popular: true,
         isNew: false,
         tag: 'Popular',
-      },
-      {
+      },{
         id: 'ustaadi-murgh-dum',
         name: 'Ustaadi Murgh Dum',
         description: 'Classic chicken biryani slow-cooked in the traditional dum style.',
@@ -168,8 +163,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: 'Must try',
-      },
-      {
+      },{
         id: 'nayaabi-italiano-biryani',
         name: 'Nayaabi Italiano Biryani',
         description: 'A rare fusion of mayo, cheese, herbs and desi dum biryani — bold and one-of-a-kind.',
@@ -180,8 +174,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: 'Must try',
-      },
-      {
+      },{
         id: 'makhmali-malai-biryani',
         name: 'Makhmali Malai Biryani',
         description: 'A silky, creamy chicken biryani with subtle spices and rich texture.',
@@ -192,8 +185,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: 'Best seller',
-      },
-      {
+      },{
         id: 'banjara-e-biryani',
         name: 'Banjara-e-Biryani',
         description: 'Rustic and rich in flavor — inspired by malai biryani, finished with a fiery kick.',
@@ -222,8 +214,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: 'Best seller',
-      },
-      {
+      },{
         id: 'lababdaar-seekh-biryani',
         name: 'Lababdaar Seekh Biryani',
         description: 'Juicy seekh kebabs infused with spices and layered into biryani.',
@@ -234,8 +225,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: 'Best seller',
-      },
-      {
+      },{
         id: 'lazzat-e-tikka-biryani',
         name: 'Lazzat-e-Tikka Biryani',
         description: 'Chicken tikka tossed in smoky, aromatic rice with rich undertones of flavor.',
@@ -246,8 +236,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: 'Best seller',
-      },
-      {
+      },{
         id: 'alishaan-tandoori-biryani',
         name: 'Alishaan Tandoori Biryani',
         description: 'Tandoori-marinated chicken layered with fragrant rice in a bold, royal style.',
@@ -276,8 +265,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: 'Must Try',
-      },
-      {
+      },{
         id: 'sabz-tikka-biryani',
         name: 'Sabz Tikka Biryani',
         description: 'Veg tikka smokey masala blend, layered with fragrant rice.',
@@ -288,8 +276,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: 'Best seller',
-      },
-      {
+      },{
         id: 'nawabi-veg-dum-biryani',
         name: 'Nawabi Veg Dum Biryani',
         description: 'A royal mix of seasonal vegetables in a spiced dum-style biryani.',
@@ -300,8 +287,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: "Chef's special",
-      },
-      {
+      },{
         id: 'nazaakat-pulao',
         name: 'Nazaakat Pulao',
         description: 'A delicate and aromatic vegetable pulao with mild seasoning.',
@@ -330,8 +316,7 @@ const menuCategories = [
         popular: false,
         isNew: true,
         tag: 'New',
-      },
-      {
+      },{
         id: 'masaledar-gosht-curry',
         name: 'Masaledar Gosht Curry',
         description: 'Fiery and flavorful mutton curry cooked in rich masala gravy.',
@@ -342,8 +327,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: '',
-      },
-      {
+      },{
         id: 'boneless-tikka-masala',
         name: 'Boneless Tikka Masala',
         description: 'Tikka masala made with soft boneless chicken pieces.',
@@ -354,8 +338,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: '',
-      },
-      {
+      },{
         id: 'murgh-angaara',
         name: 'Murgh Angaara',
         description: 'Smoky, spicy chicken curry with bold tandoori flavor.',
@@ -366,8 +349,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: '',
-      },
-      {
+      },{
         id: 'shahi-murgh-korma',
         name: 'Shahi Murgh Korma',
         description: 'Rich and creamy chicken korma in traditional Mughlai style.',
@@ -378,8 +360,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: '',
-      },
-      {
+      },{
         id: 'masaledar-murgh',
         name: 'Masaledar Murgh',
         description: 'A robust chicken curry with strong, home-style spice punch.',
@@ -390,8 +371,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: '',
-      },
-      {
+      },{
         id: 'murgh-tikka-masala',
         name: 'Murgh Tikka Masala',
         description: 'Classic tikka curry with a luscious gravy — rich and hearty.',
@@ -402,8 +382,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: '',
-      },
-      {
+      },{
         id: 'murgh-kolhapuri-e-zaiqa',
         name: 'Murgh Kolhapuri-e-Zaiqa',
         description: 'Spicy and rustic chicken curry from the heart of Kolhapur.',
@@ -432,8 +411,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: '',
-      },
-      {
+      },{
         id: 'kadhai-paneer-nawabi',
         name: 'Kadhai Paneer Nawabi',
         description: 'Chunky paneer tossed in kadhai-style spices with a royal finish.',
@@ -444,8 +422,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: '',
-      },
-      {
+      },{
         id: 'paneer-e-firangi',
         name: 'Paneer-e-Firangi',
         description: 'Indo-fusion paneer curry with a creamy and lightly spiced twist',
@@ -456,8 +433,7 @@ const menuCategories = [
         popular: false,
         isNew: false,
         tag: '',
-      },
-      {
+      },{
         id: 'sabziyon-ka-zaika',
         name: 'Sabziyon ka Zaika',
         description: 'A medley of seasonal vegetables in traditional Indian masala.',
@@ -487,21 +463,7 @@ const menuCategories = [
         isNew: false,
         tag: '',
         unit: '12 pcs',
-      },
-      {
-        id: 'kebab-e-firangi',
-        name: 'Kebab-e-Firangi',
-        description: 'Creamy chicken-potato ovals coated in vermicelli and deep-fried crisp.',
-        price: 549,
-        imageKey: 'kebabFirangi',
-        rating: 4.6,
-        reviews: 54,
-        popular: false,
-        isNew: false,
-        tag: '',
-        unit: '12 pcs',
-      },
-      {
+      },{
         id: 'shahi-murgh-rolls',
         name: 'Shahi Murgh Rolls',
         description: 'Cheese‑filled chicken kebab roll, crispy‑fried and bursting with spice.',
@@ -513,8 +475,19 @@ const menuCategories = [
         isNew: false,
         tag: '',
         unit: '12 pcs',
-      },
-      {
+      },{
+        id: 'kebab-e-firangi',
+        name: 'Kebab-e-Firangi',
+        description: 'Creamy chicken-potato ovals coated in vermicelli and deep-fried crisp.',
+        price: 549,
+        imageKey: 'kebabFirangi',
+        rating: 4.6,
+        reviews: 54,
+        popular: false,
+        isNew: false,
+        tag: '',
+        unit: '12 pcs',
+      },{
         id: 'tandoori-taaj-leg',
         name: 'Tandoori Taaj Leg',
         description: 'Large chicken leg marinated in royal tandoori spices and roasted.',
@@ -886,7 +859,7 @@ const MenuPage = () => {
                       </div>
                       <div className="text-center">
                         <div className="font-alata text-base sm:text-lg font-bold text-foreground">Full Kg</div>
-                        <div className="font-montserrat text-primary font-semibold text-sm sm:text-base">₹1,153 onwards</div>
+                        <div className="font-montserrat text-primary font-semibold text-sm sm:text-base">₹1,028 onwards</div>
                       </div>
                     </div>
                   </div>
