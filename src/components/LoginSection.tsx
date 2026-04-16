@@ -227,7 +227,7 @@ const LoginSection = () => {
 
               <div className="text-center mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
                 <p className="font-montserrat text-xs text-foreground/70">
-                  🎯 Get instant access to ₹100 off your first order!
+                  🎯 Sign up & get flat ₹100 off on your first 1 KG+ biryani order!
                 </p>
               </div>
             </CardContent>
