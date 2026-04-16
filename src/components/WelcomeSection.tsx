@@ -28,7 +28,7 @@ const WelcomeSection = () => {
               </p>
               <div className="bg-primary/10 p-3 rounded-lg border border-primary/20">
                 <p className="font-montserrat text-xs text-primary font-semibold">
-                  🎉 Your exclusive flat ₹100 off is active!
+                  🎉 Your flat ₹100 off on 1 KG+ orders is active!
                 </p>
               </div>
             </CardContent>
