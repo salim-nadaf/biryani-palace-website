@@ -63,13 +63,31 @@ const SEO_FAQ = [
   },
 ];
 
-const BiryaniCalculator = () => {
+export interface BiryaniCalculatorProps {
+  showSeoContent?: boolean;
+  showHeader?: boolean;
+  defaultGuests?: string;
+  defaultEventType?: EventType | '';
+  defaultAppetite?: AppetiteLevel | '';
+  analyticsSource?: string;
+  className?: string;
+}
+
+const BiryaniCalculator = ({
+  showSeoContent = true,
+  showHeader = true,
+  defaultGuests = '',
+  defaultEventType = '',
+  defaultAppetite = '',
+  analyticsSource = 'calculator_page',
+  className = '',
+}: BiryaniCalculatorProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   const hasTrackedOpen = useRef(false);
 
-  const [guests, setGuests] = useState('');
-  const [eventType, setEventType] = useState<EventType | ''>('');
-  const [appetite, setAppetite] = useState<AppetiteLevel | ''>('');
+  const [guests, setGuests] = useState(defaultGuests);
+  const [eventType, setEventType] = useState<EventType | ''>(defaultEventType);
+  const [appetite, setAppetite] = useState<AppetiteLevel | ''>(defaultAppetite);
   const [pricePerKg, setPricePerKg] = useState('');
   const [result, setResult] = useState<ReturnType<
     typeof calculateBiryaniQuantity
@@ -89,6 +107,7 @@ const BiryaniCalculator = () => {
           trackEvent(ANALYTICS_EVENTS.CALCULATOR_OPENED, {
             event_category: 'calculator',
             event_label: 'biryani_quantity_calculator',
+            source: analyticsSource,
           });
         }
       },
@@ -97,7 +116,7 @@ const BiryaniCalculator = () => {
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [analyticsSource]);
 
   const validate = useCallback((): boolean => {
     const nextErrors: Record<string, string> = {};
@@ -143,6 +162,7 @@ const BiryaniCalculator = () => {
       suggested_quantity_kg: calc.suggestedOrder,
       base_quantity_kg: calc.baseKg,
       price_per_kg: parsedPricePerKg,
+      source: analyticsSource,
     });
   };
 
@@ -190,6 +210,7 @@ Please share pricing and ordering details.`;
       event_type: eventType,
       appetite_level: appetite,
       suggested_quantity_kg: result?.suggestedOrder,
+      source: analyticsSource,
     });
     window.open(buildWhatsAppUrl(), '_blank', 'noopener,noreferrer');
   };
@@ -198,12 +219,13 @@ Please share pricing and ordering details.`;
     <section
       id="biryani-calculator"
       ref={sectionRef}
-      className="py-20 px-4 bg-gradient-subtle scroll-mt-24"
+      className={`py-20 px-4 bg-gradient-subtle scroll-mt-24 ${className}`}
       aria-labelledby="calculator-heading"
     >
       <div className="container mx-auto max-w-5xl">
-        {/* Header */}
-        <div className="text-center mb-10 animate-fade-in">
+        {showHeader && (
+          <>
+            <div className="text-center mb-10 animate-fade-in">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 border border-primary/30 mb-4">
             <Calculator className="w-7 h-7 text-primary" aria-hidden="true" />
           </div>
@@ -228,7 +250,6 @@ Please share pricing and ordering details.`;
           </p>
         </div>
 
-        {/* Trust badges */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           {TRUST_BADGES.map((badge) => (
             <div
@@ -243,6 +264,8 @@ Please share pricing and ordering details.`;
             </div>
           ))}
         </div>
+          </>
+        )}
 
         <Card className="bg-gradient-card border-2 border-primary/20 shadow-elegant overflow-hidden">
           <CardContent className="p-6 sm:p-8 md:p-10">
@@ -521,59 +544,61 @@ Please share pricing and ordering details.`;
           </CardContent>
         </Card>
 
-        {/* SEO content */}
-        <div className="mt-16 max-w-3xl mx-auto">
-          <h3 className="font-alata text-2xl font-bold text-foreground mb-6 text-center">
-            Biryani Quantity Guide
-          </h3>
-          <div className="space-y-4">
-            {SEO_FAQ.map((item) => (
-              <article
-                key={item.question}
-                className="p-5 rounded-xl bg-gradient-card border border-border"
-              >
-                <h4 className="font-alata text-base font-bold text-foreground mb-2">
-                  {item.question}
-                </h4>
-                <p className="font-montserrat text-sm text-foreground/75 leading-relaxed">
-                  {item.answer}
-                </p>
-              </article>
-            ))}
+        {showSeoContent && (
+          <div className="mt-16 max-w-3xl mx-auto">
+            <h3 className="font-alata text-2xl font-bold text-foreground mb-6 text-center">
+              Biryani Quantity Guide
+            </h3>
+            <div className="space-y-4">
+              {SEO_FAQ.map((item) => (
+                <article
+                  key={item.question}
+                  className="p-5 rounded-xl bg-gradient-card border border-border"
+                >
+                  <h4 className="font-alata text-base font-bold text-foreground mb-2">
+                    {item.question}
+                  </h4>
+                  <p className="font-montserrat text-sm text-foreground/75 leading-relaxed">
+                    {item.answer}
+                  </p>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
-      {/* JSON-LD for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'WebApplication',
-            name: 'Biryani Quantity Calculator',
-            applicationCategory: 'UtilityApplication',
-            operatingSystem: 'Web',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'INR',
-            },
-            provider: {
-              '@type': 'Restaurant',
-              name: 'Biryani Palace',
-              address: {
-                '@type': 'PostalAddress',
-                addressLocality: 'Kalyan',
-                addressRegion: 'Maharashtra',
-                addressCountry: 'IN',
+      {showSeoContent && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebApplication',
+              name: 'Biryani Quantity Calculator',
+              applicationCategory: 'UtilityApplication',
+              operatingSystem: 'Web',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'INR',
               },
-            },
-            description:
-              'Free biryani quantity calculator for parties, weddings, and family gatherings in India. Calculate how much biryani per person and get a suggested order quantity.',
-          }),
-        }}
-      />
+              provider: {
+                '@type': 'Restaurant',
+                name: 'Biryani Palace',
+                address: {
+                  '@type': 'PostalAddress',
+                  addressLocality: 'Kalyan',
+                  addressRegion: 'Maharashtra',
+                  addressCountry: 'IN',
+                },
+              },
+              description:
+                'Free biryani quantity calculator for parties, weddings, and family gatherings in India. Calculate how much biryani per person and get a suggested order quantity.',
+            }),
+          }}
+        />
+      )}
     </section>
   );
 };

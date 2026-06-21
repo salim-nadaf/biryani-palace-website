@@ -84,13 +84,13 @@ const Header = memo(() => {
               >
                 Menu
               </Link>
-              <button
-                onClick={() => scrollToSection('biryani-calculator')}
+              <Link
+                to="/biryani-calculator"
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
                 aria-label="Open biryani quantity calculator"
               >
                 Calculator
-              </button>
+              </Link>
               <button
                 onClick={() => scrollToSection('about')}
                 className="text-foreground hover:text-primary transition-smooth font-montserrat"
@@ -195,12 +195,13 @@ const Header = memo(() => {
                 >
                   Menu
                 </Link>
-                <button
-                  onClick={() => scrollToSection('biryani-calculator')}
+                <Link
+                  to="/biryani-calculator"
                   className="text-left text-foreground hover:text-primary transition-smooth font-montserrat py-2"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Calculator
-                </button>
+                </Link>
                 <button
                   onClick={() => scrollToSection('about')}
                   className="text-left text-foreground hover:text-primary transition-smooth font-montserrat py-2"
