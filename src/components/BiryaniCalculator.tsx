@@ -19,7 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { CALCULATOR_PRICING } from '@/config/calculatorPricing';
+import { CALCULATOR_DEFAULTS } from '@/config/calculatorPricing';
 import {
   APPETITE_OPTIONS,
   EVENT_TYPES,
@@ -69,12 +69,13 @@ const BiryaniCalculator = () => {
   const [guests, setGuests] = useState('');
   const [eventType, setEventType] = useState<EventType | ''>('');
   const [appetite, setAppetite] = useState<AppetiteLevel | ''>('');
+  const [pricePerKg, setPricePerKg] = useState('');
   const [result, setResult] = useState<ReturnType<
     typeof calculateBiryaniQuantity
   > | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const pricing = CALCULATOR_PRICING.chickenDumBiryani;
+  const parsedPricePerKg = pricePerKg.trim() ? Number(pricePerKg) : null;
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -115,9 +116,16 @@ const BiryaniCalculator = () => {
       nextErrors.appetite = 'Please select an appetite level';
     }
 
+    if (pricePerKg.trim()) {
+      const price = Number(pricePerKg);
+      if (!Number.isFinite(price) || price <= 0) {
+        nextErrors.pricePerKg = 'Please enter a valid price (greater than 0)';
+      }
+    }
+
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
-  }, [guests, eventType, appetite]);
+  }, [guests, eventType, appetite, pricePerKg]);
 
   const handleCalculate = () => {
     if (!validate()) return;
@@ -133,6 +141,7 @@ const BiryaniCalculator = () => {
       appetite_level: appetite,
       suggested_quantity_kg: calc.suggestedOrder,
       base_quantity_kg: calc.baseKg,
+      price_per_kg: parsedPricePerKg,
     });
   };
 
@@ -140,20 +149,25 @@ const BiryaniCalculator = () => {
     setGuests('');
     setEventType('');
     setAppetite('');
+    setPricePerKg('');
     setResult(null);
     setErrors({});
   };
 
   const estimatedCost = useMemo(() => {
-    if (!result) return null;
-    return result.suggestedOrder * pricing.pricePerKg;
-  }, [result, pricing.pricePerKg]);
+    if (!result || parsedPricePerKg === null || parsedPricePerKg <= 0) return null;
+    return result.suggestedOrder * parsedPricePerKg;
+  }, [result, parsedPricePerKg]);
 
   const appetiteLabel =
     APPETITE_OPTIONS.find((o) => o.value === appetite)?.label ?? appetite;
 
   const buildWhatsAppUrl = () => {
     const quantity = result ? `${formatKg(result.suggestedOrder)} KG` : '';
+    const costLine =
+      estimatedCost !== null && parsedPricePerKg !== null
+        ? `Estimated Cost: ₹${estimatedCost.toLocaleString('en-IN')} (@ ₹${parsedPricePerKg.toLocaleString('en-IN')}/KG)\n`
+        : '';
     const message = `Hi Biryani Palace,
 
 I used the Biryani Quantity Calculator.
@@ -162,7 +176,7 @@ Event Type: ${eventType}
 Guests: ${guests}
 Appetite Level: ${appetiteLabel}
 Suggested Quantity: ${quantity}
-
+${costLine}
 Please share pricing and ordering details.`;
 
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -334,6 +348,35 @@ Please share pricing and ordering details.`;
                   )}
                 </div>
 
+                <div className="space-y-2">
+                  <Label htmlFor="calc-price" className="font-montserrat">
+                    Price Per KG <span className="text-muted-foreground font-normal">(Optional)</span>
+                  </Label>
+                  <Input
+                    id="calc-price"
+                    type="number"
+                    min={1}
+                    inputMode="decimal"
+                    placeholder={`e.g. ${CALCULATOR_DEFAULTS.pricePerKgPlaceholder}`}
+                    value={pricePerKg}
+                    onChange={(e) => {
+                      setPricePerKg(e.target.value);
+                      setErrors((prev) => ({ ...prev, pricePerKg: '' }));
+                    }}
+                    className="bg-background/50 border-border focus:border-primary font-montserrat text-base h-12"
+                  />
+                  {errors.pricePerKg ? (
+                    <p className="text-sm text-destructive font-montserrat">
+                      {errors.pricePerKg}
+                    </p>
+                  ) : (
+                    <p className="font-montserrat text-xs text-muted-foreground">
+                      Enter your biryani price per KG to see an estimated cost.
+                      Quantity includes the 10% safety buffer.
+                    </p>
+                  )}
+                </div>
+
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <Button
                     onClick={handleCalculate}
@@ -408,16 +451,16 @@ Please share pricing and ordering details.`;
                       </p>
                     </div>
 
-                    {estimatedCost !== null && (
+                    {estimatedCost !== null && parsedPricePerKg !== null && (
                       <div className="p-4 rounded-xl bg-background/40 border border-border">
                         <p className="font-montserrat text-xs text-muted-foreground uppercase tracking-wide mb-1">
-                          Estimated Cost ({pricing.name})
+                          Estimated Cost
                         </p>
                         <p className="font-alata text-2xl font-bold text-primary">
                           ₹{estimatedCost.toLocaleString('en-IN')}
                         </p>
                         <p className="font-montserrat text-xs text-muted-foreground mt-1">
-                          @ ₹{pricing.pricePerKg.toLocaleString('en-IN')} per KG
+                          @ ₹{parsedPricePerKg.toLocaleString('en-IN')} per KG
                           · includes buffer
                         </p>
                       </div>
