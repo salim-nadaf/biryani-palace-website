@@ -7,6 +7,7 @@ import {
   Shield,
   Sparkles,
   Users,
+  Gift,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -481,6 +482,22 @@ Please share pricing and ordering details.`;
                         />
                         Order on WhatsApp
                       </Button>
+                      <div className="mt-4 p-3 rounded-xl bg-primary/5 border border-primary/20 text-center">
+                        <p className="font-montserrat text-sm text-foreground/90 flex items-start justify-center gap-2">
+                          <Gift
+                            className="w-4 h-4 text-primary shrink-0 mt-0.5"
+                            aria-hidden="true"
+                          />
+                          <span>
+                            Planning a wedding or large party? Ask about{' '}
+                            <span className="text-primary font-semibold">
+                              special bulk discounts
+                            </span>{' '}
+                            — we&apos;ll help you order the right quantity at
+                            the best price.
+                          </span>
+                        </p>
+                      </div>
                       <p className="font-montserrat text-xs text-center text-muted-foreground mt-3">
                         We&apos;ll receive your event details pre-filled — no
                         typing needed.

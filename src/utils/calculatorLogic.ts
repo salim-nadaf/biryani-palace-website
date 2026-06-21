@@ -12,7 +12,7 @@ export const APPETITE_OPTIONS: {
 
 export const EVENT_TYPES = [
   'Family Gathering',
-  'Birthday Party',
+  'Party',
   'Office Event',
   'Wedding',
   'Other',
