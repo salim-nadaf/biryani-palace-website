@@ -9,6 +9,7 @@ const LoginSection = lazy(() => import('@/components/LoginSection'));
 const About = lazy(() => import('@/components/About'));
 const Contact = lazy(() => import('@/components/Contact'));
 const MenuHighlights = lazy(() => import('@/components/MenuHighlights'));
+const BiryaniCalculator = lazy(() => import('@/components/BiryaniCalculator'));
 
 const Index = () => {
   const location = useLocation();
@@ -32,6 +33,7 @@ const Index = () => {
         <Suspense fallback={null}>
           <WelcomeSection />
           <MenuHighlights />
+          <BiryaniCalculator />
           <LoginSection />
           <About />
           <Contact />
