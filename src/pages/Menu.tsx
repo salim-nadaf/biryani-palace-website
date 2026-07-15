@@ -13,6 +13,7 @@ import { CartSidebar } from '@/components/CartSidebar';
 
 // Hero image
 import heroBiryani from '@/assets/mutton-biryani-hero.jpg';
+import chickenBiryaniVideoSrc from '@/assets/chicken-biryani-serving.mp4';
 
 // Import original bucket biryani images
 import chickenDumBucket1kg from '@/assets/chicken-dum-bucket-1kg.png';
