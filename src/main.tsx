@@ -1,8 +1,12 @@
 import { createRoot } from 'react-dom/client'
+import { HelmetProvider } from 'react-helmet-async'
 import App from './App.tsx'
 import './index.css'
 
-// Minimal startup - defer non-critical work
 const root = document.getElementById("root")!;
 
-createRoot(root).render(<App />);
+createRoot(root).render(
+  <HelmetProvider>
+    <App />
+  </HelmetProvider>
+);
