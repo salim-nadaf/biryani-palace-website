@@ -1,5 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+
 import {
   ArrowRight,
   Calculator,
@@ -52,12 +54,21 @@ const CalculatorPage = () => {
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute('content', PAGE_DESCRIPTION);
     return () => {
-      document.title = 'Biryani Palace - Biryani Quantity Calculator & Best Biryani in Kalyan';
+      document.title = 'Biryani Palace - Best Biryani in Kalyan | Free Delivery';
     };
   }, []);
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>{PAGE_TITLE}</title>
+        <meta name="description" content={PAGE_DESCRIPTION} />
+        <link rel="canonical" href="https://biryanipalace.lovable.app/biryani-calculator" />
+        <meta property="og:title" content={PAGE_TITLE} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
+        <meta property="og:url" content="https://biryanipalace.lovable.app/biryani-calculator" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <Header />
 
       {/* Compact hero — focused, not a duplicate of homepage */}
