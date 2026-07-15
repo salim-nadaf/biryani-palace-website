@@ -12,49 +12,49 @@ import Header from '@/components/Header';
 import { CartSidebar } from '@/components/CartSidebar';
 
 // Hero image
-import heroBiryani from '@/assets/mutton-biryani-hero.jpg';
+import heroBiryani from '@/assets/mutton-biryani-hero.webp';
 import chickenBiryaniVideoSrc from '@/assets/chicken-biryani-serving.mp4';
 
 // Import original bucket biryani images
-import chickenDumBucket1kg from '@/assets/chicken-dum-bucket-1kg.png';
-import chickenDumBucket from '@/assets/chicken-dum-bucket.png';
-import chickenTandoorBucket1kg from '@/assets/chicken-tandoor-bucket-1kg.png';
-import chickenTandooriBucket from '@/assets/chicken-tandoori-bucket.png';
+import chickenDumBucket1kg from '@/assets/chicken-dum-bucket-1kg.webp';
+import chickenDumBucket from '@/assets/chicken-dum-bucket.webp';
+import chickenTandoorBucket1kg from '@/assets/chicken-tandoor-bucket-1kg.webp';
+import chickenTandooriBucket from '@/assets/chicken-tandoori-bucket.webp';
 
 // Lazy import menu images - paths only, will be resolved by bundler
 const menuImages = {
-  alishaan: () => import('@/assets/alishaan-tandoori-biryani.jpg'),
-  banjaraBiryani: () => import('@/assets/banjara-e-biryani.png'),
-  bonelessLazzat: () => import('@/assets/boneless-lazzat-e-tikka-biryani.png'),
-  bonelessTikkaMasala: () => import('@/assets/boneless-tikka-masala.png'),
-  dhanShikori: () => import('@/assets/dhan-e-shikori-gosht.png'),
-  goshtDum: () => import('@/assets/gosht-e-dum-mazedaar.jpeg'),
-  hyderabadiMurgh: () => import('@/assets/hyderabadi-murgh-dum.png'),
-  hyderabadiMutton: () => import('@/assets/hyderabadi-mutton-dum.png'),
-  kadhaiPaneer: () => import('@/assets/kadhai-paneer-nawabi.png'),
-  kebabFirangi: () => import('@/assets/kebab-e-firangi.jpeg'),
-  kebabRoyale: () => import('@/assets/kebab-royale-sticks.jpeg'),
-  lababdaarSheekh: () => import('@/assets/lababdaar-seekh-biryani.jpg'),
-  lazzatTikka: () => import('@/assets/lazzat-e-tikka-biryani.png'),
-  makhmali: () => import('@/assets/makhmali-malai-biryani.jpg'),
-  masaledarGosht: () => import('@/assets/masaledar-gosht-curry.png'),
-  masaledarMurgh: () => import('@/assets/masaledar-murgh.png'),
-  murghAngaara: () => import('@/assets/murgh-angaara.png'),
-  murghKolhapuri: () => import('@/assets/murgh-kolhapuri-e-zaiqa.png'),
-  murghTikkaMasala: () => import('@/assets/murgh-tikka-masala.png'),
-  nawabiVeg: () => import('@/assets/nawabi-veg-dum-biryani.png'),
-  nayaabiItaliano: () => import('@/assets/nayaabi-italiano-biryani.jpeg'),
-  nazaakatPulao: () => import('@/assets/nazaakat-pulao.png'),
-  paneerFirangi: () => import('@/assets/paneer-e-firangi.png'),
-  paneerTikkaBiryani: () => import('@/assets/paneer-e-tikka-biryani.png'),
-  paneerTikkaMasala: () => import('@/assets/paneer-e-tikka-masala.png'),
-  sabzTikka: () => import('@/assets/sabz-tikka-biryani.png'),
-  sabziyonZaika: () => import('@/assets/sabziyon-ka-zaika.png'),
-  shahiMurghKorma: () => import('@/assets/shahi-murgh-korma.png'),
-  shahiMurghRolls: () => import('@/assets/shahi-murgh-rolls.jpeg'),
-  tandooriTaaj: () => import('@/assets/tandoori-taaj-leg.jpg'),
-  ustaadiMurgh: () => import('@/assets/ustaadi-murgh-dum.jpeg'),
-  zamZamLazawaab: () => import('@/assets/zam-zam-lazawaab-biryani.jpg'),
+  alishaan: () => import('@/assets/alishaan-tandoori-biryani.webp'),
+  banjaraBiryani: () => import('@/assets/banjara-e-biryani.webp'),
+  bonelessLazzat: () => import('@/assets/boneless-lazzat-e-tikka-biryani.webp'),
+  bonelessTikkaMasala: () => import('@/assets/boneless-tikka-masala.webp'),
+  dhanShikori: () => import('@/assets/dhan-e-shikori-gosht.webp'),
+  goshtDum: () => import('@/assets/gosht-e-dum-mazedaar.webp'),
+  hyderabadiMurgh: () => import('@/assets/hyderabadi-murgh-dum.webp'),
+  hyderabadiMutton: () => import('@/assets/hyderabadi-mutton-dum.webp'),
+  kadhaiPaneer: () => import('@/assets/kadhai-paneer-nawabi.webp'),
+  kebabFirangi: () => import('@/assets/kebab-e-firangi.webp'),
+  kebabRoyale: () => import('@/assets/kebab-royale-sticks.webp'),
+  lababdaarSheekh: () => import('@/assets/lababdaar-seekh-biryani.webp'),
+  lazzatTikka: () => import('@/assets/lazzat-e-tikka-biryani.webp'),
+  makhmali: () => import('@/assets/makhmali-malai-biryani.webp'),
+  masaledarGosht: () => import('@/assets/masaledar-gosht-curry.webp'),
+  masaledarMurgh: () => import('@/assets/masaledar-murgh.webp'),
+  murghAngaara: () => import('@/assets/murgh-angaara.webp'),
+  murghKolhapuri: () => import('@/assets/murgh-kolhapuri-e-zaiqa.webp'),
+  murghTikkaMasala: () => import('@/assets/murgh-tikka-masala.webp'),
+  nawabiVeg: () => import('@/assets/nawabi-veg-dum-biryani.webp'),
+  nayaabiItaliano: () => import('@/assets/nayaabi-italiano-biryani.webp'),
+  nazaakatPulao: () => import('@/assets/nazaakat-pulao.webp'),
+  paneerFirangi: () => import('@/assets/paneer-e-firangi.webp'),
+  paneerTikkaBiryani: () => import('@/assets/paneer-e-tikka-biryani.webp'),
+  paneerTikkaMasala: () => import('@/assets/paneer-e-tikka-masala.webp'),
+  sabzTikka: () => import('@/assets/sabz-tikka-biryani.webp'),
+  sabziyonZaika: () => import('@/assets/sabziyon-ka-zaika.webp'),
+  shahiMurghKorma: () => import('@/assets/shahi-murgh-korma.webp'),
+  shahiMurghRolls: () => import('@/assets/shahi-murgh-rolls.webp'),
+  tandooriTaaj: () => import('@/assets/tandoori-taaj-leg.webp'),
+  ustaadiMurgh: () => import('@/assets/ustaadi-murgh-dum.webp'),
+  zamZamLazawaab: () => import('@/assets/zam-zam-lazawaab-biryani.webp'),
 };
 
 // Bucket Biryani Images for carousel
@@ -656,8 +656,8 @@ const MenuPage = () => {
     <div className="min-h-screen">
       <Header />
       
-        {/* Hero Video Section - All Devices */}
-        {videoSrc ? (
+        {/* Hero Video Section - Desktop Only (Optimized for Mobile) */}
+        {videoSrc && !isMobile ? (
           <div className="relative mb-12 md:mb-20 -mt-4">
             <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
               <video 

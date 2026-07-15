@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import heroImage from '@/assets/mutton-biryani-hero.jpg';
+import heroImage from '@/assets/mutton-biryani-hero.webp';
 
 const Hero = memo(() => {
   return (
