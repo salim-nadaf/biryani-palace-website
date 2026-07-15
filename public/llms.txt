@@ -1,0 +1,11 @@
+# Biryani Palace
+
+> Authentic Hyderabadi biryani restaurant in Kalyan, Maharashtra. Free delivery within Kalyan, bulk plans for parties and weddings, and a free biryani quantity calculator.
+
+Biryani Palace serves chicken, mutton, and vegetarian biryanis, curries, kebabs, and rolls. Orders are taken via WhatsApp (+91 91676 82582). Bulk event plans start at ₹4,499 with free dessert.
+
+## Pages
+
+- [Home](/): Restaurant overview, hero, welcome, menu highlights, calculator promo, about, and contact.
+- [Menu](/menu): Full menu with 30+ biryanis, gravies, kebabs, bucket biryani specials, and bulk order plans.
+- [Biryani Quantity Calculator](/biryani-calculator): Free tool to calculate how much biryani to order for a party, wedding, or family gathering, with a WhatsApp order handoff.

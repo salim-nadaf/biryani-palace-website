@@ -761,6 +761,8 @@ const MenuPage = () => {
               />
               {searchQuery && (
                 <button
+                  type="button"
+                  aria-label="Clear search"
                   onClick={() => {
                     setSearchQuery('');
                     setShowDropdown(false);

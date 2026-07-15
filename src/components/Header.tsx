@@ -62,10 +62,10 @@ const Header = memo(() => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
-              <h1 className="font-alata text-2xl font-bold text-foreground hover:text-primary transition-smooth">
+            <Link to="/" className="flex items-center space-x-2" aria-label="Biryani Palace home">
+              <div className="font-alata text-2xl font-bold text-foreground hover:text-primary transition-smooth">
                 Biryani <span className="font-allura text-3xl text-primary">Palace</span>
-              </h1>
+              </div>
             </Link>
 
             {/* Desktop Navigation */}
