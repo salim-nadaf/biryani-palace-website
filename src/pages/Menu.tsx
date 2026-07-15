@@ -664,7 +664,7 @@ const MenuPage = () => {
                 autoPlay 
                 muted 
                 loop
-                preload="metadata"
+                preload="auto"
                 playsInline
                 className="w-full h-[50vh] md:h-[80vh] lg:h-[85vh] object-cover"
                 style={{ 
