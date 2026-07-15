@@ -510,7 +510,7 @@ const MenuPage = () => {
   const { toast } = useToast();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isMobile = useIsMobile();
-  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [videoSrc, setVideoSrc] = useState<string | null>(chickenBiryaniVideoSrc);
   const [searchQuery, setSearchQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
