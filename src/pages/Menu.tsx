@@ -608,12 +608,7 @@ const MenuPage = () => {
     return Promise.resolve({ default: '/placeholder.svg' });
   }, []);
 
-  // Lazy load video on all devices
-  useEffect(() => {
-    import('@/assets/chicken-biryani-serving.mp4').then((module) => {
-      setVideoSrc(module.default);
-    });
-  }, []);
+  // Video is imported statically so it starts loading with the page bundle
 
   const handleAddToCart = (item: any) => {
     addToCart({
