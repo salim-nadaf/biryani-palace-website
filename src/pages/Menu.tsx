@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Users, Crown, Utensils, Gift, Search, X, Download } from 'lucide-react';
+
 import { Input } from '@/components/ui/input';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from '@/components/ui/button';
@@ -654,7 +656,42 @@ const MenuPage = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Our Menu - Authentic Biryanis & Kebabs | Biryani Palace</title>
+        <meta name="description" content="Browse 30+ biryanis, curries, kebabs and bulk event plans at Biryani Palace, Kalyan. Free delivery within Kalyan and easy WhatsApp ordering." />
+        <link rel="canonical" href="https://biryanipalace.lovable.app/menu" />
+        <meta property="og:title" content="Our Menu - Authentic Biryanis & Kebabs | Biryani Palace" />
+        <meta property="og:description" content="Browse 30+ biryanis, curries, kebabs and bulk event plans at Biryani Palace, Kalyan." />
+        <meta property="og:url" content="https://biryanipalace.lovable.app/menu" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Menu",
+          "name": "Biryani Palace Menu",
+          "url": "https://biryanipalace.lovable.app/menu",
+          "hasMenuSection": [
+            { "@type": "MenuSection", "name": "Chicken Biryani", "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Hyderabadi Murgh Dum Biryani" },
+              { "@type": "MenuItem", "name": "Alishaan Tandoori Biryani" },
+              { "@type": "MenuItem", "name": "Lazzat-e-Tikka Biryani" }
+            ]},
+            { "@type": "MenuSection", "name": "Mutton Biryani", "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Hyderabadi Mutton Dum Biryani" },
+              { "@type": "MenuItem", "name": "Gosht-e-Dum Mazedaar" }
+            ]},
+            { "@type": "MenuSection", "name": "Veg Biryani", "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Nawabi Veg Dum Biryani" },
+              { "@type": "MenuItem", "name": "Paneer-e-Tikka Biryani" }
+            ]},
+            { "@type": "MenuSection", "name": "Kebabs & Curries", "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Kebab Royale Sticks" },
+              { "@type": "MenuItem", "name": "Shahi Murgh Korma" }
+            ]}
+          ]
+        })}</script>
+      </Helmet>
       <Header />
+      
       
         {/* Hero Video Section - Desktop Only (Optimized for Mobile) */}
         {videoSrc && !isMobile ? (
