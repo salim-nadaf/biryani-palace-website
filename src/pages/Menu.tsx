@@ -516,6 +516,17 @@ const MenuPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Play video programmatically to bypass browser autoplay blocks and React's muted attribute bug
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.play().catch((err) => {
+        console.log("Video autoplay blocked or failed:", err);
+      });
+    }
+  }, [videoSrc]);
 
   // Keyword mapping for intelligent search - maps user terms to menu terms
   const keywordMap: Record<string, string[]> = {
@@ -698,11 +709,13 @@ const MenuPage = () => {
           <div className="relative mb-12 md:mb-20 -mt-4">
             <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
               <video 
+                ref={videoRef}
                 autoPlay 
                 muted 
                 loop
                 preload="auto"
                 playsInline
+                src={videoSrc || undefined}
                 className="w-full h-[50vh] md:h-[80vh] lg:h-[85vh] object-cover"
                 style={{ 
                   objectPosition: 'center 65%',
@@ -711,7 +724,6 @@ const MenuPage = () => {
                 }}
                 poster={heroBiryani}
               >
-                <source src={videoSrc} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               
