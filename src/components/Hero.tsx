@@ -38,7 +38,7 @@ const Hero = memo(() => {
 
           {/* Main Heading */}
           <h1 className="font-alata text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Authentic Biryani, Crafted in <span className="font-allura text-5xl md:text-7xl bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent drop-shadow-xl">Kalyan</span>
+            Biryani for Family Feasts in <span className="font-allura text-5xl md:text-7xl bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent drop-shadow-xl">Kalyan</span>
           </h1>
 
           {/* Subtitle */}
