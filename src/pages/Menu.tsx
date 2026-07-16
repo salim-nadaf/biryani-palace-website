@@ -15,6 +15,7 @@ import { CartSidebar } from '@/components/CartSidebar';
 
 // Hero image
 import heroBiryani from '@/assets/mutton-biryani-hero.webp';
+import heroBiryaniMobile from '@/assets/mutton-biryani-hero-mobile.webp';
 import chickenBiryaniVideoSrc from '@/assets/chicken-biryani-serving.mp4';
 
 // Import original bucket biryani images
@@ -512,15 +513,22 @@ const MenuPage = () => {
   const { toast } = useToast();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const isMobile = useIsMobile();
-  const [videoSrc, setVideoSrc] = useState<string | null>(chickenBiryaniVideoSrc);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Lazy load video only on desktop/tablet to avoid mobile network overhead entirely
+  useEffect(() => {
+    if (!isMobile) {
+      setVideoSrc(chickenBiryaniVideoSrc);
+    }
+  }, [isMobile]);
+
   // Play video programmatically to bypass browser autoplay blocks and React's muted attribute bug
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoSrc && videoRef.current) {
       videoRef.current.muted = true;
       videoRef.current.play().catch((err) => {
         console.log("Video autoplay blocked or failed:", err);
@@ -759,6 +767,8 @@ const MenuPage = () => {
             <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
               <img 
                 src={heroBiryani}
+                srcSet={`${heroBiryaniMobile} 600w, ${heroBiryani} 1200w`}
+                sizes="(max-width: 768px) 100vw, 1200px"
                 alt="Royal biryani menu"
                 className="w-full h-[50vh] md:h-[80vh] object-cover"
                 style={{ objectPosition: 'center 65%' }}

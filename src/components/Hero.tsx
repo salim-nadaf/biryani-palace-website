@@ -3,6 +3,7 @@ import { ArrowRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import heroImage from '@/assets/mutton-biryani-hero.webp';
+import heroImageMobile from '@/assets/mutton-biryani-hero-mobile.webp';
 
 const Hero = memo(() => {
   return (
@@ -11,6 +12,8 @@ const Hero = memo(() => {
       <div className="absolute inset-0">
         <img
           src={heroImage}
+          srcSet={`${heroImageMobile} 600w, ${heroImage} 1200w`}
+          sizes="(max-width: 768px) 100vw, 1200px"
           alt="Delicious authentic mutton biryani served in traditional style"
           className="w-full h-full object-cover object-center"
           width={1920}
