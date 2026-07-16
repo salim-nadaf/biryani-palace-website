@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: (id) => {
           if (id.includes('node_modules')) {
-            if (/node_modules\/(react|react-dom|scheduler)(\/|$)/.test(id)) {
+            if (/node_modules\/(react|react-dom|scheduler|react-helmet-async|react-side-effect|shallowequal|invariant|use-sync-external-store|react-router|react-router-dom|@remix-run)(\/|$)/.test(id)) {
               return 'vendor';
             }
             if (/node_modules\/(lucide-react)(\/|$)/.test(id)) {
